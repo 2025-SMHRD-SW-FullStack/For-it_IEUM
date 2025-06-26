@@ -1,11 +1,11 @@
 import React, { useState } from "react";
-import buildPrompt from "../api/Prompt";
-import buildPrompt4o from "../api/Prompt4o"
-import useOpenAI from "../api/openAI";
-import testItem from "../data/testItem";
+import buildPrompt from "../../../api/Prompt";
+import buildPrompt4o from "../../../api/Prompt4o"
+import useOpenAI from "../../../api/openAI";
+import testItem from "../../../data/testItem";
 
 
-const AIResult = () => {
+const AIStrategyTab = () => {
   const [submitted, setSubmitted] = useState(false);
   // const prompt = buildPrompt(testItem);
   const prompt = buildPrompt4o(testItem);
@@ -36,4 +36,4 @@ const AIResult = () => {
   );
 };
 
-export default AIResult;
+export default AIStrategyTab;
