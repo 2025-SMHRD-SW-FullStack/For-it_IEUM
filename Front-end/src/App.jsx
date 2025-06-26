@@ -3,14 +3,17 @@ import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
 import BookmarkList from './components/BookmarkList'
-import AIResult from './components/AIResult'
+import AIStrategyTab from './components/detail-panel/tab/AIStrategyTab'
+import SearchPage from './pages/SearchPage'
+
 
 function App() {
   const [count, setCount] = useState(0)
 
   return (
     <>
-      <AIResult/>
+      {/* <AIStrategyTab/> */}
+      <SearchPage/>
     </>
   )
 }
