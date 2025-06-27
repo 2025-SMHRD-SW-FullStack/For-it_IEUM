@@ -1,9 +1,9 @@
 import { create } from 'zustand';
 
 const useCardStore = create((set) => ({
-  selectedCard: null,
-  setSelectedCard: (card) => set({ selectedCard: card }),
-  clearSelectedCard: () => set({ selectedCard: null }),
+  interestedCard: null,
+  setInterestedCard: (card) => set({ interestedCard: card }),
+  clearInterestedCard: () => set({ interestedCard: null }),
 }));
 
 export default useCardStore;

@@ -1,0 +1,17 @@
+#TabMenu{
+    writing-mode: vertical-lr;
+    text-orientation: upright;
+    display: flex;
+    flex-direction: row;
+}
+
+.tabBtn{
+    height: 70px;
+    border: 1px solid black;
+    border-radius: 10px;
+    background-color: white;
+}
+
+#AITabBtn{
+    writing-mode: horizontal-tb;
+}

@@ -8,7 +8,7 @@ const CardItem = ({card}) => {
   const {setInterestedCard} = useCardStore();
 
   const CardClick = () => {
-    console.log('Clicked card:', card);
+    // console.log('Clicked card:', card);
     setInterestedCard(card);
   }
 

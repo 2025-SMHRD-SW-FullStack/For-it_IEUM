@@ -7,11 +7,12 @@ import testItemArray from '../../data/testItemArray';
 const SearchContent = () => {
 
   return (
-    <div style={{border: '1px solid black', display: 'inline-block'}}>
+    <div style={{border: '1px solid black'}}>
       <SearchBar/>
       {testItemArray.map((keyword)=>(
-        <CardItem key={keyword.id} card={card}/>
+        <CardItem key={keyword.id} card={keyword}/>
       ))}
+      {/* <DetailPanel/> */}
     </div>
   )
 }
