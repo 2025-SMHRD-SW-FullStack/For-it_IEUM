@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<form th:action="@{/search}" method="post">
+		<label>
+			<select name="choise">
+				<option value="productName">물품 이름</option>
+				<option value="hsCode">hs code</option>
+			</select>	
+			<!-- <input type="text" name="productName"> -->
+		</label>
+		<input type="text" name="keyword">
+		<input type="submit" value="검색">
+	</form>
+	<table th:if="${!#lists.isEmpty(result)}" border="1">
+		<thead>
+			<tr>
+				<th>HS 코드</th>
+				<th>상품 이름</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr th:each="item : ${result}">
+				<td th:text="${item.hsCode}">HS코드</td>
+				<td th:text="${item.productName}">상품이름</td>
+			</tr>
+		</tbody>
+	</table>
+</body>
+</html>
