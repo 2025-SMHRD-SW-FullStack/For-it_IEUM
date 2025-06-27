@@ -9,6 +9,10 @@ const TabMenu = () => {
 
   if (!interestedCard) return null; // 아무것도 선택 안 됐으면 패널 안 보여줌
 
+  const handleClick = () => {
+    
+  }
+
   return (
     <div id='TabMenu'>
         <button className='tabBtn'>관세비교</button>
