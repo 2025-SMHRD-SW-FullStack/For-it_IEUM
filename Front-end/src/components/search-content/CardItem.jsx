@@ -2,29 +2,30 @@ import React from 'react'
 import testItemArray from "../../data/testItemArray"
 import useCardStore from '../../stores/CardStore'
 
+import '../../styles/CardItem.css'
+
 
 const CardItem = ({card}) => {
 
-  const {setInterestedCard} = useCardStore();
+  const { selectedCard, setSelectedCard } = useCardStore();
+
+  const isSelected = (selectedCard && selectedCard.id) === card.id;
 
   const CardClick = () => {
-    // console.log('Clicked card:', card);
-    setInterestedCard(card);
+    console.log(card);
+    setSelectedCard(card);
   }
 
   return (
-    <div className="card-list" style={{border: '1px solid black'}}>
         <div 
-        className="card" 
-        key={card.id} 
-        style={{border: '1px solid black', margin:10}}
+        className={`card ${isSelected ? 'selected': ''}`} 
+        key={card.id}
         onClick={CardClick}
         >
-          <h6 className='card-text' style={{margin:10}}>HS코드:{card.hsCode}</h6>
-          <h6 className='card-text' style={{margin:10}}>품목명:{card.itemName}</h6>
+          <label className='card-text' id="HS">HS코드: {card.hsCode}</label>
+          <label className='card-text' id="Name">품목명: {card.itemName}</label>
         </div>
-      
-    </div>
+
   )
 }
 

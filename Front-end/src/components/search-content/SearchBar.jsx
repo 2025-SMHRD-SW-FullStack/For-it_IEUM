@@ -6,7 +6,7 @@ const SearchBar = () => {
 
   return (
     <div>
-        <input style={{height:30}}
+        <input
         id="searchBar" 
         type="text" 
         placeholder='내가 관심있는 품목 검색하기' />

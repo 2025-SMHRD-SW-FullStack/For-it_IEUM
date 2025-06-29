@@ -1,0 +1,14 @@
+.searchContent{
+    border: 1px solid black;
+    flex: 2;
+    padding: 10px;
+}
+
+.card-list{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    gap: 10px;
+    margin:10px 10px 0 0;
+    
+}

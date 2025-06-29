@@ -4,15 +4,22 @@ import CardItem from './CardItem'
 import DetailPanel from '../detail-panel/DetailPanel';
 import testItemArray from '../../data/testItemArray';
 
+import '../../styles/SearchContent.css'
+
 const SearchContent = () => {
 
   return (
-    <div style={{border: '1px solid black'}}>
+    <div className='searchContent'>
       <SearchBar/>
-      {testItemArray.map((keyword)=>(
-        <CardItem key={keyword.id} card={keyword}/>
-      ))}
-      {/* <DetailPanel/> */}
+      <div className='card-list'>
+        {testItemArray.map((card)=>(
+          <CardItem 
+          key={card.id} 
+          card={card} 
+          id='cardItem'/>
+        ))}
+      </div>
+        {/* <DetailPanel/> */}
     </div>
   )
 }

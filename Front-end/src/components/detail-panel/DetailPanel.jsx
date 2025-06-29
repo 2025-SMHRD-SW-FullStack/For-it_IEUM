@@ -1,20 +1,36 @@
-import React from 'react'
+import React, { useState } from 'react'
+import '../../styles/DetailPanel.css'
+import TabMenu from './TabMenu';
+import TariffComparisonTab from './tab/TariffComparisonTab';
+import ProductCalculatorTab from './tab/ProductCalculatorTab';
+import AIStrategyTab from './tab/AIStrategyTab';
 import useCardStore from '../../stores/CardStore';
 
 const DetailPanel = () => {
 
-  const { interestedCard, clearInterestedCard } = useCardStore();
-  // console.log('interestedCard in DetailPanel:', interestedCard);
+  const [activeTab, setActiveTab] = useState('tariff'); // 기본 탭: 관세 비교
 
-  if (!interestedCard) return null; // 아무것도 선택 안 됐으면 패널 안 보여줌
+  const renderActiveTab = () => {
+    switch (activeTab) {
+      case 'tariff':
+        return <TariffComparisonTab />;
+      case 'calculator':
+        return <ProductCalculatorTab />;
+      case 'strategy':
+        return <AIStrategyTab />;
+      default:
+        return null;
+    }
+  };
 
 
   return (
-    <aside style={{border: '1px black solid', padding: 5}}>
-      {/* className, id 넣어서 나중에 수정하기 */}
-      <button onClick={clearInterestedCard}>닫기</button>
-      <h4>HS코드: {interestedCard.hsCode}</h4>
-      <h4>품목명: {interestedCard.itemName}</h4>
+    <aside className='detailPanel'>
+      <TabMenu 
+      activeTab={activeTab} 
+      setActiveTab={setActiveTab}
+      className='tabMenu' />
+      <div className='tabContent'>{renderActiveTab()}</div>
     </aside>
   )
 }

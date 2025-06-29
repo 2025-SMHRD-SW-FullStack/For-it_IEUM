@@ -2,23 +2,29 @@ import React, { useState } from "react";
 import buildPrompt from "../../../api/Prompt";
 import buildPrompt4o from "../../../api/Prompt4o"
 import useOpenAI from "../../../api/openAI";
-import testItem from "../../../data/testItem";
+import useCardStore from "../../../stores/CardStore";
+import testItemArray from "../../../data/testItemArray";
 
 
 const AIStrategyTab = () => {
   const [submitted, setSubmitted] = useState(false);
   // const prompt = buildPrompt(testItem);
-  const prompt = buildPrompt4o(testItem);
+  const prompt = buildPrompt4o(testItemArray); // 최종 수정 프롬프트
   const { loading, response, fetchAI } = useOpenAI();
 
+  const { selectedCard, clearSelectedCard } = useCardStore();
+  if (!selectedCard) return null;
+
   const handleClick = () => {
-    console.log(testItem); // buildPrompt 내부 맨 위에 찍어보기
+    console.log(testItemArray); // buildPrompt 내부 맨 위에 찍어보기
     setSubmitted(true);
     fetchAI(prompt);
   };
 
   return (
     <div>
+      <button onClick={clearSelectedCard}>닫기</button>
+
       <h2>AI 수입 전략 추천</h2>
 
       <button onClick={handleClick} disabled={loading}>

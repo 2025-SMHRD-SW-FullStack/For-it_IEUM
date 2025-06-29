@@ -1,0 +1,14 @@
+.detailPanel{
+    border: 1px solid black;
+    padding: 5px;
+    flex: 2;
+    display: flex;
+    flex-direction: row;
+    width: 200px;
+}
+
+.tabContent{
+    padding: 10px;
+    padding-left: 20px;
+    flex: 1;
+}
