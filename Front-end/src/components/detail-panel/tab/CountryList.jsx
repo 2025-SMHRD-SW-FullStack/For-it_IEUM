@@ -1,6 +1,6 @@
 import React from 'react'
 import useCardStore from '../../../stores/CardStore'
-import '../../../styles/CountryList.css'
+import './CountryList.css'
 
 
 const CountryList = ({ countries = [], dropDown = false }) => {

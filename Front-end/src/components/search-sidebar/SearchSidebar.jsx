@@ -1,6 +1,6 @@
 import React from 'react'
 import KeywordFilter from './KeywordFilter'
-import '../../styles/SearchSidebar.css'
+import './SearchSidebar.css'
 
 const SearchSidebar = () => {
   return (

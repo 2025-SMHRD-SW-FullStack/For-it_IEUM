@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import '../../styles/KeywordFilter.css'
+import './KeywordFilter.css'
 
 const KeywordFilter = () => {
 

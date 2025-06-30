@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import '../../styles/TabMenu.css'
+import './TabMenu.css'
 
 const TabMenu = ({activeTab, setActiveTab}) => {
 

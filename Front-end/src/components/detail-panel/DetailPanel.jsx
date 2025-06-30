@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import '../../styles/DetailPanel.css'
+import './DetailPanel.css'
 import TabMenu from './TabMenu';
 import TariffComparisonTab from './tab/TariffComparisonTab';
 import ProductCalculatorTab from './tab/ProductCalculatorTab';

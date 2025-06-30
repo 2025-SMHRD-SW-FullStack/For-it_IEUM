@@ -1,10 +1,8 @@
 import React from 'react'
-import SearchBar from './SearchBar'
 import CardItem from './CardItem'
-import DetailPanel from '../detail-panel/DetailPanel';
 import testItemArray from '../../data/testItemArray';
 
-import '../../styles/SearchContent.css'
+import './SearchContent.css'
 
 const SearchContent = () => {
 
@@ -17,7 +15,6 @@ const SearchContent = () => {
           card={card} />
         ))}
       </div>
-        {/* <DetailPanel/> */}
     </div>
   )
 }

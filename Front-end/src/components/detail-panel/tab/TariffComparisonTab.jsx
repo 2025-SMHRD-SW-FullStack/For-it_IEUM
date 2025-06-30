@@ -1,7 +1,7 @@
 import React from 'react'
 import useCardStore from '../../../stores/CardStore';
 import TariffGraph from './TariffGraph';
-import '../../../styles/TariffComparisonTab.css'
+import './TariffComparisonTab.css'
 import CountryList from './CountryList';
 import testItemArray from '../../../data/testItemArray';
 

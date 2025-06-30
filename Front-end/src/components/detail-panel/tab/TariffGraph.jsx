@@ -2,7 +2,7 @@ import React, { PureComponent } from 'react';
 import { BarChart, Bar,  XAxis, YAxis, Tooltip, ResponsiveContainer, Cell, LabelList } from 'recharts';
 import useCardStore from '../../../stores/CardStore';
 import testItemArray from '../../../data/testItemArray';
-import '../../../styles/TariffGraph.css'
+import './TariffGraph.css'
 
 const TariffGraph = () => {
 

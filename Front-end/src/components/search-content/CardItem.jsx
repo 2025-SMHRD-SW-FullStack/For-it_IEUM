@@ -2,7 +2,7 @@ import React from 'react'
 import testItemArray from "../../data/testItemArray"
 import useCardStore from '../../stores/CardStore'
 
-import '../../styles/CardItem.css'
+import './CardItem.css'
 
 
 const CardItem = ({card}) => {
@@ -22,7 +22,7 @@ const CardItem = ({card}) => {
         key={card.id}
         onClick={CardClick}
         >
-          <div className='card-text'>
+          <div className='cardText'>
             <label id="HS">HS코드: {card.hsCode}</label>
             <label id="Name">품목명: {card.itemName}</label>
           </div>

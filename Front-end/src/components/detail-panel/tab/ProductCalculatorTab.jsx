@@ -1,6 +1,6 @@
 import React from 'react'
 import useCardStore from '../../../stores/CardStore';
-import '../../../styles/ProductCalculatorTab.css'
+import './ProductCalculatorTab.css'
 import CountryList from './CountryList';
 import testItemArray from '../../../data/testItemArray';
 
