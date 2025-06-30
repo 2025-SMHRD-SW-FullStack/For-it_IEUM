@@ -1,0 +1,13 @@
+.searchPage{
+    display: flex;
+    flex-direction: row;
+    height: 100%;
+}
+
+.searchDetail{
+    display: flex;
+    border: 1px solid black;
+    height: 100%;
+    width: 1400px;
+    
+}

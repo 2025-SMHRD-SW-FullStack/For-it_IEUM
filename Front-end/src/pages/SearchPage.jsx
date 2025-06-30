@@ -3,8 +3,9 @@ import SearchContent from '../components/search-content/SearchContent'
 import SearchSidebar from '../components/search-sidebar/SearchSidebar'
 import DetailPanel from '../components/detail-panel/DetailPanel'
 
-import '../styles/SearchMain.css'
+import '../styles/SearchPage.css'
 import useCardStore from '../stores/CardStore'
+import SearchBar from '../components/search-content/SearchBar'
 
 const SearchPage = () => {
 
@@ -14,11 +15,16 @@ const SearchPage = () => {
     <>
       {/* Header 추가하기 */}
 
-      <main className='searchMain'>
+      <main className='searchPage'>
         <SearchSidebar/>
-        <SearchContent/>
-        {/* <DetailPanel/> */}
-        {selectedCard && <DetailPanel/>}
+        <div>
+          <SearchBar/>
+          <div className='searchDetail'>
+            <SearchContent/>
+            {/* <DetailPanel/> */}
+            {selectedCard && <DetailPanel/>}
+          </div>
+        </div>
       </main>
       
       

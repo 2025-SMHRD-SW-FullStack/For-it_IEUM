@@ -4,16 +4,24 @@
     display: inline-block;
     box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.1);
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
+    padding: 10px;
 }
 
 .card.selected{
     background-color: #CFE8FC;
 }
 
+.favorite{
+  display: flex;
+  justify-content: end;
+  padding: 0px;
+}
+
 .card-text{
-  /* display: flex; */
-  font-size: 20px;
+  display: flex;
+  flex-direction: column;
+  font-size: 18px;
 }
 
 #HS{

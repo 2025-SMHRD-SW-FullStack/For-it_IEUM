@@ -21,7 +21,7 @@ const TabMenu = ({activeTab, setActiveTab}) => {
         className={activeTab === 'strategy' ? 'tab active' : 'tab'} 
         id='AITabBtn'
         onClick={()=> setActiveTab('strategy')}>
-          AI<br/>전략<br/>추천
+          AI 전략 추천
         </button>
 
     </div>

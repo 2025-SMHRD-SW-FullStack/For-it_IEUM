@@ -1,5 +1,9 @@
 import React from 'react'
 import useCardStore from '../../../stores/CardStore';
+import TariffGraph from './TariffGraph';
+import '../../../styles/TariffComparisonTab.css'
+import CountryList from './CountryList';
+import testItemArray from '../../../data/testItemArray';
 
 const TariffComparisonTab = () => {
 
@@ -9,9 +13,13 @@ const TariffComparisonTab = () => {
 
   return (
     <div>
-      <button onClick={clearSelectedCard}>닫기</button>
-      <h4>HS코드: {selectedCard.hsCode}</h4>
-      <h4>품목명: {selectedCard.itemName}</h4>
+      <div className='selectedCard'>
+        HS코드: {selectedCard.hsCode} | 품목명: {selectedCard.itemName} 
+      </div>
+      <br/>
+      <TariffGraph/>
+      <CountryList countries={selectedCard.availableCountries}/>     
+
     </div>
   )
 }

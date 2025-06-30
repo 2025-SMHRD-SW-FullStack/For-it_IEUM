@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import '../../styles/Keyword.css'
+import '../../styles/KeywordFilter.css'
 
 const KeywordFilter = () => {
 
@@ -20,8 +20,9 @@ const KeywordFilter = () => {
 
   return (
     <div>
-        <b>관심 있는 키워드</b>
         <div>
+          <b className='keywordLabel'>관심 있는 키워드</b>
+          <br />
             {interest.map((keyword, i) => (
               <div 
               className='keyword interest'
@@ -31,8 +32,9 @@ const KeywordFilter = () => {
             ))}
         </div>
         
-      <b>분류 리스트</b>
       <div>
+        <b className='keywordLabel'>분류 리스트</b>
+        <br />
         {keywords.map((keyword, i) => (
           <div 
           className={`keyword ${interest.includes(keyword) ? 'interest' : 'keyword'}`}

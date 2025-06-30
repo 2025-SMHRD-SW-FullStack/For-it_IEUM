@@ -1,5 +1,7 @@
 const buildPrompt4o = (data) => {
+
   const {
+    id,
     itemName,
     hsCode,
     baseTariff,
@@ -7,6 +9,7 @@ const buildPrompt4o = (data) => {
     lowestCountry,
     availableCountries,
   } = data;
+  
 
   // 최저 관세국 제외한 기타 국가
   const otherCountries = availableCountries

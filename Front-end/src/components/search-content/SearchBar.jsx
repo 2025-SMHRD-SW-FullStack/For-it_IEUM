@@ -1,11 +1,12 @@
 import React from 'react'
 import Search_Icon from '../../assets/icon/search_icon.png'
+import '../../styles/SearchBar.css'
 
 
 const SearchBar = () => {
 
   return (
-    <div>
+    <div className='searchBar'>
         <input
         id="searchBar" 
         type="text" 

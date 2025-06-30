@@ -12,7 +12,7 @@ const CardItem = ({card}) => {
   const isSelected = (selectedCard && selectedCard.id) === card.id;
 
   const CardClick = () => {
-    console.log(card);
+    // console.log(card);
     setSelectedCard(card);
   }
 
@@ -22,8 +22,11 @@ const CardItem = ({card}) => {
         key={card.id}
         onClick={CardClick}
         >
-          <label className='card-text' id="HS">HS코드: {card.hsCode}</label>
-          <label className='card-text' id="Name">품목명: {card.itemName}</label>
+          <div className='card-text'>
+            <label id="HS">HS코드: {card.hsCode}</label>
+            <label id="Name">품목명: {card.itemName}</label>
+          </div>
+          <div className='favorite'>☆</div>
         </div>
 
   )

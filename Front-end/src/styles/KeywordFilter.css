@@ -6,8 +6,13 @@
     margin: 10px 5px;
     margin-left: 0px;
     border-radius: 5px;
+    font-size: 17px;
 }
 
 .keyword.interest{
     background-color: #CFE8FC;
+}
+
+.keywordLabel {
+    font-size: 22px;
 }

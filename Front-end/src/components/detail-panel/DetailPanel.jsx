@@ -10,6 +10,9 @@ const DetailPanel = () => {
 
   const [activeTab, setActiveTab] = useState('tariff'); // 기본 탭: 관세 비교
 
+  const { selectedCard, clearSelectedCard } = useCardStore();
+  if (!selectedCard) return null;
+
   const renderActiveTab = () => {
     switch (activeTab) {
       case 'tariff':
@@ -30,7 +33,11 @@ const DetailPanel = () => {
       activeTab={activeTab} 
       setActiveTab={setActiveTab}
       className='tabMenu' />
-      <div className='tabContent'>{renderActiveTab()}</div>
+      <div className='tabContent'>
+        <button onClick={clearSelectedCard} className='closeBtn'>닫기</button>
+        <br/><br/>
+        {renderActiveTab()}
+      </div>
     </aside>
   )
 }
