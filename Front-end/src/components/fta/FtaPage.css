@@ -1,0 +1,138 @@
+.fta-page-wrapper {
+  width: 90%;
+  max-width: 800px;
+  margin: 80px auto;
+  font-family: "Noto Sans KR", sans-serif;
+  animation: fadeInUp 0.8s ease-out;
+}
+
+.fta-header {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 20px;
+}
+
+.fta-icon {
+  width: 48px;
+  height: 48px;
+  object-fit: contain;
+}
+
+.fta-title {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #1e40af;
+}
+
+.fta-box {
+  background-color: #f9fafb;
+  border-left: 6px solid #2563eb;
+  padding: 24px 28px;
+  border-radius: 12px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.05);
+  transition: transform 0.3s ease;
+}
+
+.fta-box:hover {
+  transform: translateY(-4px);
+}
+
+.fta-box p {
+  font-size: 1rem;
+  line-height: 1.7;
+  color: #333;
+  margin: 0;
+}
+
+/* 부드러운 진입 애니메이션 */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+
+.fta-country-wrapper {
+  background-color: #f9fafb; /* 아주 옅은 배경 */
+  padding: 40px;
+  border-radius: 20px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.03);
+  margin: 40px auto;
+  max-width: 1200px;
+}
+/* 제목 (선택 사항) */
+.fta-country-wrapper h2 {
+  text-align: center;
+  font-size: 2rem;
+  margin-bottom: 30px;
+  color: #333;
+  font-weight: bold;
+}
+
+/* 카드들을 담는 그리드 */
+.fta-country-grid {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 24px;
+  justify-items: center;
+}
+
+/* 각 국가 카드 */
+.fta-country-card {
+  background-color: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+  padding: 20px 10px;
+  width: 100%;
+  max-width: 140px;
+  text-align: center;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  position: relative;
+}
+
+.fta-country-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+/* 국가 이미지 */
+.fta-country-flag {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  object-fit: cover;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+  margin-bottom: 10px;
+}
+
+/* FTA 이름 텍스트 */
+.fta-country-name {
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: #333;
+}
+
+@media (max-width: 1024px) {
+  .fta-country-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .fta-country-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (max-width: 480px) {
+  .fta-country-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}

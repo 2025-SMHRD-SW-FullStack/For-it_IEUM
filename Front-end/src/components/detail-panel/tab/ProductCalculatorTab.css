@@ -1,0 +1,46 @@
+.inputContent{
+    display: flex;
+    flex-direction: column;
+    justify-content: center; 
+    margin: 10px;
+    margin-left: 0px;
+}
+
+.container{
+    display: flex;
+    flex-direction: row;
+}
+
+.countryList{
+    width: 200px;
+}
+
+.inputContainer{
+    padding: 10px;
+    border: 1px solid  rgb(95, 95, 95);
+    background-color: white;
+    border-radius: 15px;
+    flex: none;
+    display: inline-block;
+    margin-right: 10px;
+    margin-bottom: 10px;
+    width: 360px;
+
+}
+
+.ProductInput{
+    width: 200px;
+    height: 40px;
+    border: 0px;
+    border-bottom:solid 1px #cacaca;
+    padding: 5px;
+    background: transparent;
+    font-size: 18px;
+    /* border-collapse:collapse; */
+}
+
+.logic{
+    border: 1px solid rgb(95, 95, 95);
+    border-radius: 15px;
+    height: 300px;
+}
