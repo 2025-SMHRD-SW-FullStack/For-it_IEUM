@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import com.ieum.kr.dto.DetailCategoryDTO;
 import com.ieum.kr.dto.MainCategoryDTO;
 import com.ieum.kr.dto.ProductDTO;
+import com.ieum.kr.dto.RankProjection;
 import com.ieum.kr.dto.SearchDTO;
 import com.ieum.kr.dto.TariffInfoDTO;
 import com.ieum.kr.service.SearchService;
@@ -22,19 +23,17 @@ public class SearchController {
 	SearchService searchService;
 
 	@GetMapping("/")
-	public String goMain() {
-		System.out.println("Main");
-		searchService.searchTopRank();
+	public String goMain(Model model) {
+		List<RankProjection> rankList = searchService.searchTopRank();
+		model.addAttribute("rankList",rankList);
 		return "Main";
 	}
 	
 	@PostMapping("/search")
 	public String goSearch(SearchDTO dto, Model model) {
-		System.out.println(dto);
 		if("productName".equals(dto.getChoise())) {
 			List<ProductDTO> result = searchService.searchProductName(dto.getKeyword());
 			model.addAttribute("result",result);
-			System.out.println(result);
 		}else {
 			int len = dto.getKeyword().length();
 			int hsCode;
@@ -47,18 +46,14 @@ public class SearchController {
 			if(len < 4) {
 				List<MainCategoryDTO> result = searchService.searchMainCategory(dto.getKeyword());
 				model.addAttribute("result",result);
-				System.out.println(result);
 			}else if(len == 4) {
 				List<DetailCategoryDTO> result = searchService.searchDetailCategory(dto.getKeyword());
 				model.addAttribute("result",result);
-				System.out.println(result);
 			}else {
 				List<TariffInfoDTO> result = searchService.searchLowTariff(dto.getKeyword());
 				model.addAttribute("result",result);
-				System.out.println(result);
 			}
 		}
-		System.out.println("[이동확인]");
 		return "SearchPage";
 	}
 	

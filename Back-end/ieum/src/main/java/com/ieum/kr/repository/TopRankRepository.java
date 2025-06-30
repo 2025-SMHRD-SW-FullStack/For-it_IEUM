@@ -8,22 +8,24 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
 import com.ieum.kr.entity.RankEntity;
+import com.ieum.kr.dto.RankProjection;
 
 public interface TopRankRepository extends JpaRepository<RankEntity, String>{
-	@Query(value = """
-		    SELECT
-		      s.hs_code      AS hsCode,
-		      s.product_name AS productName,
-		      COUNT(*)       AS cnt
-		    FROM search_list s
-		    WHERE s.date BETWEEN :lastDate AND :today
-		    GROUP BY s.hs_code, s.product_name
-		    ORDER BY cnt DESC
-		    LIMIT 5
-		    """,
-		    nativeQuery = true
-		)
-	List<RankEntity> findTopByCount(
+    @Query(
+    	      value = """
+    	        SELECT
+    	          s.HS_CODE      AS hsCode,
+    	          s.PRODUCT_NAME AS productName,
+    	          COUNT(*)       AS cnt
+    	        FROM SEARCH_LIST s
+    	        WHERE s.`DATE` BETWEEN :lastDate AND :today
+    	        GROUP BY s.HS_CODE, s.PRODUCT_NAME
+    	        ORDER BY cnt DESC
+    	        LIMIT 5
+    	      """,
+    	      nativeQuery = true
+    	    )
+	List<RankProjection> findTopByCount(
 		    @Param("lastDate") LocalDate lastDate,
 		    @Param("today")    LocalDate today
 	    );

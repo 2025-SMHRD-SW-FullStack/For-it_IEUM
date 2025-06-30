@@ -1,10 +1,12 @@
 package com.ieum.kr.service;
 
+import java.awt.print.Pageable;
 import java.time.LocalDate;
 import java.util.Arrays;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
@@ -12,6 +14,7 @@ import org.springframework.web.client.RestTemplate;
 import com.ieum.kr.dto.DetailCategoryDTO;
 import com.ieum.kr.dto.MainCategoryDTO;
 import com.ieum.kr.dto.ProductDTO;
+import com.ieum.kr.dto.RankProjection;
 import com.ieum.kr.dto.TariffInfoDTO;
 import com.ieum.kr.entity.RankEntity;
 import com.ieum.kr.repository.TopRankRepository;
@@ -49,7 +52,6 @@ public class SearchService {
 	public List<TariffInfoDTO> searchLowTariff(String hsCode) {
 		String url = baseURL + "/api/tariff-info?hs_code="+hsCode;
 		ResponseEntity<TariffInfoDTO> response = restTemplate.getForEntity(url, TariffInfoDTO.class);
-		System.out.println("searchLowTariff");
 		TariffInfoDTO dto = response.getBody();
 		List<TariffInfoDTO> list = Arrays.asList(dto);
 		return list;
@@ -65,11 +67,11 @@ public class SearchService {
 	}
 	
 	// 검색 순위 출력
-	public void searchTopRank() {
+	public List<RankProjection> searchTopRank() {
 		LocalDate lastDate = LocalDate.now().minusDays(14);
 		LocalDate today = LocalDate.now();
-		List<RankEntity> list = topRankRepo.findTopByCount(lastDate,today);
-		System.out.println(list);
+		List<RankProjection> list = topRankRepo.findTopByCount(lastDate,today);
+		return list;
 	}
 
 }

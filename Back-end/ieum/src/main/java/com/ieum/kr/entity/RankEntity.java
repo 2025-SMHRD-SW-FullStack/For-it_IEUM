@@ -10,15 +10,15 @@ import lombok.Data;
 
 @Data
 @Entity
-@Table(name="search_list")
+@Table(name="SEARCH_LIST")
 public class RankEntity {
 
 	@Id
-	@Column(name="hs_code")
+	@Column(name="HS_CODE")
 	private String hsCode;
-	@Column(name="product_name")
+	@Column(name="PRODUCT_NAME")
 	private String productName;
-	@Column(name="`date`")
+	@Column(name="DATE")
 	private LocalDate date;
 	
     protected RankEntity() {}
