@@ -1,0 +1,44 @@
+.searchPage {
+  display: flex;
+  flex-direction: row;
+  height: 100vh; /* 화면 전체 높이 */
+  width: 100%;   /* 전체 너비 */
+}
+
+.sideBar {
+  border: 1px solid black;
+  padding: 2rem;
+  width: 20%;
+  min-width: 200px;
+  max-width: 280px;
+  transition: all 0.3s ease;
+  box-sizing: border-box;
+}
+
+.searchDetail {
+  display: flex;
+  flex-direction: row;
+  height: 100%;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.searchContent {
+  flex: 1;
+  padding: 1rem;
+  box-sizing: border-box;
+}
+
+.detailPanel {
+  flex: 1;
+  max-width: 400px;
+  min-width: 300px;
+  padding: 1rem;
+  box-sizing: border-box;
+  border-left: 1px solid #ccc;
+}
+
+/* 검색 바 여백 */
+.searchBar {
+  margin: 20px 0px 20px 5%;
+}

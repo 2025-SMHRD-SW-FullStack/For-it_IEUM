@@ -1,0 +1,30 @@
+[
+  {
+    "id": 1,
+    "title": "커피머신 (851671) | 중국 (1.2%)",
+    "itemName": "커피머신",
+    "hsCode": "851671",
+    "country": "중국",
+    "countryFlag": "🇨🇳",
+    "tariff": "1.2%",
+    "hasCalc": true,
+    "calcDetails": {
+      "productPrice": 60000000,
+      "cifPrice": 66000000,
+      "ftaDuty": 1980000,
+      "vat": 6798000,
+      "totalTax": 8778000,
+      "totalCost": 74778000,
+      "unitCost": 149556,
+      "diff": "기본 관세 적용 수입 비용 - 최저 관세 적용 수입 비용"
+    },
+    "hasStrategy": true,
+    "strategy": {
+      "recommendCountry": "중국 (1.2%)",
+      "avgShippingCost": 2500000,
+      "delivery": "10~14일",
+      "reason": "관세 + 운송비 기준 비용 효율 최상"
+    },
+    "Date": "2025.06.24"
+  }
+]
