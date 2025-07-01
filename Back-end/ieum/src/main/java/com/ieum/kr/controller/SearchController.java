@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.ieum.kr.dto.CalculationDTO;
 import com.ieum.kr.dto.RankProjection;
 import com.ieum.kr.dto.SearchDTO;
 import com.ieum.kr.service.SearchService;
@@ -30,15 +31,15 @@ public class SearchController {
 	SearchService searchService;
 
 	@GetMapping("/rank")
+	@Operation(summary="랭킹")
 	public ResponseEntity<List<RankProjection>> getTopRank() {
 		List<RankProjection> rankList = searchService.searchTopRank();
 		return ResponseEntity.ok(rankList);
 	}
 	
 	@PostMapping("/search")
+	@Operation(summary="검색")
 	public ResponseEntity<?> goSearch(@ModelAttribute SearchDTO dto) {
-		System.out.println(dto.getChoise());
-		System.out.println(dto.getKeyword());
 		List<?> result;
 		if("productName".equals(dto.getChoise())) {
 			if (dto.getKeyword().matches("\\d+")) {
@@ -65,6 +66,13 @@ public class SearchController {
 			}
 		}
 		return ResponseEntity.ok(result);
+	}
+	
+	@PostMapping("/cal")
+	@Operation(summary="계산")
+	public CalculationDTO goCalculation(CalculationDTO dto) {
+		CalculationDTO result = searchService.useCalcul(dto);
+		return result;
 	}
 	
 }

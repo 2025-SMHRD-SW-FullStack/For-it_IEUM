@@ -1,22 +1,61 @@
 package com.ieum.kr.dto;
 
-import java.time.LocalDate;
+import java.time.OffsetDateTime;
+import java.time.ZonedDateTime;
 
+import com.ieum.kr.entity.BookMarkEntity;
+
+import lombok.Builder;
 import lombok.Data;
 
 @Data
+@Builder
 public class BookMarkDTO {
 	
-	private int seqNumber;
+	private Integer seqNumber;
 	private String userID;
 	private String hsCode;
 	private String productName;
-	private String tax;
+	private float tax;
 	private String country;
 	private float tariff;
 	private int price;
 	private float quantity;
+	private String calculation;
 	private String chatGPTAnswer;
-	private LocalDate date;
+	private OffsetDateTime date;
+	
+	public static BookMarkDTO fromEntity(BookMarkEntity bookEntity) {
+		return BookMarkDTO.builder()
+				.seqNumber(bookEntity.getSeqNumber())
+				.userID(bookEntity.getUserID())
+				.hsCode(bookEntity.getHsCode())
+				.productName(bookEntity.getProductName())
+				.tax(bookEntity.getTax())
+				.country(bookEntity.getCountry())
+				.tariff(bookEntity.getTariff())
+				.price(bookEntity.getPrice())
+				.quantity(bookEntity.getQuantity())
+				.calculation(bookEntity.getCalculation())
+				.chatGPTAnswer(bookEntity.getChatGPTAnswer())
+				.date(bookEntity.getDate())
+				.build();
+	}
+
+    public BookMarkEntity toEntity() {
+        return BookMarkEntity.builder()
+                .userID(this.userID)
+                .hsCode(this.hsCode)
+                .productName(this.productName)
+                .tax(this.tax)
+                .country(this.country)
+                .tariff(this.tariff)
+                .price(this.price)
+                .quantity(this.quantity)
+                .calculation(this.calculation)
+                .chatGPTAnswer(this.chatGPTAnswer)
+                .date(this.date)
+                .build();
+    }
 	
 }
