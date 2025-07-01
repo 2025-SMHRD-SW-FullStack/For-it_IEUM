@@ -142,4 +142,4 @@ const testItemArray = [
   },
 ];
 
-export default testItemArray;
+export default testItemArray
