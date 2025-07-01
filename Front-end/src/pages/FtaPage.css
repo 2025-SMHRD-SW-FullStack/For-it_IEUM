@@ -20,10 +20,19 @@
 }
 
 .fta-title {
-  font-size: 2rem;
+  font-size: 2.2rem;
   font-weight: 700;
   color: #1e40af;
 }
+
+.fta-grid-title {
+  font-size: 1.rem;
+  margin-bottom: 30px; /* ✅ 이 줄 추가 */
+  color: #333;
+  font-weight: bold;
+  margin-top: 60px;
+}
+
 
 .fta-box {
   background-color: #f9fafb;
@@ -32,6 +41,9 @@
   border-radius: 12px;
   box-shadow: 0 6px 20px rgba(0, 0, 0, 0.05);
   transition: transform 0.3s ease;
+
+  margin-bottom: 100px;
+
 }
 
 .fta-box:hover {
@@ -39,7 +51,8 @@
 }
 
 .fta-box p {
-  font-size: 1rem;
+  font-size: 1.2rem;
+  /* font-weight: bold; */
   line-height: 1.7;
   color: #333;
   margin: 0;
@@ -57,18 +70,17 @@
   }
 }
 
-
-.fta-country-wrapper {
-  background-color: #f9fafb; /* 아주 옅은 배경 */
+/* .fta-country-wrapper {
+  background-color: #f9fafb; 
   padding: 40px;
   border-radius: 20px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.03);
   margin: 40px auto;
   max-width: 1200px;
-}
+} */
 /* 제목 (선택 사항) */
 .fta-country-wrapper h2 {
-  text-align: center;
+  /* text-align: center; */
   font-size: 2rem;
   margin-bottom: 30px;
   color: #333;
@@ -79,7 +91,7 @@
 .fta-country-grid {
   display: grid;
   grid-template-columns: repeat(6, 1fr);
-  gap: 24px;
+  gap: 32px;
   justify-items: center;
 }
 

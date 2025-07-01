@@ -1,16 +1,19 @@
 import React from 'react';
-import '../components/fta/FtaPage.css';
+import './FtaPage.css';
 import ftaImage from '../assets/image/ftaImage.png'; 
 import { useNavigate } from 'react-router-dom';
+import ftaCountries from '../data/ftaCountries';
+import FtaCountryGrid from '../components/fta/FtaCountryGrid';
 
-const ftaCountries = [
-  { name: "한-미 FTA", image: "/image/usa.png", route: "/fta/us" },
-  { name: "한-중 FTA", image: "/image/china.png", route: "/fta/china" },
-  { name: "한-EU FTA", image: "/image/eu.png", route: "/fta/eu" },
-  { name: "한-ASEAN FTA", image: "/image/asean.png", route: "/fta/asean" },
-  { name: "한-칠레 FTA", image: "/image/chile.png", route: "/fta/chile" },
-  { name: "한-인도 FTA", image: "/image/india.png", route: "/fta/india" },
-];
+
+// const ftaCountries = [
+//   { name: "한-미 FTA", image: "/image/usa.png", route: "/fta/us" },
+//   { name: "한-중 FTA", image: "/image/china.png", route: "/fta/china" },
+//   { name: "한-EU FTA", image: "/image/eu.png", route: "/fta/eu" },
+//   { name: "한-ASEAN FTA", image: "/image/asean.png", route: "/fta/asean" },
+//   { name: "한-칠레 FTA", image: "/image/chile.png", route: "/fta/chile" },
+//   { name: "한-인도 FTA", image: "/image/india.png", route: "/fta/india" },
+// ];
 
 const FtaPage = () => {
     const FtaNavigate = useNavigate();
@@ -29,8 +32,9 @@ const FtaPage = () => {
         </p>
       </div>
      <div className="fta-background-box">
-      <h2 className="fta-grid-title">체결된 FTA 국가</h2>
-      <div className="fta-grid-container">
+      <FtaCountryGrid></FtaCountryGrid>
+      {/* <h2 className="fta-grid-title">체결된 FTA 국가</h2>
+      <div className="fta-country-grid">
         {ftaCountries.map((country, idx) => (
           <div
             key={idx}
@@ -38,12 +42,12 @@ const FtaPage = () => {
             onClick={() => navigate(country.route)}
           >
             <div className="fta-country-icon">
-              <img src={country.image} alt={country.name} />
+              <img src={country.flag} alt={country.name} />
             </div>
             <p className="fta-country-label">{country.name}</p>
           </div>
         ))}
-      </div>
+      </div> */}
     </div>
     </div>
 

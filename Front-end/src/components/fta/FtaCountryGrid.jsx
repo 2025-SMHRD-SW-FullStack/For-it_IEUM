@@ -1,16 +1,8 @@
 // src/components/FtaCountryGrid.jsx
 import React from "react";
-import "./FtaCountryGrid.css";
+// import "./FtaCountryGrid.css";
 import { useNavigate } from "react-router-dom";
-
-const countries = [
-  { id: "us", name: "한-미 FTA", flag: "/flags/us.png" },
-  { id: "eu", name: "한-EU FTA", flag: "/flags/eu.png" },
-  { id: "cn", name: "한-중 FTA", flag: "/flags/china.png" },
-  { id: "au", name: "한-호주 FTA", flag: "/flags/australia.png" },
-  { id: "ca", name: "한-캐나다 FTA", flag: "/flags/canada.png" },
-  { id: "cl", name: "한-칠레 FTA", flag: "/flags/chile.png" },
-];
+import ftaCountries from "../../data/ftaCountries";
 
 const FtaCountryGrid = () => {
   const navigate = useNavigate();
@@ -19,18 +11,20 @@ const FtaCountryGrid = () => {
     <div className="fta-country-wrapper">
       <h2>FTA 체결 국가</h2>
       <div className="fta-country-grid">
-        {countries.map((country) => (
+       {ftaCountries.map((country)=>(
           <div
             key={country.id}
             className="fta-country-card"
-            onClick={() => navigate(`/fta/${country.id}`)}
+            onClick={() => navigate(country.route)}
           >
-            <img
-              src={country.flag}
-              alt={`${country.name} 국기`}
-              className="fta-country-flag"
-            />
-            <div className="fta-country-name">{country.name}</div>
+             <div className="fta-country-icon">
+              <img
+                src={country.flag}
+                alt={country.name}
+                className="fta-country-flag"
+              />
+            </div>
+            <p className="fta-country-label">{country.name}</p>
           </div>
         ))}
       </div>
