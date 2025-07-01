@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import '../components/bookmarkpage/BookMarkPage.css';
+import './BookMarkPage.css';
 
 const initialBookmarks = [
   { value: "a", title: "말 - 미국 (8%) ", text: "내용 1.dkfjslkjdfklsjfkljswklfdjslkjdfklsjdkfjsldfjlskijflkjskljfkdl.." },

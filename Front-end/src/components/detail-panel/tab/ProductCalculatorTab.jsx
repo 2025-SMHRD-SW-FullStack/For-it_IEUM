@@ -10,11 +10,11 @@ const ProductCalculatorTab = () => {
 
   return (
     <div>
-      <div className='container'>
+      <div className='input'>
         <div className='inputContent'>
-          <div className='inputContainer'>
+          <div className='inputContainer quantity'>
             품목 수량:&nbsp;
-            <input type="text" className='ProductInput' placeholder='ex) 500'/>
+            <input type="text" className='ProductInput quantity' placeholder='ex) 500'/>
             (개)
           </div>
 
@@ -24,12 +24,12 @@ const ProductCalculatorTab = () => {
             (원)
           </div>
         </div>
-        <CountryList className='countryList' countries={selectedCard.availableCountries} dropDown={true}/>
+      
+          <div>
+            <CountryList countries={selectedCard.availableCountries} dropDown={true}/>
+            <button className='CacultateBtn'>계산하기</button>
+          </div>
       </div>
-      <br />
-      <button>계산하기</button>
-      <br/>
-      <br/>
       <div className='logic'></div>
     </div>
   )

@@ -1,16 +1,15 @@
 .searchContent{
     border: 1px solid black;
-    flex: 2;
-    padding: 10px;
-    /* margin-left: 100px; */
-    /* margin-right: 20px; */
+    flex: 1;
+    overflow: auto;
+    padding: 1rem;
 }
 
 .card-list{
     display: flex;
     flex-wrap: wrap;
-    justify-content: center;
-    /* margin: 40px; */
-    gap: 15px;
+    /* justify-content: center; */
+    margin: 20px;
+    gap: 0.65rem;
     
 }

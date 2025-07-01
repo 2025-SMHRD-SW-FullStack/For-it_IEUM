@@ -13,7 +13,8 @@ const buildPrompt4o = (data) => {
 
   // 최저 관세국 제외한 기타 국가
   const otherCountries = availableCountries
-    .filter((country) => country !== lowestCountry)
+    .filter(c => c.country !== lowestCountry)
+    .map(c => `${c.country}(${c.tariff}%)`)
     .join(", ");
 
   return `
@@ -58,7 +59,7 @@ const buildPrompt4o = (data) => {
 📊 관세 비교  
 - 기본 관세율: 8%  
 - FTA 최저 관세율: 0% (베트남)  
-- 기타 FTA 체결국: 콜롬비아, 페루, 에티오피아
+- 기타 FTA 체결국: 콜롬비아(0%), 페루(2%), 태국(8%)
 
 ✅ 전략 추천  
 예시 1) 최저관세국과 추천국이 같은 경우  
