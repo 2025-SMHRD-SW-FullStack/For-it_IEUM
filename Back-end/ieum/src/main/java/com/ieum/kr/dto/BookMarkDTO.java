@@ -1,7 +1,6 @@
 package com.ieum.kr.dto;
 
 import java.time.OffsetDateTime;
-import java.time.ZonedDateTime;
 
 import com.ieum.kr.entity.BookMarkEntity;
 
