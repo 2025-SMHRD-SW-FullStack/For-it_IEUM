@@ -26,8 +26,6 @@ const AIStrategyTab = () => {
 
   return (
     <div>
-      <h2>AI 수입 전략 추천</h2>
-
       <button onClick={handleClick} disabled={loading}>
         {loading ? "불러오는 중..." : "AI 전략 추천받기"}
       </button>

@@ -1,5 +1,5 @@
 import React from 'react';
-import '../components/fta/FtaPage.css';
+import './FtaPage.css';
 import ftaImage from '../assets/image/ftaImage.png'; 
 import { useNavigate } from 'react-router-dom';
 
