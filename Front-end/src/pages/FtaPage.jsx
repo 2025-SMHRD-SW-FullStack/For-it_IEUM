@@ -3,6 +3,10 @@ import './FtaPage.css';
 import ftaImage from '../assets/image/ftaImage.png'; 
 import { useNavigate } from 'react-router-dom';
 import ftaCountries from '../data/ftaCountries';
+<<<<<<< HEAD
+import FtaCountryGrid from '../components/fta/FtaCountryGrid';
+=======
+>>>>>>> 7e1c996b66a35bf7ef3dd63a22bd9239418fbc9a
 
 
 // const ftaCountries = [
@@ -31,7 +35,8 @@ const FtaPage = () => {
         </p>
       </div>
      <div className="fta-background-box">
-      <h2 className="fta-grid-title">체결된 FTA 국가</h2>
+      <FtaCountryGrid></FtaCountryGrid>
+      {/* <h2 className="fta-grid-title">체결된 FTA 국가</h2>
       <div className="fta-country-grid">
         {ftaCountries.map((country, idx) => (
           <div
@@ -40,12 +45,12 @@ const FtaPage = () => {
             onClick={() => navigate(country.route)}
           >
             <div className="fta-country-icon">
-              <img src={country.image} alt={country.name} />
+              <img src={country.flag} alt={country.name} />
             </div>
             <p className="fta-country-label">{country.name}</p>
           </div>
         ))}
-      </div>
+      </div> */}
     </div>
     </div>
 

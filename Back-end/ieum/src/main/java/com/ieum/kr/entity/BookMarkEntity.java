@@ -1,6 +1,7 @@
 package com.ieum.kr.entity;
 
-import java.time.LocalDate;
+import java.time.OffsetDateTime;
+import java.time.ZonedDateTime;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -8,11 +9,13 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import lombok.Builder;
 import lombok.Data;
 
 @Data
 @Entity
 @Table(name="FAVORITE")
+@Builder
 public class BookMarkEntity {
 
 	@Id
@@ -30,7 +33,7 @@ public class BookMarkEntity {
 	private String productName;
 	
 	@Column(name="TAX")
-	private String tax;
+	private float tax;
 	
 	@Column(name="COUNTRY")
 	private String country;
@@ -44,9 +47,14 @@ public class BookMarkEntity {
 	@Column(name="QUANTITY")
 	private float quantity;
 	
+	@Column(name="CALCULATION")
+	private String calculation;
+	
 	@Column(name="CHATGPT_ANSWER")
 	private String chatGPTAnswer;
 	
 	@Column(name="DATE")
-	private LocalDate date;
+	private OffsetDateTime date;
+	
+	
 }

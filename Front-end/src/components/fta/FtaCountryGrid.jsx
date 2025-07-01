@@ -3,7 +3,6 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import ftaCountries from "../../data/ftaCountries";
 
-
 const FtaCountryGrid = () => {
   const navigate = useNavigate();
 

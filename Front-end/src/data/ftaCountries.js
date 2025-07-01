@@ -12,15 +12,15 @@ const ftaCountries = [
   { id: "sg", name: "한-싱가포르 FTA", flag: "/flags/singapore.png", route: "/fta/sg" },
   { id: "nz", name: "한-뉴질랜드 FTA", flag: "/flags/nz.png", route: "/fta/nz" },
   { id: "uk", name: "한-영국 FTA", flag: "/flags/uk.png", route: "/fta/uk" },
-  { id: "es", name: "한-스페인 FTA", flag: "/flags/spain.png", route: "/fta/es" },
-  { id: "de", name: "한-독일 FTA", flag: "/flags/germany.png", route: "/fta/de" },
-  { id: "fr", name: "한-프랑스 FTA", flag: "/flags/france.png", route: "/fta/fr" },
-  { id: "mx", name: "한-멕시코 FTA", flag: "/flags/mexico.png", route: "/fta/mx" },
-  { id: "ru", name: "한-러시아 FTA", flag: "/flags/russia.png", route: "/fta/ru" },
-  { id: "br", name: "한-브라질 FTA", flag: "/flags/brazil.png", route: "/fta/br" },
+  { id: "es", name: "한-EFTA", flag: "/flags/EFTA.png", route: "/fta/es" },
+  { id: "is", name: "한-이스라엘 FTA", flag: "/flags/is.png", route: "/fta/is" },
+  { id: "co", name: "한-콜롬비아 FTA", flag: "/flags/colombia.png", route: "/fta/co" },
+  { id: "de", name: "한- DEPA", flag: "/flags/DEPA.png", route: "/fta/de" },
+  { id: "ca", name: "한-중미 FTA", flag: "/flags/ca.png", route: "/fta/ca" },
+  { id: "tk", name: "한-튀르키예 FTA", flag: "/flags/tk.png", route: "/fta/tk" },
   { id: "id", name: "한-인도네시아 FTA", flag: "/flags/indonesia.png", route: "/fta/id" },
   { id: "ph", name: "한-필리핀 FTA", flag: "/flags/philippines.png", route: "/fta/ph" },
-  { id: "th", name: "한-태국 FTA", flag: "/flags/thailand.png", route: "/fta/th" },
+  { id: "pe", name: "한-페루 FTA", flag: "/flags/pe.png", route: "/fta/pe" },
 ];
 
 export default ftaCountries;

@@ -70,17 +70,17 @@
   }
 }
 
-.fta-country-wrapper {
-  background-color: #f9fafb; /* 아주 옅은 배경 */
+/* .fta-country-wrapper {
+  background-color: #f9fafb; 
   padding: 40px;
   border-radius: 20px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.03);
   margin: 40px auto;
   max-width: 1200px;
-}
+} */
 /* 제목 (선택 사항) */
 .fta-country-wrapper h2 {
-  text-align: center;
+  /* text-align: center; */
   font-size: 2rem;
   margin-bottom: 30px;
   color: #333;

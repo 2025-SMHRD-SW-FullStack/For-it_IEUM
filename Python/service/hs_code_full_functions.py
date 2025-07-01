@@ -53,14 +53,14 @@ def parse_base_tariff(val):
 def get_main_categories(input_code: str = Query(...)):
     main_df = df[df['세번길이'] <= 4]
     filtered = main_df[main_df['세번'].str.startswith(input_code)]
-    result = filtered[['세번', '한글품명']].drop_duplicates().reset_index(drop=True)
+    result = filtered[['세번', '한글품명']].drop_duplicates().sort_values('세번').reset_index(drop=True)
     return result.rename(columns={"세번": "hs_code", "한글품명": "product_name"}).to_dict(orient="records")
 	
 # 2. 대분류 코드로 소분류 출력
 @app.get("/api/subcategories",response_model=List[ProductDTO])
 def get_subcategories(main_code: str = Query(...)):
     sub_df = df[df['세번'].str.startswith(main_code)]
-    result = sub_df[['세번', '한글품명']].drop_duplicates().reset_index(drop=True)
+    result = sub_df[['세번', '한글품명']].drop_duplicates().sort_values('세번').reset_index(drop=True)
     return result.rename(columns={"세번": "hs_code", "한글품명": "product_name"}).to_dict(orient="records")
 	#return 
 
@@ -88,7 +88,7 @@ def get_tariff_info(hs_code: str = Query(...)):
 @app.get("/api/search-by-name",response_model=List[ProductDTO])
 def search_by_product_name(keyword: str = Query(...)):
     filtered = df[df['한글품명'].str.contains(keyword, case=False, na=False)]
-    result = filtered[['세번', '한글품명']].drop_duplicates().reset_index(drop=True)
+    result = filtered[['세번', '한글품명']].drop_duplicates().sort_values('세번').reset_index(drop=True)
     return result.rename(columns={"세번": "hs_code", "한글품명": "product_name"}).to_dict(orient="records")
 
 if __name__ == "__main__":
