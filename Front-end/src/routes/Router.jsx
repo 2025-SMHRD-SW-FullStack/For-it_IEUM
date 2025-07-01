@@ -6,6 +6,7 @@ import SearchPage from '../pages/SearchPage';
 import FtaPage from '../pages/FtaPage';
 import BookMarkPage from '../pages/BookMarkPage';
 import FtaNews from '../components/FtaNews/FtaNews';
+import LoginPage from '../pages/LoginPage';
 
 function PrivateRoute({ isLoggedIn, children }) {
   if (!isLoggedIn) {
@@ -26,6 +27,7 @@ function Router() {
       <Routes>
         <Route path="/" element={<MainPage />} />
         <Route path="/search" element={<SearchPage />} />
+        <Route path='/login' element={<LoginPage/>}/>
         <Route path="/fta" element={<FtaPage />} />
         <Route path="/FtaNews" element={<FtaNews />} />
         <Route
