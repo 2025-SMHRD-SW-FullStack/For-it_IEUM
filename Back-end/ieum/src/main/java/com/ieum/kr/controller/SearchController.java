@@ -1,60 +1,70 @@
 package com.ieum.kr.controller;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
+import org.springframework.http.ResponseEntity;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
-import com.ieum.kr.dto.DetailCategoryDTO;
-import com.ieum.kr.dto.MainCategoryDTO;
-import com.ieum.kr.dto.ProductDTO;
 import com.ieum.kr.dto.RankProjection;
 import com.ieum.kr.dto.SearchDTO;
-import com.ieum.kr.dto.TariffInfoDTO;
 import com.ieum.kr.service.SearchService;
 
-@Controller
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
+import lombok.RequiredArgsConstructor;
+
+@RestController
+@RequiredArgsConstructor
+@RequestMapping("/api")
+@Tag(name="Search",description="검색 관련 API")
 public class SearchController {
 
 	@Autowired
 	SearchService searchService;
 
-	@GetMapping("/")
-	public String goMain(Model model) {
+	@GetMapping("/rank")
+	public ResponseEntity<List<RankProjection>> getTopRank() {
 		List<RankProjection> rankList = searchService.searchTopRank();
-		model.addAttribute("rankList",rankList);
-		return "Main";
+		return ResponseEntity.ok(rankList);
 	}
 	
 	@PostMapping("/search")
-	public String goSearch(SearchDTO dto, Model model) {
+	public ResponseEntity<?> goSearch(@ModelAttribute SearchDTO dto) {
+		System.out.println(dto.getChoise());
+		System.out.println(dto.getKeyword());
+		List<?> result;
 		if("productName".equals(dto.getChoise())) {
-			List<ProductDTO> result = searchService.searchProductName(dto.getKeyword());
-			model.addAttribute("result",result);
+			if (dto.getKeyword().matches("\\d+")) {
+				return ResponseEntity
+						.badRequest()
+						.body(Map.of("error", "문자를 입력해주세요."));
+			}
+			result = searchService.searchProductName(dto.getKeyword());
+			return ResponseEntity.ok(result);
 		}else {
+			if (!dto.getKeyword().matches("\\d+")) {
+				return ResponseEntity
+						.badRequest()
+						.body(Map.of("error", "HS 코드는 숫자만 입력 가능합니다."));
+			}
 			int len = dto.getKeyword().length();
 			int hsCode;
-            try {
-                hsCode = Integer.parseInt(dto.getKeyword());
-            } catch (NumberFormatException e) {
-                model.addAttribute("error", "HS 코드는 숫자만 입력 가능합니다.");
-                return "Main";
-            }
 			if(len < 4) {
-				List<MainCategoryDTO> result = searchService.searchMainCategory(dto.getKeyword());
-				model.addAttribute("result",result);
+				result = searchService.searchMainCategory(dto.getKeyword());
 			}else if(len == 4) {
-				List<DetailCategoryDTO> result = searchService.searchDetailCategory(dto.getKeyword());
-				model.addAttribute("result",result);
+				result = searchService.searchDetailCategory(dto.getKeyword());
 			}else {
-				List<TariffInfoDTO> result = searchService.searchLowTariff(dto.getKeyword());
-				model.addAttribute("result",result);
+				result = searchService.searchLowTariff(dto.getKeyword());
 			}
 		}
-		return "SearchPage";
+		return ResponseEntity.ok(result);
 	}
 	
 }

@@ -11,8 +11,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
-import com.ieum.kr.dto.DetailCategoryDTO;
-import com.ieum.kr.dto.MainCategoryDTO;
 import com.ieum.kr.dto.ProductDTO;
 import com.ieum.kr.dto.RankProjection;
 import com.ieum.kr.dto.TariffInfoDTO;
@@ -31,20 +29,20 @@ public class SearchService {
 	String baseURL = "http://localhost:8010";
 
 	// hs_code가 3자리 이하일때 대분류를 찾는 기능
-	public List<MainCategoryDTO> searchMainCategory(String hsCode) {
+	public List<ProductDTO> searchMainCategory(String hsCode) {
 		String url = baseURL + "/api/main-categories?input_code=" + hsCode;
-		ResponseEntity<MainCategoryDTO[]> response = restTemplate.getForEntity(url, MainCategoryDTO[].class);
-		MainCategoryDTO[] categories = response.getBody();
-		List<MainCategoryDTO> list = Arrays.asList(categories);
+		ResponseEntity<ProductDTO[]> response = restTemplate.getForEntity(url, ProductDTO[].class);
+		ProductDTO[] categories = response.getBody();
+		List<ProductDTO> list = Arrays.asList(categories);
 		return list;
 	}
 
 	// hs_code가 4자리 이상일 경우 세부사항 출력
-	public List<DetailCategoryDTO> searchDetailCategory(String hsCode) {
+	public List<ProductDTO> searchDetailCategory(String hsCode) {
 		String url = baseURL + "/api/subcategories?main_code=" + hsCode;
-		ResponseEntity<DetailCategoryDTO[]> response = restTemplate.getForEntity(url, DetailCategoryDTO[].class);
-		DetailCategoryDTO[] categories = response.getBody();
-		List<DetailCategoryDTO> list = Arrays.asList(categories);
+		ResponseEntity<ProductDTO[]> response = restTemplate.getForEntity(url, ProductDTO[].class);
+		ProductDTO[] categories = response.getBody();
+		List<ProductDTO> list = Arrays.asList(categories);
 		return list;
 	}
 	
