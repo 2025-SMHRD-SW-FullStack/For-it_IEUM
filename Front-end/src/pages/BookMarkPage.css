@@ -1,4 +1,8 @@
 
+/* 애니메이션 */
+/* fade-up : 떠오르듯이 translateY : 천천히 나타나는
+  from :시작 상태, 불투명도 0 아래로 30px to : 최종 상태 */
+
 @keyframes fadeUp {
   from {
     opacity: 0;
@@ -10,7 +14,7 @@
   }
 }
 
-
+/* 북마크 전체 박스 */
 .bookmark-container {
   max-width: 800px;
   margin: 40px auto;
@@ -22,6 +26,7 @@
   animation: fadeUp 0.6s ease-out;
 }
 
+/* 제목 텍스트 스타일 */
 .bookmark-title {
   font-size: 2rem;
   margin-bottom: 20px;
@@ -33,6 +38,7 @@
   margin-bottom: 10px;
 }
 
+/* 아코디언의 클릭 가능한 헤더(제목)영역 */
 .accordion-header {
   width: 100%;
   background: #f5f5f5;
@@ -45,22 +51,28 @@
   justify-content: space-between;
   align-items: center;
   border-radius: 8px;
+  box-sizing: border-box;
 }
 
+/* 잡혀 있을 때의 아코디언 내용 영역 */
 .accordion-content {
-  width: 700px;
-  height: 500px;
+  width: 100%;
+  /* height: 500px; */
   max-height: 0;
   overflow: hidden;
-  transition: max-height 0.3s ease;
+  transition: max-height 0.3s ease, padding-top 0.3s ease, padding-bottom 0.3s ease;
   background-color: #fafafa;
-  padding: 0 50px;
+  /* padding: 0 20px; */
   border-radius: 8px;
+  box-sizing: border-box;
 }
 
+/* 아코디언 펼쳐졌을 때 스타일 */
 .accordion-content.open {
   max-height: 500px;
-  padding: 15px 20px;
+  /* padding: 15px 20px; */
+  padding-top: 15px;
+  padding-bottom: 15px;
   margin-top: 5px;
 }
 
