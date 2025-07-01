@@ -1,6 +1,5 @@
 // src/components/FtaCountryGrid.jsx
 import React from "react";
-// import "./FtaCountryGrid.css";
 import { useNavigate } from "react-router-dom";
 import ftaCountries from "../../data/ftaCountries";
 

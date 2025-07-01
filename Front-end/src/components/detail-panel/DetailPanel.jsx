@@ -1,45 +1,78 @@
-import React, { useState } from 'react'
-import './DetailPanel.css'
+import React, { useState, useEffect } from 'react';
+import './DetailPanel.css';
 import TabMenu from './TabMenu';
 import TariffComparisonTab from './tab/TariffComparisonTab';
 import ProductCalculatorTab from './tab/ProductCalculatorTab';
 import AIStrategyTab from './tab/AIStrategyTab';
 import useCardStore from '../../stores/CardStore';
 
+import CloseButton from './button/CloseButton';
+import BookmarkButton from './button/BookmarkButton';
+
+import buildPrompt4o from '../../api/Prompt4o';
+import useOpenAI from '../../api/openAI';
+import testItemArray from '../../data/testItemArray';
+
 const DetailPanel = () => {
-
-  const [activeTab, setActiveTab] = useState('tariff'); // 기본 탭: 관세 비교
-
   const { selectedCard, clearSelectedCard } = useCardStore();
-  if (!selectedCard) return null;
+  const [activeTab, setActiveTab] = useState('tariff');
+  const [isVisible, setIsVisible] = useState(false);
+  const [shouldRender, setShouldRender] = useState(false);
+
+  // AI 전략 관련 상태
+  const [aiSubmitted, setAiSubmitted] = useState(false);
+  const { loading, response, fetchAI } = useOpenAI();
+
+  // 카드 선택 시 상태 초기화
+  useEffect(() => {
+    if (selectedCard) {
+      setShouldRender(true);
+      setTimeout(() => setIsVisible(true), 10);
+      setAiSubmitted(false);  // 새 카드일 땐 전략 초기화
+    } else {
+      setIsVisible(false);
+      setTimeout(() => setShouldRender(false), 200);
+    }
+  }, [selectedCard]);
+
+  // AI 전략 탭에 진입하면 자동 호출
+  useEffect(() => {
+    if (activeTab === 'strategy' && selectedCard && !aiSubmitted) {
+      const selectedItem = testItemArray.find(item => item.id === selectedCard.id);
+      const prompt = buildPrompt4o(selectedItem);
+      fetchAI(prompt);
+      setAiSubmitted(true);
+    }
+  }, [activeTab, selectedCard, aiSubmitted]);
+
+  if (!shouldRender) return null;
 
   const renderActiveTab = () => {
     switch (activeTab) {
-      case 'tariff':
-        return <TariffComparisonTab />;
-      case 'calculator':
-        return <ProductCalculatorTab />;
-      case 'strategy':
-        return <AIStrategyTab />;
-      default:
-        return null;
+      case 'tariff': return <TariffComparisonTab />;
+      case 'calculator': return <ProductCalculatorTab />;
+      case 'strategy': return (
+        <AIStrategyTab
+          loading={loading}
+          response={response}
+        />
+      );
+      default: return null;
     }
   };
 
-
   return (
-    <aside className='detailPanel'>
-      <TabMenu 
-      activeTab={activeTab} 
-      setActiveTab={setActiveTab}
-      className='tabMenu' />
+    <aside className={`detailPanel ${isVisible ? 'open' : ''}`}>
+      <TabMenu activeTab={activeTab} setActiveTab={setActiveTab} />
       <div className='tabContent'>
-        <button onClick={clearSelectedCard} className='closeBtn'>닫기</button>
-        <br/><br/>
+        <div className='btnContainer'>
+          <CloseButton clearSelectedCard={clearSelectedCard} setIsVisible={setIsVisible} />
+          <BookmarkButton activeTab={activeTab} selectedCard={selectedCard} />
+        </div>
         {renderActiveTab()}
       </div>
     </aside>
-  )
-}
+  );
+};
 
-export default DetailPanel
+export default DetailPanel;

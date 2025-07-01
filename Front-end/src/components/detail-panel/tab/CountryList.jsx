@@ -18,8 +18,8 @@ const CountryList = ({ countries = [], dropDown = false }) => {
 
   if(dropDown) {
     return(
-        <div>
-            <label>🌍 FTA 체결 국가 목록</label>
+        <div className='countryContainer'>
+            <label>🌍 FTA 체결 국가 목록&nbsp;</label>
             <select className='countrySelect'>
                 {countries.map((item, index) => (
                     <option 

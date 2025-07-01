@@ -1,46 +1,58 @@
+.input{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
 .inputContent{
     display: flex;
     flex-direction: column;
     justify-content: center; 
-    margin: 10px;
-    margin-left: 0px;
-}
-
-.container{
-    display: flex;
-    flex-direction: row;
-}
-
-.countryList{
-    width: 200px;
 }
 
 .inputContainer{
+    max-width: fit-content;
+    min-width: 100px;
     padding: 10px;
-    border: 1px solid  rgb(95, 95, 95);
+    border: 1px solid #797979;
     background-color: white;
     border-radius: 15px;
-    flex: none;
-    display: inline-block;
-    margin-right: 10px;
-    margin-bottom: 10px;
-    width: 360px;
+}
 
+.inputContainer.quantity{
+    margin-bottom: 10px;
 }
 
 .ProductInput{
-    width: 200px;
     height: 40px;
     border: 0px;
     border-bottom:solid 1px #cacaca;
     padding: 5px;
     background: transparent;
-    font-size: 18px;
+    font-size: 16px;
     /* border-collapse:collapse; */
+}
+
+.ProductInput.quantity{
+    padding-right: 3.24em;
+}
+
+.CacultateBtn{
+    width: 100%;
+    max-width: 200px;
+    min-width: fit-content;
+    background-color: #CFE8FC;
+    border: 1px solid #cacaca;
+    border-radius: 10px;
+    font-size: large;
+    padding: 2%;
+    margin-bottom: 1rem;
 }
 
 .logic{
     border: 1px solid rgb(95, 95, 95);
     border-radius: 15px;
     height: 300px;
+    margin-top: 1rem;
+    overflow-y: auto;
 }

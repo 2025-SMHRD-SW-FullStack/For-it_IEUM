@@ -1,20 +1,61 @@
-.detailPanel{
-    border: 1px solid black;
-    padding: 5px;
-    flex: 2;
-    display: flex;
-    flex-direction: column;
+.detailPanel {
+  width: 675px;
+  min-width: 400px;
+  height: 100%;
+  background-color: white;
+  padding: 1rem;
+  padding-top: 0px;
+  box-sizing: border-box;
+  border-left: 1px solid #ccc;
+  box-shadow: -4px 0 10px rgba(0, 0, 0, 0.1);
+
+  /* 슬라이딩 효과 */
+  transform: translateX(100%);
+  transition: transform 0.3s ease-in-out;
+  z-index: 0; /* flex 내부라서 굳이 높일 필요 없음 */
 }
 
-.tabContent{
-    padding: 10px;
-    padding-left: 20px;
-    flex: 1;
-    border: 1px solid black;
+/* 패널 보여질 때 */
+.detailPanel.open {
+  transform: translateX(0);
 }
 
-.closeBtn{
-    flex: none;
-    display: inline-block;
-    
+.tabContent {
+  height: 100%;
+  padding: 10px 20px;
+  flex: 1;
+  border: 1px solid black;
+  overflow-y: auto; /* 내용 많아지면 스크롤되게*/ 
 }
+
+.btnContainer{
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+}
+
+.btn {
+  display: inline-block;
+  max-width: fit-content;
+  background-color: #eee;
+  border: 1px solid #999;
+  padding: 5px 10px;
+  cursor: pointer;
+}
+
+.bookmark{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.bookmarkMessage {
+  margin-right: 0.3rem;
+  font-size: 14px;
+  color: #63b6f5;
+  opacity: 1;
+  transition: opacity 0.3s ease;
+}
+
+
+

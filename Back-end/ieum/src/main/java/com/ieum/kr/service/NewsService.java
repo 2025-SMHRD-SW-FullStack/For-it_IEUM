@@ -1,11 +1,16 @@
 package com.ieum.kr.service;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatusCode;
 import org.springframework.stereotype.Service;
 import org.springframework.web.reactive.function.client.WebClient;
 
+import com.ieum.kr.dto.NewsDTO;
 import com.ieum.kr.dto.NewsResponse;
+import com.ieum.kr.entity.NewsEntity;
 import com.ieum.kr.repository.NewsRepository;
 
 import lombok.RequiredArgsConstructor;
@@ -45,6 +50,19 @@ public class NewsService {
     	
     	newsRepository.deleteAll();
     	
+    }
+    
+    public List<NewsDTO> newsSearch() {
+    	
+    	List<NewsEntity> result = newsRepository.findAll();
+    	
+    	List<NewsDTO> list = new ArrayList<NewsDTO>();
+    	for (NewsEntity news : result) {
+    		NewsDTO dto = new NewsDTO();
+    		list.add(dto.fromEntity(news));
+    	}
+    	
+    	return list;
     }
     
 }

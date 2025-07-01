@@ -3,7 +3,10 @@ import './FtaPage.css';
 import ftaImage from '../assets/image/ftaImage.png'; 
 import { useNavigate } from 'react-router-dom';
 import ftaCountries from '../data/ftaCountries';
+<<<<<<< HEAD
 import FtaCountryGrid from '../components/fta/FtaCountryGrid';
+=======
+>>>>>>> 7e1c996b66a35bf7ef3dd63a22bd9239418fbc9a
 
 
 // const ftaCountries = [
