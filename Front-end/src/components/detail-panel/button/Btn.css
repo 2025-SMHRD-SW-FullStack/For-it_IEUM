@@ -1,0 +1,11 @@
+.btn {
+  display: inline-block;
+  height: 1.2rem;
+  padding-top: 0.5rem;
+  cursor: pointer;
+}
+
+.btn.bookmark{
+    padding-top: 0.35rem;
+    height: 1.5rem;
+}

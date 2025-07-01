@@ -1,12 +1,14 @@
 .detailPanel {
+  display: flex;
+  flex-direction: column;
   width: 675px;
   min-width: 400px;
   height: 100%;
   background-color: white;
   padding: 1rem;
-  padding-top: 0px;
   box-sizing: border-box;
   border-left: 1px solid #ccc;
+  border-radius: 10px 0px 0px 10px;
   box-shadow: -4px 0 10px rgba(0, 0, 0, 0.1);
 
   /* 슬라이딩 효과 */
@@ -24,7 +26,8 @@
   height: 100%;
   padding: 10px 20px;
   flex: 1;
-  border: 1px solid black;
+  border: 0.5px solid #959595;
+  border-radius: 0px 0px 10px 10px;
   overflow-y: auto; /* 내용 많아지면 스크롤되게*/ 
 }
 
@@ -34,14 +37,7 @@
   margin-bottom: 1rem;
 }
 
-.btn {
-  display: inline-block;
-  max-width: fit-content;
-  background-color: #eee;
-  border: 1px solid #999;
-  padding: 5px 10px;
-  cursor: pointer;
-}
+
 
 .bookmark{
   display: flex;

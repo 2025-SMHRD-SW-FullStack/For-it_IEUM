@@ -1,6 +1,11 @@
-.sideBar{
-    border: 1px solid black;
-    padding: 40px;
-    width: 280px;
+.sideBar {
+    /* border-top: 1px solid #6d6d6d; */
+    border-right: 1px solid #959595;
     position: relative;
+    padding: 2rem;
+    width: 20%;
+    min-width: 250px;
+    max-width: 280px;
+    transition: all 0.3s ease;
+    box-sizing: border-box;
 }

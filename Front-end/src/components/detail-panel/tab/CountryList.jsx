@@ -25,7 +25,7 @@ const CountryList = ({ countries = [], dropDown = false }) => {
                     <option 
                     key={index}
                     // className={}
-                    >{item.country} | {item.tariff}%
+                    >{index+1}위 {item.country} | {item.tariff}%
                     </option>
                 ))}
             </select>
@@ -42,7 +42,7 @@ const CountryList = ({ countries = [], dropDown = false }) => {
                 <li 
                 key={index}
                 className={`country ${index === 0 ? 'lower': index === countries.length - 1 ? 'last' : ''}`}
-                >{item.country} | {item.tariff}%</li>
+                >{index+1}위 {item.country} | {item.tariff}%</li>
             ))}
             </ul>
         </div>

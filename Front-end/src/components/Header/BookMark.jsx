@@ -1,5 +1,5 @@
 import React from 'react'
-import bookmark from '../../assets/image/bookmark.png'
+import star from '../../assets/image/star.png'
 import { useNavigate } from 'react-router-dom';
 
 
@@ -15,7 +15,7 @@ const BookMark = () => {
     <div className="main_icon" onClick={handleClick} 
     style={{cursor:'pointer'
     }}>
-  <img src={bookmark} alt='북마크 아이콘' />
+  <img src={star} alt='별 아이콘' />
   </div>
 )
 }

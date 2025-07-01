@@ -19,7 +19,7 @@ const TariffGraph = () => {
   return (
     <div className='tariffGraph'>
         <ResponsiveContainer width="100%" height="100%">
-            <BarChart className='tariffChart'data={charData}>
+            <BarChart data={charData}>
                 <XAxis dataKey="name" />
                 <YAxis domain={[0, 'dataMax + 2']}/>
                 <Tooltip />

@@ -1,6 +1,7 @@
 import React from 'react'
 import testItemArray from "../../data/testItemArray"
 import useCardStore from '../../stores/CardStore'
+import star from '../../assets/image/star.png'
 
 import './CardItem.css'
 
@@ -23,10 +24,10 @@ const CardItem = ({card}) => {
         onClick={CardClick}
         >
           <div className='cardText'>
-            <label id="HS">HS코드: {card.hsCode}</label>
-            <label id="Name">품목명: {card.itemName}</label>
+            <div id="HS">HS코드: {card.hsCode}</div>
+            <div id="Name">품목명: {card.itemName}</div>
           </div>
-          <div className='favorite'>☆</div>
+          <img src={star} alt='별 아이콘' className='favorite'/>
         </div>
 
   )

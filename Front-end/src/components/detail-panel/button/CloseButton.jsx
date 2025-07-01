@@ -1,6 +1,9 @@
 import React from 'react';
+import x from '../../../assets/image/delete.png'
+import './Btn.css'
 
 const CloseButton = ({ clearSelectedCard, setIsVisible }) => {
+  
   const close = () => {
     setIsVisible(false);
     setTimeout(() => {
@@ -9,7 +12,7 @@ const CloseButton = ({ clearSelectedCard, setIsVisible }) => {
   };
 
   return (
-    <button onClick={close} className='btn'>닫기</button>
+      <img src={x} alt="지우기" onClick={close} className='btn'/>
   );
 };
 

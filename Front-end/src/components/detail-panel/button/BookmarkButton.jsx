@@ -1,4 +1,7 @@
 import React, { useState } from 'react';
+import './Btn.css'
+import bookmark from '../../../assets/image/bookmark.png'
+import './Btn.css'
 // zustand나 Context 스토어 import 필요시 추가
 // import useBookmarkStore from '../../stores/BookmarkStore';
 
@@ -12,7 +15,7 @@ const BookmarkButton = ({ activeTab, selectedCard }) => {
     strategy: null,
   });
 
-  const bookmark = () => {
+  const clickBookmark = () => {
     const currentBookmark = bookmarks[activeTab];
 
     if (currentBookmark && currentBookmark.id === selectedCard.id) {
@@ -35,7 +38,12 @@ const BookmarkButton = ({ activeTab, selectedCard }) => {
   return (
     <div className='bookmark'>
       {bookmarkMessage && <div className='bookmarkMessage'>{bookmarkMessage}</div>}
-      <button onClick={bookmark} className='btn'>북마크</button>
+      <img 
+      src={bookmark} 
+      alt="북마크 아이콘"
+      onClick={clickBookmark}
+      className='btn bookmark'
+      />
     </div>
   );
 };
