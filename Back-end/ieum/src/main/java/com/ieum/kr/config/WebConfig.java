@@ -12,5 +12,17 @@ public class WebConfig implements WebMvcConfigurer {
 	                .allowedOrigins("http://localhost:5173")  // React/Spring 사용하는 포트
 	                .allowedMethods("GET", "POST", "PUT", "DELETE")
 	                .allowCredentials(true);
+	        // Swagger/OpenAPI
+	        registry.addMapping("/v3/api-docs/**")
+	                .allowedOrigins("http://localhost:5173")
+	                .allowedMethods("GET")
+	                .allowedMethods("POST")
+	                .allowCredentials(false);
+	        registry.addMapping("/swagger-ui/**")
+	                .allowedOrigins("http://localhost:5173")
+	                .allowedMethods("GET")
+	                .allowedMethods("POST")
+	                .allowCredentials(false);
+	        
 	    }
 }

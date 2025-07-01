@@ -16,11 +16,14 @@ import com.ieum.kr.dto.RankProjection;
 import com.ieum.kr.dto.SearchDTO;
 import com.ieum.kr.service.SearchService;
 
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/api")
+@Tag(name="Search",description="검색 관련 API")
 public class SearchController {
 
 	@Autowired
