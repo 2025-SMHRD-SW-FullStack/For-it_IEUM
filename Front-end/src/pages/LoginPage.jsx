@@ -24,8 +24,9 @@ const LoginPage = () => {
         <h2>로그인</h2>
         <form onSubmit={handleSubmit} className='LoginForm'>
             <div>
-                <UserInput name="id" label="아이디" value={form.id} onChange={handleChange} />
-                <UserInput name="password" label="비밀번호" value={form.password} onChange={handleChange} />
+                    <UserInput name="userId" label="아이디" value={form.id} onChange={handleChange} />
+
+                    <UserInput name="password" label="비밀번호" value={form.password} onChange={handleChange} />
             </div>
             <input type="submit" value="로그인하기" className='LoginBtn' />
         </form>
