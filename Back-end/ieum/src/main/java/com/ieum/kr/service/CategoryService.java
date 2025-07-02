@@ -24,15 +24,15 @@ public class CategoryService {
 	@Autowired
 	KeyWordRepository keyWordRepository;
 	
-	public List<CategoryDTO> CategoryAllList() {
+	public List<CategoryDTO> keywordList() {
 		
 		List<CategoryEntity> result = cateRepository.findAll();
 		
 		List<CategoryDTO> list = new ArrayList<CategoryDTO>(); 
 		
-		for(CategoryEntity enti : result) {
+		for(CategoryEntity enty : result) {
 			CategoryDTO dto = new CategoryDTO();
-			list.add(dto.fromEntity(enti));
+			list.add(dto.fromEntity(enty));
 		}
 		
 		return list;  
@@ -41,13 +41,20 @@ public class CategoryService {
 	
 	public List<KeyWordDTO> userKeyWordList(KeyWordDTO dto){
 		
+		System.out.println(dto);
 		KeyWordEntity entity = new KeyWordEntity();
 		entity.setUserId(dto.getUserId());
 		
-		List<KeyWordDTO> result = new ArrayList<>();
 		
-//				KeyWordDTO.fromEntity(keyWordRepository.findAllById(entity.getUserId()));
+		List<KeyWordEntity> result = keyWordRepository.userKeywordList(entity.getUserId());
+		List<KeyWordDTO> list = new ArrayList<KeyWordDTO>();
 		
-		return result;
+		System.out.println(result);
+		for(KeyWordEntity enty : result) {
+			KeyWordDTO keyDto = new KeyWordDTO();
+			list.add(keyDto.fromEntity(enty));
+		}
+		
+		return list;
 	}
 }
