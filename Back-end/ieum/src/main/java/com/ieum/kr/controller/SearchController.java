@@ -6,8 +6,8 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -38,7 +38,7 @@ public class SearchController {
 	
 	@PostMapping("/search")
 	@Operation(summary="검색")
-	public ResponseEntity<?> goSearch(@ModelAttribute SearchDTO dto) {
+	public ResponseEntity<?> goSearch(@RequestBody SearchDTO dto) {
 		List<?> result;
 		if("productName".equals(dto.getChoice())) {
 			if (dto.getInput().matches("\\d+")) {
@@ -55,7 +55,6 @@ public class SearchController {
 						.body(Map.of("error", "HS 코드는 숫자만 입력 가능합니다."));
 			}
 			int len = dto.getInput().length();
-			int hsCode;
 			if(len < 4) {
 				result = searchService.searchMainCategory(dto.getInput());
 			}else if(len == 4) {
@@ -69,7 +68,7 @@ public class SearchController {
 	
 	@PostMapping("/cal")
 	@Operation(summary="계산")
-	public CalculationDTO goCalculation(CalculationDTO dto) {
+	public CalculationDTO goCalculation(@RequestBody CalculationDTO dto) {
 		CalculationDTO result = searchService.useCalcul(dto);
 		return result;
 	}

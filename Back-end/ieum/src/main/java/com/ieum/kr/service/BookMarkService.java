@@ -18,25 +18,33 @@ public class BookMarkService {
 	@Autowired
 	BookMarkRepository bookmarkrepo;
 	
-	public void saveBookMark(BookMarkDTO dto) {
-		System.out.println(dto);
+	public String saveBookMark(BookMarkDTO dto) {
 		LocalDateTime now = dto.getDate()
 				.atZoneSameInstant(ZoneOffset.UTC)
 				.withZoneSameInstant(ZoneId.of("Asia/Seoul"))
 				.toLocalDateTime();
 		List<BookMarkEntity> recent = bookmarkrepo.findRecentWithin3Min(dto.getUserID(), dto.getHsCode(), dto.getCountry(), dto.getTariff());
+		
+		String result;
+		
 		if(recent.isEmpty()) {
-			System.out.println("비어있음");
 			bookmarkrepo.save(dto.toEntity());
-		}else{
-			System.out.println("값이있음");
-			//recent.get(0).getCalculation().equals(dto.getCalculation())
-			if(!dto.getCalculation().isEmpty() && dto.getChatGPTAnswer().isEmpty()) {
-				bookmarkrepo.changeCalculation(dto.getCalculation(), dto.getUserID(), dto.getHsCode(), dto.getCountry(), dto.getTariff());
-			}else if(dto.getCalculation().isEmpty() && !dto.getChatGPTAnswer().isEmpty()) {
-				bookmarkrepo.changeChatGPTAnswer(dto.getChatGPTAnswer(), dto.getUserID(), dto.getHsCode(), dto.getCountry(), dto.getTariff());
-			}
+			return result="save";
 		}
+		
+		
+		
+		return result="";
+		/*
+		 * if(recent.isEmpty()) { bookmarkrepo.save(dto.toEntity()); }else{
+		 * //recent.get(0).getCalculation().equals(dto.getCalculation())
+		 * if(!dto.getCalculation().isEmpty() && dto.getChatGPTAnswer().isEmpty()) {
+		 * bookmarkrepo.changeCalculation(dto.getCalculation(), dto.getUserID(),
+		 * dto.getHsCode(), dto.getCountry(), dto.getTariff()); }else
+		 * if(dto.getCalculation().isEmpty() && !dto.getChatGPTAnswer().isEmpty()) {
+		 * bookmarkrepo.changeChatGPTAnswer(dto.getChatGPTAnswer(), dto.getUserID(),
+		 * dto.getHsCode(), dto.getCountry(), dto.getTariff()); } }
+		 */
 	}
 	
 }
