@@ -10,10 +10,72 @@
 .LoginForm{
     display: flex;
     flex-direction: column;
+    align-items: center;
     height: 100%;
-
+    margin-top: 0.6rem;
 }
 
-.LoginBtn{
-    margin-top: 0.5rem;
+.loginBtn{
+    width: 230px;
+    min-width: fit-content;
+    height: fit-content;
+    background-color: #CFE8FC;
+    color: #0B2A4E;
+    font-size: 16px;
+    font-weight: 600;
+    margin: 0.5rem 0px;
+    padding: 0.5rem;
+    border: 0px;
+    border-radius: 10px;
+    
+}
+
+.Join{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+}
+
+.loginBtn.join{
+    background-color: white;
+    border: 1px solid #959595;
+}
+
+.joinLabel{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
+}
+
+.joinLabel p::before, .joinLabel p::after{
+    content: '';
+    position: absolute;
+    top: 50%;
+    width: 200px; /* 넉넉하게 잡고 overflow로 잘리게 */
+    height: 1px;
+    background-color: #ccc;
+}
+
+.joinLabel p {
+    position: relative;
+    display: inline-block;
+    padding: 0 1rem;
+    text-align: center;
+    max-width: 100%;
+    word-break: keep-all; /* 단어 기준으로 줄바꿈 */
+    white-space: normal;  /* 여러 줄 허용 */
+    color: #999;
+}
+
+.joinLabel p::before {
+  left: 0;
+  transform: translateX(-100%);
+}
+
+.joinLabel p::after {
+  right: 0;
+  transform: translateX(100%);
 }

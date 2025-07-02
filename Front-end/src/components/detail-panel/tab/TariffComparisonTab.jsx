@@ -12,9 +12,16 @@ const TariffComparisonTab = () => {
   if (!selectedCard) return null; // 아무것도 선택 안 됐으면 패널 안 보여줌
 
   return (
-    <div>
+    <div className='tariffGroup'>
       <div className='selectedCard'>
-        HS코드: {selectedCard.hsCode} | 품목명: {selectedCard.itemName} 
+        <div className='textDetail'>
+          <div className='DetailLabel'>HS코드</div>
+          {selectedCard.hsCode}
+        </div>
+        <div className='textDetail'>
+          <div className='DetailLabel'>품목명</div>
+          {selectedCard.itemName} 
+        </div>
       </div>
       <br/>
       <div className='TariffContainer'>

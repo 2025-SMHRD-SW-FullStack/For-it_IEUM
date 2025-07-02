@@ -5,10 +5,12 @@ import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.ieum.kr.dto.CalculationDTO;
@@ -38,30 +40,29 @@ public class SearchController {
 	
 	@PostMapping("/search")
 	@Operation(summary="검색")
-	public ResponseEntity<?> goSearch(@ModelAttribute SearchDTO dto) {
+	public ResponseEntity<?> goSearch(@RequestBody SearchDTO dto) {
 		List<?> result;
-		if("productName".equals(dto.getChoise())) {
-			if (dto.getKeyword().matches("\\d+")) {
+		if("productName".equals(dto.getChoice())) {
+			if (dto.getInput().matches("\\d+")) {
 				return ResponseEntity
 						.badRequest()
 						.body(Map.of("error", "문자를 입력해주세요."));
 			}
-			result = searchService.searchProductName(dto.getKeyword());
+			result = searchService.searchProductName(dto.getInput());
 			return ResponseEntity.ok(result);
 		}else {
-			if (!dto.getKeyword().matches("\\d+")) {
+			if (!dto.getInput().matches("\\d+")) {
 				return ResponseEntity
 						.badRequest()
 						.body(Map.of("error", "HS 코드는 숫자만 입력 가능합니다."));
 			}
-			int len = dto.getKeyword().length();
-			int hsCode;
+			int len = dto.getInput().length();
 			if(len < 4) {
-				result = searchService.searchMainCategory(dto.getKeyword());
+				result = searchService.searchMainCategory(dto.getInput());
 			}else if(len == 4) {
-				result = searchService.searchDetailCategory(dto.getKeyword());
+				result = searchService.searchDetailCategory(dto.getInput());
 			}else {
-				result = searchService.searchLowTariff(dto.getKeyword());
+				result = searchService.searchLowTariff(dto.getInput());
 			}
 		}
 		return ResponseEntity.ok(result);
@@ -69,7 +70,7 @@ public class SearchController {
 	
 	@PostMapping("/cal")
 	@Operation(summary="계산")
-	public CalculationDTO goCalculation(CalculationDTO dto) {
+	public CalculationDTO goCalculation(@RequestBody CalculationDTO dto) {
 		CalculationDTO result = searchService.useCalcul(dto);
 		return result;
 	}

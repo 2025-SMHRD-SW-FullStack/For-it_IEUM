@@ -19,6 +19,8 @@ public class UserEntity {
 	@Column(name = "user_id")
 	private String userId;
 	
+	private String name;
+	
 	private String password;
 	
 	@Column(name = "phone_number")

@@ -3,6 +3,7 @@ package com.ieum.kr.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -22,8 +23,9 @@ public class BookMarkController {
 	
 	@PostMapping("/save")
 	@Operation(summary="저장")
-	public void saveBookMark(BookMarkDTO dto) {
-		bookMarkService.saveBookMark(dto);
+	public String saveBookMark(@RequestBody BookMarkDTO dto) {
+		String msg = bookMarkService.saveBookMark(dto);
+		return msg;
 	}
 	
 }

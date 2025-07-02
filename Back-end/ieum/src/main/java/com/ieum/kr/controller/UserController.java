@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import com.ieum.kr.component.JwtUtil;
+import com.ieum.kr.dto.LoginDTO;
 import com.ieum.kr.dto.UserDTO;
 import com.ieum.kr.service.UserService;
 
@@ -22,7 +23,7 @@ import lombok.RequiredArgsConstructor;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/api")
+//@RequestMapping("/api")
 @Tag(name="User",description="유저 정보")
 @SecurityRequirement(name = "BearerAuth")
 public class UserController {
@@ -33,13 +34,13 @@ public class UserController {
 	UserService userService;
 
     @PostMapping("/login")
-	public ResponseEntity<?> login(@RequestBody UserDTO dto) {
+	public ResponseEntity<?> login(@RequestBody LoginDTO dto) {
 	    try {
 	        System.out.println("[login 컨트롤러 확인]");
 	        System.out.println(dto);
 
-	        String token = userService.login(dto);
-	        return ResponseEntity.ok(Map.of("token", token));  // 프론트에 JSON으로 응답
+	        UserDTO result = userService.login(dto);
+	        return ResponseEntity.ok(Map.of("result", result));  // 프론트에 JSON으로 응답
 
 	    } catch (RuntimeException e) {
 	        return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("로그인 실패");
@@ -47,21 +48,36 @@ public class UserController {
 	}
     
 //    @Operation(summary = "유저 정보", security = @SecurityRequirement(name = "BearerAuth"))
-    @PostMapping("/user-info")
-    public ResponseEntity<?> getUserInfo(@RequestHeader("Authorization") String authHeader) {
-        System.out.println("[getUserInfo 컨트롤러 접근]");
-        System.out.println("Authorization Header: " + authHeader); // ✅ 헤더값 확인
-
-        String token = authHeader.replace("Bearer ", "");
-        System.out.println("Extracted Token: " + token); // ✅ Bearer 제거 후 토큰만
-
-        if (jwtUtil.validateToken(token)) {
-            String userId = jwtUtil.extractUserId(token);
-            System.out.println("UserId from token: " + userId); // ✅ 최종 파싱된 userId
-            return ResponseEntity.ok(Map.of("userId", userId));
-        } else {
-            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("토큰이 유효하지 않음");
+//    @PostMapping("/user-info")
+//    public ResponseEntity<?> getUserInfo(@RequestHeader("Authorization") String authHeader) {
+//        System.out.println("[getUserInfo 컨트롤러 접근]");
+//        System.out.println("Authorization Header: " + authHeader); // ✅ 헤더값 확인
+//
+//        String token = authHeader.replace("Bearer ", "");
+//        System.out.println("Extracted Token: " + token); // ✅ Bearer 제거 후 토큰만
+//
+//        if (jwtUtil.validateToken(token)) {
+//            String userId = jwtUtil.extractUserId(token); // 토큰 값을 userId로 변환 해줌
+//            System.out.println("UserId from token: " + userId); // ✅ 최종 파싱된 userId
+//            return ResponseEntity.ok(Map.of("userId", userId));
+//        } else {
+//            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("토큰이 유효하지 않음");
+//        }
+//    }
+    
+    @PostMapping("/join")
+    public ResponseEntity<?> userJoin(@RequestBody UserDTO dto){
+    	
+    	System.out.println("[userJoin Controller 접근]");
+    	System.out.println(dto);
+    	String result = userService.userJoin(dto);
+    	if(result != null) {
+    		return ResponseEntity.ok(Map.of("joinCheck", result));
+    	}else {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("중복된 아이디 입니다.");
         }
+    	
+    	
     }
 	
 }

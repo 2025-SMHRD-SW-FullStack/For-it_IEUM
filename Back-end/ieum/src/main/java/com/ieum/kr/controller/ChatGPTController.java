@@ -19,10 +19,10 @@ public class ChatGPTController {
 
 	private final ChatGPTService service;
 	
-	@GetMapping
-    public String hello() {
-        return "POST { \"prompt\": \"...\" } to this endpoint.";
-    }
+//	@GetMapping
+//    public String hello() {
+//        return "POST { \"prompt\": \"...\" } to this endpoint.";
+//    }
     
     @PostMapping
     public ChatGPTResponse chat(@RequestBody ChatGPTRequest request) {

@@ -18,7 +18,7 @@ import reactor.core.publisher.Mono;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/api/news")
+//@RequestMapping("/news")
 @Tag(name = "News", description="뉴스 출력")
 public class NewsController {
 	
@@ -39,7 +39,7 @@ public class NewsController {
 //	
 //	}
 	
-	@GetMapping("/serch")
+	@GetMapping("/news")
 	public List<NewsDTO> newsSearch(){
 		
 		List<NewsDTO> list = service.newsSearch();

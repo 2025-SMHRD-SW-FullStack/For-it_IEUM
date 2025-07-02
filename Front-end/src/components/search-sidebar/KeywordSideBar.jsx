@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
-import './KeywordFilter.css'
+import './KeywordSideBar.css'
 
-const KeywordFilter = () => {
+const KeywordSideBar = () => {
 
     const keywords = ["전기전자", "의료용품", "가구조명", "생활용품", "의류"];
     const [interest,setInterest] = useState([]);
@@ -50,4 +50,4 @@ const KeywordFilter = () => {
 
 }
 
-export default KeywordFilter
+export default KeywordSideBar

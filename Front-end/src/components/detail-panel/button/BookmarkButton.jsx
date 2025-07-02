@@ -42,7 +42,7 @@ const BookmarkButton = ({ activeTab, selectedCard }) => {
       src={bookmark} 
       alt="북마크 아이콘"
       onClick={clickBookmark}
-      className='btn bookmark'
+      className='tabBtn bookmark'
       />
     </div>
   );
