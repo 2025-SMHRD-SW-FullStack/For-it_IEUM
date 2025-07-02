@@ -40,28 +40,28 @@ public class SearchController {
 	@Operation(summary="검색")
 	public ResponseEntity<?> goSearch(@ModelAttribute SearchDTO dto) {
 		List<?> result;
-		if("productName".equals(dto.getChoise())) {
-			if (dto.getKeyword().matches("\\d+")) {
+		if("productName".equals(dto.getChoice())) {
+			if (dto.getInput().matches("\\d+")) {
 				return ResponseEntity
 						.badRequest()
 						.body(Map.of("error", "문자를 입력해주세요."));
 			}
-			result = searchService.searchProductName(dto.getKeyword());
+			result = searchService.searchProductName(dto.getInput());
 			return ResponseEntity.ok(result);
 		}else {
-			if (!dto.getKeyword().matches("\\d+")) {
+			if (!dto.getInput().matches("\\d+")) {
 				return ResponseEntity
 						.badRequest()
 						.body(Map.of("error", "HS 코드는 숫자만 입력 가능합니다."));
 			}
-			int len = dto.getKeyword().length();
+			int len = dto.getInput().length();
 			int hsCode;
 			if(len < 4) {
-				result = searchService.searchMainCategory(dto.getKeyword());
+				result = searchService.searchMainCategory(dto.getInput());
 			}else if(len == 4) {
-				result = searchService.searchDetailCategory(dto.getKeyword());
+				result = searchService.searchDetailCategory(dto.getInput());
 			}else {
-				result = searchService.searchLowTariff(dto.getKeyword());
+				result = searchService.searchLowTariff(dto.getInput());
 			}
 		}
 		return ResponseEntity.ok(result);
