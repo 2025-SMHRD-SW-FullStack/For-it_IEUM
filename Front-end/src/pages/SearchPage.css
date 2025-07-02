@@ -17,6 +17,20 @@
   animation: fadeUp 0.6s ease-out;
 }
 
+.sideBar {
+    /* border-top: 1px solid #6d6d6d; */
+    border-right: 1px solid #959595;
+    position: relative;
+    padding: 2rem;
+    width: 20%;
+    min-width: 250px;
+    max-width: 280px;
+    transition: all 0.3s ease;
+    box-sizing: border-box;
+}
+
+
+
 .searchContainer {
   display: flex;
   flex-direction: column;
@@ -40,4 +54,18 @@
 
 }
 
+
+.searchContent{
+    flex: 1;
+    overflow: auto;
+}
+
+.card-list{
+    display: flex;
+    flex-wrap: wrap;
+    /* justify-content: center; */
+    margin: 20px;
+    gap: 0.65rem;
+    
+}
 
