@@ -23,8 +23,9 @@ public class BookMarkController {
 	
 	@PostMapping("/save")
 	@Operation(summary="저장")
-	public void saveBookMark(@RequestBody BookMarkDTO dto) {
-		bookMarkService.saveBookMark(dto);
+	public String saveBookMark(@RequestBody BookMarkDTO dto) {
+		String msg = bookMarkService.saveBookMark(dto);
+		return msg;
 	}
 	
 }

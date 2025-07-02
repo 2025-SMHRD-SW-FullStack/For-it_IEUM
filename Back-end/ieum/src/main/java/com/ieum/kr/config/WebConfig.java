@@ -24,7 +24,7 @@ public class WebConfig implements WebMvcConfigurer {
 //	                .allowedMethods("GET", "POST", "PUT", "DELETE","OPTIONS")
 //	                .allowCredentials(true);
 	        registry.addMapping("/api/**")                          // "/ieum" 컨텍스트 이후의 경로
-			        .allowedOrigins("http://192.168.219.65:5173")        // Vite(React) 개발 서버 주소
+			        .allowedOrigins("http://localhost:5173","http://192.168.219.65:5173")        // Vite(React) 개발 서버 주소
 			        .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS")
 			        .allowCredentials(true);
 	        // Swagger/OpenAPI
