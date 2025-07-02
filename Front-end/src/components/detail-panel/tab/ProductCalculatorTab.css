@@ -49,10 +49,7 @@
     margin-bottom: 1rem;
 }
 
-.logic{
-    border: 1px solid rgb(95, 95, 95);
-    border-radius: 15px;
-    height: 300px;
-    margin-top: 1rem;
-    overflow-y: auto;
+.resultLogic{
+    max-height: 300px;
+    
 }
