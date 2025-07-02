@@ -3,6 +3,8 @@ package com.ieum.kr.service;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.OffsetDateTime;
 import java.util.Arrays;
 import java.util.List;
 
@@ -13,8 +15,10 @@ import org.springframework.web.client.RestTemplate;
 
 import com.ieum.kr.dto.CalculationDTO;
 import com.ieum.kr.dto.ProductDTO;
+import com.ieum.kr.dto.RankDTO;
 import com.ieum.kr.dto.RankProjection;
 import com.ieum.kr.dto.TariffInfoDTO;
+import com.ieum.kr.entity.RankEntity;
 import com.ieum.kr.repository.TopRankRepository;
 
 @Service
@@ -51,6 +55,9 @@ public class SearchService {
 		String url = baseURL + "/api/tariff-info?hs_code="+hsCode;
 		ResponseEntity<TariffInfoDTO> response = restTemplate.getForEntity(url, TariffInfoDTO.class);
 		TariffInfoDTO dto = response.getBody();
+		LocalDate now = LocalDate.now();
+		RankDTO rank = new RankDTO(dto.getHsCode(),dto.getProductName(),now);
+		topRankRepo.save(rank.toEntity());
 		List<TariffInfoDTO> list = Arrays.asList(dto);
 		return list;
 	}
