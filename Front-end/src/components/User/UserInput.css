@@ -6,16 +6,17 @@
     height: 100%;
 }
 
-label{
+.loginLabel{
     color: #0B2A4E;
     padding-bottom: 0.3rem;
+    font-weight: 580;
 }
 
 .loginInput {
-    /* display: inline-block; */
-    
-    height: 1.5rem;
+    width: 300px;
+    min-width: 175px;
+    height: 2.5rem;
     border: 0px;
     border-bottom: 1px solid;
-    margin-bottom: 1.3rem;
+    margin-bottom: 1.5rem;
 }

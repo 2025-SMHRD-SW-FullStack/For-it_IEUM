@@ -4,7 +4,7 @@ import './UserInput.css'
 const UserInput = ({ name, label, value, onChange }) => {
   return (
     <div className='inputGroup'>
-      <label htmlFor={name}>{label}</label>
+      <label htmlFor={name} className='loginLabel'>{label}</label>
       <input
         type={name === 'password' ? 'password' : 'text'}
         id={name}

@@ -12,7 +12,7 @@ const CloseButton = ({ clearSelectedCard, setIsVisible }) => {
   };
 
   return (
-      <img src={x} alt="지우기" onClick={close} className='btn'/>
+      <img src={x} alt="지우기" onClick={close} className='tabBtn'/>
   );
 };
 
