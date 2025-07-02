@@ -4,6 +4,6 @@ import lombok.Data;
 
 @Data
 public class SearchDTO {
-	private String choise;
-	private String keyword;
+	private String choice;
+	private String input;
 }

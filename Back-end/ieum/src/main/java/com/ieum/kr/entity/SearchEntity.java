@@ -4,5 +4,5 @@ import jakarta.persistence.Entity;
 
 public class SearchEntity {
 	String productName;
-	int hsCode;
+	int input;
 }
