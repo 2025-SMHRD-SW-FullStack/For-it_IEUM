@@ -15,16 +15,18 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class KeyWordDTO {
 
+	private long id;
 	private String userId;
 	private String hsCode;
 	private String productName;
 	
-	public static KeyWordDTO fromEntity(Optional<KeyWordEntity> optional) {
+	public static KeyWordDTO fromEntity(KeyWordEntity keyWordEntity) {
 		
 		return KeyWordDTO.builder()
-				.userId(optional.get().getUserId())
-				.hsCode(optional.get().getHsCode())
-				.productName(optional.get().getProductName())
+				.id(keyWordEntity.getId())
+				.userId(keyWordEntity.getUserId())
+				.hsCode(keyWordEntity.getHsCode())
+				.productName(keyWordEntity.getProductName())
 				.build();
 	}
 }

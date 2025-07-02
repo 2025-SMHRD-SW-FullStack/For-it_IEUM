@@ -1,5 +1,6 @@
 package com.ieum.kr.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -47,11 +48,15 @@ public class CategoryController {
 		String userId = userService.getUserInfo(authHeader);
 		
 		if(userId != null) {
-			
+			KeyWordDTO dto = new KeyWordDTO();
+			dto.setUserId(userId);
+			List<KeyWordDTO> userKeyword = cateService.userKeyWordList(dto);
 		}
 		
 		List<CategoryDTO> result = cateService.keywordList();
 		System.out.println(result);
+//		ResponseEntity<?> list = new ArrayList<>;
+		
 		return ResponseEntity.ok(result);
 	}
 	
