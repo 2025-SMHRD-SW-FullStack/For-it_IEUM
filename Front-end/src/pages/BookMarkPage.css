@@ -38,6 +38,7 @@
   margin-bottom: 10px;
 }
 
+
 /* 아코디언의 클릭 가능한 헤더(제목)영역 */
 .accordion-header {
   width: 100%;
@@ -52,7 +53,17 @@
   align-items: center;
   border-radius: 8px;
   box-sizing: border-box;
+  gap: 10px;
 }
+
+.accordion-title {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: inline-block;
+  flex-grow: 1;
+}
+
 
 /* 잡혀 있을 때의 아코디언 내용 영역 */
 .accordion-content {

@@ -1,3 +1,8 @@
+
+body{
+  overflow-x: hidden;
+}
+
 .Main {
   display: flex;
   flex-direction: column;
@@ -5,22 +10,49 @@
 }
 
 .search_box {
-  width: 50%;
+  width: 80%;
   display: flex;
+  flex-direction: row;
   justify-content: center;
-  gap: 30px;
+  flex-wrap: wrap;
+
+  /* gap: 30px; */
 }
 
 /* 전체 header 컨테이너 */
 .header_main {
-  display: flex;
+  /* display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 12px 24px;
   background-color: #fff;
   width: 90%;
-}
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  border-radius: 8px; 
+  z-index: 100;  */
+  width: 100%;
+  /* overflow-x: auto; */
+  /* white-space: nowrap; */
+  position: sticky; /* 필요하면 고정 */
+  top: 0;            /* sticky일 경우 필요 */
+  z-index: 100;       /* ✅ 전체 너비로 확장 */
+  padding: 12px 24px;
+  background-color: #fff;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); /* ✅ 그림자 */
 
+}
+.header_inner {
+  max-width: 1200px;     /* ✅ 너비 제한 */
+  margin: 0 auto;        /* ✅ 가운데 정렬 */
+  /* padding: 12px 24px; */
+  padding-left: 24px;
+  padding-right: 24px;
+
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
 /* 왼쪽: 로고 + 네비게이션 */
 .header_left {
   display: flex;
@@ -84,13 +116,16 @@
 
 
  .dropdown-container {
-  position: relative; /* 드롭다운 리스트 위치 기준 */
+  position: relative; 
   width: 200px; /* 적당히 고정된 너비 */
   font-family: 'Noto Sans KR', sans-serif;
   margin-bottom: 10px;
+  margin-left: 30px;
+  margin-right: 30px;
 }
 
 .dropdown-container-header {
+  /* width: 100%; */
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -100,6 +135,7 @@
   font-size: 1rem;
   color: #333;
   user-select: none;
+  animation: fadeUp 0.8s ease-out;
 }
 
 .dropdown-container-toggle {
@@ -108,7 +144,34 @@
 }
 
 /* 기본 상태 (닫힌 상태) */
+
 .dropdown-container-list {
+  position: absolute;
+  top: 100%;
+  left: 0;
+
+  width: max-content; /* ✅ 내용에 따라 자동 너비 조절 */
+  min-width: 160px;   /* ✅ 최소 너비 설정 */
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  padding: 0 10px;
+
+  display: flex;
+  flex-direction: column;   /* ✅ 수직 정렬로 변경 */
+  gap: 8px;
+  z-index: 1000;
+
+  max-height: 0;
+  opacity: 0;
+  overflow: hidden;
+  transform: translateY(-10px);
+  transition: all 0.3s ease;
+  pointer-events: none;
+}
+
+/*   
   position: absolute;
   top: 100%;
   left: 0;
@@ -128,8 +191,9 @@
   overflow: hidden;
   transform: translateY(-10px);
   transition: all 0.3s ease;
-  pointer-events: none; /* 마우스 입력 차단 */
-}
+  pointer-events: none;  */
+  /* 마우스 입력 차단 */
+
 
 /* 펼쳐진 상태 (JS에서 .open 클래스 붙이기) */
 .dropdown-container-list.open {
@@ -138,6 +202,7 @@
   opacity: 1;
   transform: translateY(0);
   pointer-events: auto;
+  
 }
 
 
@@ -151,6 +216,13 @@
   cursor: pointer;
   transition: background-color 0.2s ease, transform 0.2s ease;
   /* ❌ transform 삭제 */
+
+  /* 축약 */
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 300px;
+
 }
 
 .dropdown-container-item:hover {
@@ -203,15 +275,16 @@ padding:4rem 1rem; */
 
 
 .search-box{
-  display:inline-flex;
+  display:flex;
   border:2px solid #dadada;
   border-radius:9999px;
   overflow:hidden;
-  max-width:550px;
-  width:100%;
+  width:550px;
+  /* width:50%; */
   box-sizing: border-box; /*패딩, 테두리까지 포함해서 width 계산*/
   padding: 0; /*내부 input 간격 조정*/
   padding-right: 10px;
+  animation: fadeUp 0.8s ease-out;
   /* margin-left: 40%; */
 }
 /* .search-wrapper {
@@ -270,4 +343,21 @@ padding:4rem 1rem; */
   cursor:pointer;
 }
 
-/* bookmarkpage */
+
+
+/* 🔄 페이드 업 애니메이션 */
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* 공통 클래스 - 부드럽게 위로 올라오며 나타남 */
+.fade-up {
+  animation: fadeUp 0.8s ease-out;
+}

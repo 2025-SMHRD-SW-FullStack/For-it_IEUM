@@ -4,17 +4,19 @@ import { useNavigate } from "react-router-dom";
 import ftaCountries from "../../data/ftaCountries";
 
 const FtaCountryGrid = () => {
-  const navigate = useNavigate();
+
 
   return (
     <div className="fta-country-wrapper">
       <h2>FTA 체결 국가</h2>
       <div className="fta-country-grid">
        {ftaCountries.map((country)=>(
-          <div
+          <a
             key={country.id}
+            href={country.external}
+            target="_blank"
+            rel="noopener noreferrer"
             className="fta-country-card"
-            onClick={() => navigate(country.route)}
           >
              <div className="fta-country-icon">
               <img
@@ -24,7 +26,7 @@ const FtaCountryGrid = () => {
               />
             </div>
             <p className="fta-country-label">{country.name}</p>
-          </div>
+          </a>
         ))}
       </div>
     </div>

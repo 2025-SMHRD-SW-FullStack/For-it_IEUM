@@ -1,7 +1,7 @@
 const testItemArray = [
   {
     id: 1,
-    itemName: "커피 원두",
+    itemName: "커피 원두 dfdfdfdfdfdfdfdfdfdfdfdfdfdfdf",
     hsCode: "0901.21-0000",
     baseTariff: 8,
     lowestTariff: 0,

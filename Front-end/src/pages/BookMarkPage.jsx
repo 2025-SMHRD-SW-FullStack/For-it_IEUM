@@ -2,8 +2,8 @@ import React, { useState, useEffect } from "react";
 import './BookMarkPage.css';
 
 const initialBookmarks = [
-  { value: "a", title: "말 - 미국 (8%) ", text: "내용 1.dkfjslkjdfklsjfkljswklfdjslkjdfklsjdkfjsldfjlskijflkjskljfkdl.." },
-  { value: "b", title: "두 번째 아이템", text: "내용 2..." },
+  { value: "a", title: "말 - 미국 (8%)dgdgdgdgdgdgdgdgdgdgdgdgdgdwjdakfwjdakfwjdfkasdlkfjs;dlkfaj;dlkfjalskdfjlkdjfs", text: "내용 1.dkfjslkjdfklsjfkljswklfdjslkjdfklsjdkfjsldfjlskijflkjskljfkdl.." },
+  { value: "b", title: "두 번째 아이템dkfjslkdfjsldkjflkdjfl", text: "내용 2..." },
   { value: "c", title: "세 번째 아이템", text: "내용 3..." },
 ];
 
@@ -55,7 +55,13 @@ const BookMarkPage = () => {
                 className="accordion-header"
                 onClick={() => handleToggle(item.value)}
               >
-                <span className="accordion-title">{item.title}</span>
+                <span
+                  className="accordion-title"
+                  title={item.title}
+                >
+                  {item.title.length > 10 ? item.title.slice(0, 10) + "..." : item.title}
+                </span>
+
                 <span className="accordion-icon">{isOpen ? "▲" : "▼"}</span>
               </button>
 
