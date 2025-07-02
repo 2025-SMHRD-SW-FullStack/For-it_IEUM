@@ -1,5 +1,7 @@
 package com.ieum.kr.dto;
 
+import java.util.Optional;
+
 import com.ieum.kr.entity.KeyWordEntity;
 
 import lombok.AllArgsConstructor;
@@ -17,12 +19,12 @@ public class KeyWordDTO {
 	private String hsCode;
 	private String productName;
 	
-	public static KeyWordDTO fromEntity(KeyWordEntity entity) {
+	public static KeyWordDTO fromEntity(Optional<KeyWordEntity> optional) {
 		
 		return KeyWordDTO.builder()
-				.userId(entity.getUserId())
-				.hsCode(entity.getHsCode())
-				.productName(entity.getProductName())
+				.userId(optional.get().getUserId())
+				.hsCode(optional.get().getHsCode())
+				.productName(optional.get().getProductName())
 				.build();
 	}
 }

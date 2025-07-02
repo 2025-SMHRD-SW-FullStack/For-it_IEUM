@@ -48,29 +48,35 @@ public class UserController {
 	}
     
 //    @Operation(summary = "유저 정보", security = @SecurityRequirement(name = "BearerAuth"))
-    @PostMapping("/user-info")
-    public ResponseEntity<?> getUserInfo(@RequestHeader("Authorization") String authHeader) {
-        System.out.println("[getUserInfo 컨트롤러 접근]");
-        System.out.println("Authorization Header: " + authHeader); // ✅ 헤더값 확인
-
-        String token = authHeader.replace("Bearer ", "");
-        System.out.println("Extracted Token: " + token); // ✅ Bearer 제거 후 토큰만
-
-        if (jwtUtil.validateToken(token)) {
-            String userId = jwtUtil.extractUserId(token); // 토큰 값을 userId로 변환 해줌
-            System.out.println("UserId from token: " + userId); // ✅ 최종 파싱된 userId
-            return ResponseEntity.ok(Map.of("userId", userId));
-        } else {
-            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("토큰이 유효하지 않음");
-        }
-    }
+//    @PostMapping("/user-info")
+//    public ResponseEntity<?> getUserInfo(@RequestHeader("Authorization") String authHeader) {
+//        System.out.println("[getUserInfo 컨트롤러 접근]");
+//        System.out.println("Authorization Header: " + authHeader); // ✅ 헤더값 확인
+//
+//        String token = authHeader.replace("Bearer ", "");
+//        System.out.println("Extracted Token: " + token); // ✅ Bearer 제거 후 토큰만
+//
+//        if (jwtUtil.validateToken(token)) {
+//            String userId = jwtUtil.extractUserId(token); // 토큰 값을 userId로 변환 해줌
+//            System.out.println("UserId from token: " + userId); // ✅ 최종 파싱된 userId
+//            return ResponseEntity.ok(Map.of("userId", userId));
+//        } else {
+//            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("토큰이 유효하지 않음");
+//        }
+//    }
     
     @PostMapping("/join")
     public ResponseEntity<?> userJoin(@RequestBody UserDTO dto){
     	
-    	System.out.println("[]");
+    	System.out.println("[userJoin Controller 접근]");
+    	System.out.println(dto);
+    	String result = userService.userJoin(dto);
+    	if(result != null) {
+    		return ResponseEntity.ok(Map.of("joinCheck", result));
+    	}else {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("중복된 아이디 입니다.");
+        }
     	
-    	return null;
     	
     }
 	
