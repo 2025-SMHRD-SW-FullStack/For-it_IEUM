@@ -24,7 +24,7 @@ public class CategoryService {
 	@Autowired
 	KeyWordRepository keyWordRepository;
 	
-	public List<CategoryDTO> CategoryAllList() {
+	public List<CategoryDTO> keywordList() {
 		
 		List<CategoryEntity> result = cateRepository.findAll();
 		
@@ -45,9 +45,9 @@ public class CategoryService {
 		entity.setUserId(dto.getUserId());
 		
 		List<KeyWordDTO> result = new ArrayList<>();
+		System.out.println(KeyWordDTO.fromEntity(keyWordRepository.findById(entity.getUserId())));
 		
-//				KeyWordDTO.fromEntity(keyWordRepository.findAllById(entity.getUserId()));
-		
-		return result;
+//		keyWordRepository.findById(entity.getUserId());
+		return null;
 	}
 }

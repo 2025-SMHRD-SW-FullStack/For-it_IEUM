@@ -12,7 +12,7 @@ const UserInput = ({ name, label, value, onChange }) => {
         value={value}
         onChange={onChange}
         placeholder={`${label}를 입력하세요`}
-        className=''
+        className='loginInput'
       />
     </div>
   );

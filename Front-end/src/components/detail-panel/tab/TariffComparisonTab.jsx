@@ -14,7 +14,9 @@ const TariffComparisonTab = () => {
   return (
     <div>
       <div className='selectedCard'>
-        HS코드: {selectedCard.hsCode} | 품목명: {selectedCard.itemName} 
+        HS코드: {selectedCard.hsCode} 
+        <br />
+        품목명: {selectedCard.itemName} 
       </div>
       <br/>
       <div className='TariffContainer'>
