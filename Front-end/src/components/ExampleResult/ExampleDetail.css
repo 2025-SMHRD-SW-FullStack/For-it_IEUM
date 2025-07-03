@@ -1,0 +1,61 @@
+.ExampleGroup{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-radius: 15px;
+    box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.1);
+    width: fit-content;
+    height: 100%;
+    padding: 1rem;
+    margin: 2rem;
+}
+
+.exampleText{
+    font-size: 20px;
+    color: #4b4b4b;
+}
+
+.exampleTariff{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 0px;
+    margin: 0px;
+    font-size: 16px;
+}
+
+.exampleTariff.listContent{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.exampleTariff.list {
+    padding: 3px;
+    width: 100%;
+}
+
+.exampleLogic{
+    display: flex;
+    flex: 1;
+    margin: 1rem;
+    font-size: 12px;
+}
+
+.exampleContent{
+    display: flex;
+    flex-direction: row;
+    height: 100%;
+    /* padding: 1rem; */
+    margin: 1rem;
+    align-items: stretch;
+}
+
+.exampleAIText{
+    width: fit-content;
+    border: 1px solid black;
+    /* margin-bottom: 1rem; */
+    padding: 0.5rem;
+    font-size: 12px;
+}

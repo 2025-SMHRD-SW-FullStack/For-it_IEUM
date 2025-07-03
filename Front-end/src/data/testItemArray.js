@@ -1,8 +1,7 @@
 const testItemArray = [
   {
-    id: 1,
-    itemName: "커피 원두 dfdfdfdfdfdfdfdfdfdfdfdfdfdfdf",
-    hsCode: "0901.21-0000",
+    product_name: "커피 원두",
+    hs_code: "0901.21-0000",
     baseTariff: 8,
     lowestTariff: 0,
     lowestCountry: "베트남",
@@ -14,9 +13,8 @@ const testItemArray = [
     ]
   },
   {
-    id: 2,
-    itemName: "태양광 패널",
-    hsCode: "8541.10-0000",
+    product_name: "태양광 패널",
+    hs_code: "8541.10-0000",
     baseTariff: 8,
     lowestTariff: 0,
     lowestCountry: "페루",
@@ -28,9 +26,8 @@ const testItemArray = [
     ]
   },
   {
-    id: 3,
-    itemName: "스마트폰",
-    hsCode: "8517.12-0000",
+    product_name: "스마트폰",
+    hs_code: "8517.12-0000",
     baseTariff: 12,
     lowestTariff: 0,
     lowestCountry: "말레이시아",
@@ -42,9 +39,8 @@ const testItemArray = [
     ]
   },
   {
-    id: 4,
-    itemName: "노트북 컴퓨터",
-    hsCode: "8471.30-0000",
+    product_name: "노트북 컴퓨터",
+    hs_code: "8471.30-0000",
     baseTariff: 10,
     lowestTariff: 0,
     lowestCountry: "베트남",
@@ -56,9 +52,8 @@ const testItemArray = [
     ],
   },
   {
-    id: 5,
-    itemName: "전기 자동차",
-    hsCode: "8703.80-0000",
+    product_name: "전기 자동차",
+    hs_code: "8703.80-0000",
     baseTariff: 10,
     lowestTariff: 2,
     lowestCountry: "태국",
@@ -70,9 +65,8 @@ const testItemArray = [
     ]
   },
   {
-    id: 6,
-    itemName: "LED 조명",
-    hsCode: "9405.10-0000",
+    product_name: "LED 조명",
+    hs_code: "9405.10-0000",
     baseTariff: 8,
     lowestTariff: 0,
     lowestCountry: "인도네시아",
@@ -84,9 +78,8 @@ const testItemArray = [
     ]
   },
   {
-    id: 7,
-    itemName: "의료용 마스크",
-    hsCode: "6307.90-4000",
+    product_name: "의료용 마스크",
+    hs_code: "6307.90-4000",
     baseTariff: 6,
     lowestTariff: 0,
     lowestCountry: "베트남",
@@ -98,9 +91,8 @@ const testItemArray = [
     ]
   },
   {
-    id: 8,
-    itemName: "냉장고",
-    hsCode: "8418.10-0000",
+    product_name: "냉장고",
+    hs_code: "8418.10-0000",
     baseTariff: 13,
     lowestTariff: 4,
     lowestCountry: "말레이시아",
@@ -112,9 +104,8 @@ const testItemArray = [
     ]
   },
   {
-    id: 9,
-    itemName: "에어컨",
-    hsCode: "8415.10-0000",
+    product_name: "에어컨",
+    hs_code: "8415.10-0000",
     baseTariff: 13,
     lowestTariff: 5,
     lowestCountry: "인도",
@@ -126,9 +117,8 @@ const testItemArray = [
     ]
   },
   {
-    id: 10,
-    itemName: "전동 공구",
-    hsCode: "8467.21-0000",
+    product_name: "전동 공구",
+    hs_code: "8467.21-0000",
     baseTariff: 9,
     lowestTariff: 1,
     lowestCountry: "중국",
