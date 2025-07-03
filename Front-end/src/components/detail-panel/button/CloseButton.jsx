@@ -2,13 +2,14 @@ import React from 'react';
 import x from '../../../assets/image/delete.png'
 import './Btn.css'
 
-const CloseButton = ({ clearSelectedCard, setIsVisible }) => {
+const CloseButton = ({ onClick, clearSelectedCard }) => {
   
   const close = () => {
-    setIsVisible(false);
-    setTimeout(() => {
-      clearSelectedCard();
-    }, 200); // 애니메이션 시간과 맞춤
+    if (onClick) {
+      onClick(); // 뉴스패널 같은 곳에서 애니메이션용으로 사용
+    } else if (clearSelectedCard) {
+      clearSelectedCard(); // 디테일 패널에서는 이걸 사용
+    }
   };
 
   return (
