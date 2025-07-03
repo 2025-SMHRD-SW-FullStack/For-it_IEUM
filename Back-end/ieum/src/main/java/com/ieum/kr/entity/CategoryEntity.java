@@ -22,4 +22,6 @@ public class CategoryEntity {
 	@Column(name = "product_name")
 	private String productName;
 	
+	@Column(name = "check_type")
+	private String checkType;
 }

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { DndProvider } from 'react-dnd';
 import { HTML5Backend } from 'react-dnd-html5-backend';
 import { useNavigate } from 'react-router-dom';
@@ -7,6 +7,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import InterestKeyword from './interestKeyword';
 import Keyword from './Keyword';
 import './KeywordSideBar.css';
+import { keywordItem } from '../../services/keyWordService';
 
 export const Item = {
   KEYWORD: 'keyword',
@@ -29,6 +30,8 @@ const KeywordSideBar = () => {
     '주방용품',
   ];
 
+
+
   const [interest, setInterest] = useState([]);
   const [selectedKeyword, setSelectedKeyword] = useState(null);
   const navigate = useNavigate();
@@ -37,6 +40,26 @@ const KeywordSideBar = () => {
     setSelectedKeyword(keyword);
     navigate(`/search?keyword=${encodeURIComponent(keyword)}`);
   };
+
+  // const [keyword,setKeyword] =useState([]);
+
+useEffect(()=>{
+
+  const fetchResults = async () => {
+      try {
+        const data = await keywordItem();   // axios.get 결과
+        console.log(data.keywordAll);
+        // setKeyword(data);
+          
+        // navigate('/search', { replace: true });
+      } catch (error) {
+        console.error('검색 실패:', error);
+      }
+    };
+    fetchResults();
+},[]);
+
+
 
   return (
     <DndProvider backend={HTML5Backend}>

@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import com.ieum.kr.dto.CategoryDTO;
 import com.ieum.kr.dto.KeyWordDTO;
+import com.ieum.kr.dto.KeywordAllDTO;
 import com.ieum.kr.dto.NewsDTO;
 import com.ieum.kr.entity.CategoryEntity;
 import com.ieum.kr.entity.KeyWordEntity;
@@ -58,16 +59,49 @@ public class CategoryService {
 		return list;
 	}
 
+	// list select 병합 작업
+	public KeywordAllDTO listMerge(KeyWordDTO uDto,CategoryDTO aDto) {
+		KeywordAllDTO all = new KeywordAllDTO();
+		
+		List<CategoryDTO> result = keywordList();
+		List<CategoryDTO> cateList = new ArrayList<CategoryDTO>();
+		for (CategoryDTO cateDto : result) {
+			cateList.add(cateDto);
 
+			all.setKeywordAll(cateList);
+		}
+		
+		if (uDto.getUserId() != null) {
+			List<KeyWordDTO> userKeyword = userKeyWordList(uDto);
+			List<KeyWordDTO> keyDto = new ArrayList<KeyWordDTO>();
+
+			for (KeyWordDTO userKeywordList : userKeyword) {
+				keyDto.add(userKeywordList);
+
+				all.setUserKeyword(keyDto);
+			}
+		}
+		
+		return all;
+		
+	}
+	
+	
 	public void keywordSave(KeyWordDTO dto) {
 		System.out.println("[service dto]"+dto);
 		KeyWordEntity entity = new KeyWordEntity();
 		entity.setUserId(dto.getUserId());
 		entity.setHsCode(dto.getHsCode());
 		entity.setProductName(dto.getProductName());
+		entity.setCheckType(dto.getCheckType());
 		keyWordRepository.save(entity);
+		
+		
+		
 	}
 
+	
+	
 
 	public void keywordDelete(KeyWordDTO dto) {
 

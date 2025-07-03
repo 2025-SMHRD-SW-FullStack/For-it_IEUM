@@ -15,11 +15,13 @@ public class CategoryDTO {
 
 	private String hsCode;
 	private String productName;
+	private String checkType;
 	
 	public static CategoryDTO fromEntity(CategoryEntity categoryEntity) {
 		return CategoryDTO.builder()
 				.hsCode(categoryEntity.getHsCode())
 				.productName(categoryEntity.getProductName())
+				.checkType(categoryEntity.getCheckType())
 				.build();
 		
 	}

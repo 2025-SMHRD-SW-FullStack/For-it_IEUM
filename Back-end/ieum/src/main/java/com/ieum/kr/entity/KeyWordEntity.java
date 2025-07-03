@@ -30,6 +30,8 @@ public class KeyWordEntity {
 	@Column(name = "product_name")
 	private String productName;
 	
+	@Column(name = "check_type")
+	private String checkType;
 	
 	public KeyWordEntity(long id, String userId) {
 		this.id = id;
