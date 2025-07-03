@@ -1,0 +1,105 @@
+.authWrapper{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    padding-top: 60px;
+    justify-content: center;
+    align-items: center;
+}
+
+.authForm{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    margin-top: 0.6rem;
+}
+
+.inputWrapper {
+  display: flex;
+  flex-direction: column;
+  /* align-items: center; */
+  width: fit-content;       
+  margin: 0 auto;       
+  margin-bottom: 1rem;
+}
+
+.joinInput{
+    display: flex;
+    flex-direction: row;
+    margin: 0.5rem;
+}
+
+
+.loginBtn{
+    width: 300px;
+    min-width: fit-content;
+    height: fit-content;
+    background-color: #CFE8FC;
+    color: #0B2A4E;
+    font-size: 16px;
+    font-weight: 600;
+    margin: 0.5rem 0px;
+    padding: 0.5rem;
+    border: 0px;
+    border-radius: 10px;
+    
+}
+
+.loginBtn.join{
+    background-color: white;
+    border: 1px solid #959595;
+}
+
+.checkboxGroup{
+    display: flex;
+    flex-direction: column;
+    font-size: 14px;
+}
+
+.checkboxLabel{
+    padding: 0.1rem;
+    font-size: 18px;
+}
+
+.checkboxLabel.channel {
+    padding: 0.3rem;
+}
+
+.allCheck {
+    margin: 0.5rem 0;
+}
+
+.channelSelect{
+    display: flex;
+    justify-content: center;
+}
+
+.telInputWrapper {
+    display: flex;
+    gap: 5px;
+    margin: 0.5rem 0;
+}
+
+.telInputWrapper input {
+    width: 60px;
+    text-align: center;
+    padding: 0.3rem;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.emailWrapper {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    margin: 0.5rem 0;
+}
+
+.emailWrapper input,
+.emailWrapper select {
+    padding: 0.3rem;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}

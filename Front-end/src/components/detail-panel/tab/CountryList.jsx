@@ -19,7 +19,7 @@ const CountryList = ({ countries = [], dropDown = false, className='' }) => {
   if(dropDown) {
     return(
         <div className='countryContainer'>
-            <label>🌍 FTA 체결 국가 목록&nbsp;</label>
+            <label className='countryLabel'>🌍 FTA 체결 국가 목록&nbsp;</label>
             <select className='countrySelect'>
                 {countries.map((item, index) => (
                     <option 
@@ -35,7 +35,7 @@ const CountryList = ({ countries = [], dropDown = false, className='' }) => {
 
   return (
       <div className={`countryList ${className} listContent`}>
-          <label className={`${className}`}>🌍 FTA 체결 국가 목록</label>
+          <label className={`countryLabel ${className}`}>🌍 FTA 체결 국가 목록</label>
           <ul>
           {countries.map((item, index) => (
               <li 
