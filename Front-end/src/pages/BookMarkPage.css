@@ -1,8 +1,4 @@
-
-/* 애니메이션 */
-/* fade-up : 떠오르듯이 translateY : 천천히 나타나는
-  from :시작 상태, 불투명도 0 아래로 30px to : 최종 상태 */
-
+/* 애니메이션: fade-up (천천히 위로 떠오르듯이) */
 @keyframes fadeUp {
   from {
     opacity: 0;
@@ -14,7 +10,7 @@
   }
 }
 
-/* 북마크 전체 박스 */
+/* 북마크 전체 컨테이너 */
 .bookmark-container {
   max-width: 800px;
   margin: 40px auto;
@@ -26,115 +22,189 @@
   animation: fadeUp 0.6s ease-out;
 }
 
-/* 제목 텍스트 스타일 */
+/* 페이지 제목 */
 .bookmark-title {
   font-size: 2rem;
   margin-bottom: 20px;
+  font-weight: 700;
   text-align: left;
-  font-weight: bold;
+  color: #222;
 }
 
+/* 아코디언 아이템 */
 .accordion-item {
-  margin-bottom: 10px;
+  margin-bottom: 12px;
 }
 
-
-/* 아코디언의 클릭 가능한 헤더(제목)영역 */
+/* 아코디언 헤더 (클릭 영역) */
 .accordion-header {
   width: 100%;
-  background: #f5f5f5;
+  background-color: #f5f5f5;
   border: none;
   padding: 15px 20px;
   font-size: 1.1rem;
   text-align: left;
   cursor: pointer;
+
   display: flex;
   justify-content: space-between;
   align-items: center;
+  gap: 12px;
+
   border-radius: 8px;
   box-sizing: border-box;
-  gap: 10px;
+
+  transition: background-color 0.3s ease;
 }
 
+.accordion-header:hover {
+  background-color: #e2e8f0;
+}
+
+/* 아코디언 제목 텍스트 */
 .accordion-title {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-  display: inline-block;
   flex-grow: 1;
+  color: #333;
+  font-weight: 600;
 }
 
+/* 아코디언 아이콘 (화살표) */
+.accordion-icon {
+  font-size: 1rem;
+  color: #666;
+  user-select: none;
+}
 
-/* 잡혀 있을 때의 아코디언 내용 영역 */
+/* 아코디언 내용 영역 기본 (닫힌 상태) */
 .accordion-content {
-  width: 100%;
-  /* height: 500px; */
   max-height: 0;
   overflow: hidden;
-  transition: max-height 0.3s ease, padding-top 0.3s ease, padding-bottom 0.3s ease;
+  transition: max-height 0.35s ease, padding 0.35s ease;
   background-color: #fafafa;
-  /* padding: 0 20px; */
-  border-radius: 8px;
+  padding: 0 20px;
+  border-radius: 0 0 8px 8px;
   box-sizing: border-box;
 }
 
-/* 아코디언 펼쳐졌을 때 스타일 */
+/* 아코디언 펼침 상태 */
 .accordion-content.open {
-  max-height: 500px;
-  /* padding: 15px 20px; */
-  padding-top: 15px;
-  padding-bottom: 15px;
-  margin-top: 5px;
+  max-height: 400px; /* 필요에 따라 조절 가능 */
+  padding: 15px 20px;
+  margin-top: 6px;
 }
 
+/* 내용 내부 텍스트 스타일 */
+.accordion-content p {
+  margin: 8px 0;
+  font-size: 1rem;
+  color: #444;
+  line-height: 1.4;
+}
+
+/* 구분선 */
 .divider {
-  margin: 10px 0;
+  margin: 12px 0;
   border: none;
   border-top: 1px solid #ddd;
 }
 
+/* 삭제 버튼 */
 .delete-btn {
-  margin-top: 10px;
-  padding: 6px 12px;
+  margin-top: 12px;
+  padding: 8px 16px;
   background-color: #ff5f5f;
   color: #fff;
   border: none;
   border-radius: 6px;
   cursor: pointer;
+  font-weight: 600;
+  transition: background-color 0.3s ease;
 }
 
+.delete-btn:hover {
+  background-color: #e53e3e;
+}
+
+/* 모달 오버레이 */
 .modal-overlay {
   position: fixed;
   top: 0;
   left: 0;
-  width: 100%;
-  height: 100%;
+  width: 100vw;
+  height: 100vh;
   background-color: rgba(0, 0, 0, 0.5);
+
   display: flex;
   justify-content: center;
   align-items: center;
   z-index: 1000;
 }
 
+/* 모달 박스 */
 .modal {
-  background: white;
-  padding: 30px;
-  border-radius: 10px;
+  background: #fff;
+  padding: 30px 40px;
+  border-radius: 12px;
   max-width: 400px;
+  width: 90%;
+  box-sizing: border-box;
   text-align: center;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.15);
 }
 
+/* 모달 버튼 그룹 */
 .modal-actions {
-  margin-top: 20px;
+  margin-top: 24px;
   display: flex;
   justify-content: space-around;
 }
 
-.confirm-btn {
-  background-color: #e53e3e;
-  color: white;
-  border: none;
+/* 취소 버튼 */
+.modal-actions button {
   padding: 10px 20px;
   border-radius: 8px;
+  font-weight: 600;
   cursor: pointer;
+  border: none;
+  transition: background-color 0.25s ease;
+}
+
+.modal-actions button:first-child {
+  background-color: #ccc;
+  color: #444;
+}
+
+.modal-actions button:first-child:hover {
+  background-color: #bbb;
+}
+
+/* 삭제 확정 버튼 */
+.confirm-btn {
+  background-color: #e53e3e;
+  color: #fff;
+}
+
+.confirm-btn:hover {
+  background-color: #c53030;
+}
+
+/* 반응형: 모바일에서 패딩 줄이기 */
+@media (max-width: 480px) {
+  .bookmark-container {
+    padding: 20px;
+    margin: 20px 10px;
+  }
+
+  .accordion-header {
+    font-size: 1rem;
+    padding: 12px 16px;
+  }
+
+  .delete-btn {
+    padding: 6px 12px;
+    font-size: 0.9rem;
+  }
 }

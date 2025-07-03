@@ -34,7 +34,7 @@
 .searchContainer {
   display: flex;
   flex-direction: column;
-  height: 100vh;
+  height: calc(100vh - 108px);
   width: 100%;
   box-sizing: border-box;
   margin-left: 2rem;
@@ -49,7 +49,8 @@
 .searchContentPanel{
   display: flex;
   flex-direction: row;
-  height: 100%;
+  /* height: 100%; */
+  overflow: auto;
   position: relative;
 
 }
