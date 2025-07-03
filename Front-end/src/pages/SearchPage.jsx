@@ -52,7 +52,7 @@ const SearchPage = () => {
   // }, []);
 
   return (
-    <main className="searchPage">
+    <div className='searchPage'>
       <div className='sideBar'>
         <KeywordSideBar  />
       </div>
@@ -77,7 +77,7 @@ const SearchPage = () => {
           {selectedCard && <DetailPanel />}
         </div>
       </div>
-    </main>
+    </div>
   );
 };
 

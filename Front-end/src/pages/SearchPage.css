@@ -12,7 +12,7 @@
 .searchPage {
   display: flex;
   flex-direction: row;
-  height: 100vh; /* 브라우저 전체 높이 */
+  height: 100vh-110px; /* 브라우저 전체 높이 */
   width: 100%;   /* 전체 너비 */
   animation: fadeUp 0.6s ease-out;
 }

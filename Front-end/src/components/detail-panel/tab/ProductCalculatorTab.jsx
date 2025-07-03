@@ -3,6 +3,7 @@ import useCardStore from '../../../stores/CardStore';
 import './ProductCalculatorTab.css'
 import CountryList from './CountryList';
 import testItemArray from '../../../data/testItemArray';
+import CaculatorLogic from './CaculatorLogic';
 
 const ProductCalculatorTab = () => {
 
@@ -30,7 +31,8 @@ const ProductCalculatorTab = () => {
             <button className='CacultateBtn'>계산하기</button>
           </div>
       </div>
-      <div className='logic'></div>
+      
+      <CaculatorLogic className='resultLogic'/>
     </div>
   )
 }
