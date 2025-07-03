@@ -17,7 +17,7 @@ import io.swagger.v3.oas.annotations.security.SecurityScheme;
 public class WebConfig implements WebMvcConfigurer {
 	@Override
 	public void addCorsMappings(CorsRegistry registry) {
-	        registry.addMapping("/ieum/**")  // 또는 "/**"로 전체 허용
+	        registry.addMapping("/**")  // 또는 "/**"로 전체 허용
 	                .allowedOrigins("http://localhost:5173","http://192.168.219.65:5173")  // React/Spring 사용하는 포트
 //	                //.allowedOrigins("*")  // 모든 URL허용
 //	                .allowedOriginPatterns("*")
