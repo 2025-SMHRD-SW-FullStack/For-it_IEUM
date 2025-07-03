@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import bookmarks from '../data/bookmark.json'; // JSON 데이터 import
 import BookmarkDetail from './BookmarkDetail';
 

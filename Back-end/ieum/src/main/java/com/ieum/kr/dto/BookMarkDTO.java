@@ -1,7 +1,5 @@
 package com.ieum.kr.dto;
 
-import java.time.OffsetDateTime;
-
 import com.ieum.kr.entity.BookMarkEntity;
 
 import lombok.Builder;
@@ -22,7 +20,6 @@ public class BookMarkDTO {
 	private float quantity;
 	private String calculation;
 	private String chatGPTAnswer;
-	private OffsetDateTime date;
 	
 	public static BookMarkDTO fromEntity(BookMarkEntity bookEntity) {
 		return BookMarkDTO.builder()
@@ -37,7 +34,6 @@ public class BookMarkDTO {
 				.quantity(bookEntity.getQuantity())
 				.calculation(bookEntity.getCalculation())
 				.chatGPTAnswer(bookEntity.getChatGPTAnswer())
-				.date(bookEntity.getDate())
 				.build();
 	}
 
@@ -53,7 +49,6 @@ public class BookMarkDTO {
                 .quantity(this.quantity)
                 .calculation(this.calculation)
                 .chatGPTAnswer(this.chatGPTAnswer)
-                .date(this.date)
                 .build();
     }
 	

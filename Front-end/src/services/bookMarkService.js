@@ -1,6 +1,6 @@
 import apiClient from "../lib/apiClient";
 
-export const getBookMarks = async (userID, hsCode, productName, tax, country, tariff, price, quantity, calculation, chatGPTAnswer) => {
+export const saveBookMarks = async (userID, hsCode, productName, tax, country, tariff, price, quantity, calculation, chatGPTAnswer) => {
     const res = await apiClient.post('/bookmark/save',{
         userID,
         hsCode,
@@ -14,3 +14,8 @@ export const getBookMarks = async (userID, hsCode, productName, tax, country, ta
         chatGPTAnswer
     })
     return res.data;};
+
+export const getBookMarkList = async (userID) => {
+    const res = await apiClient.get(`/bookmark/list/${userID}`);
+    return res.data;
+}

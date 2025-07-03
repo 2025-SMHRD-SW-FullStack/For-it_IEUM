@@ -1,57 +1,48 @@
 package com.ieum.kr.repository;
 
-import java.time.OffsetDateTime;
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
+import org.springframework.transaction.annotation.Transactional;
 
+import com.ieum.kr.dto.BookMarkDTO;
 import com.ieum.kr.entity.BookMarkEntity;
 
 public interface BookMarkRepository extends JpaRepository<BookMarkEntity, Integer> {
 	
-//
-//	@Query(value = """
-//			SELECT *
-//			FROM FAVORITE f
-//			WHERE f.USER_ID = :userID
-//			AND f.HS_CODE = :hsCode
-//			AND f.COUNTRY = :country
-//			AND f.TARIFF = :tariff
-//		""", nativeQuery = true)
-//	List<BookMarkEntity> findRecentWithin3Min(@Param("userID") String userID, @Param("hsCode") String hsCode,
-//			@Param("country") String country, @Param("tariff") float tariff);
-//
-//	AND f.`DATE` >= NOW() - INTERVAL 3 MINUTE
-//	@Query(value = """
-//			UPDATE FAVORITE f
-//			SET f.CALCULATION =:calculation
-//			WHERE f.USER_ID = :userID
-//			AND f.HS_CODE = :hsCode
-//			AND f.COUNTRY = :country
-//			AND f.TARIFF = :tariff
-//			""", nativeQuery = true)
-//	String changeCalculation(@Param("calculcation") String calculation,@Param("userID") String userID,
-//			@Param("hsCode")String hsCode, @Param("country") String country,@Param("tariff") float tariff);
-//
-//	@Query(value ="""
-//			UPDATE FAVORITE f
-//			SET f.CHATGPT_ANSWER =:chatGPTAnswer
-//			WHERE f.USER_ID = :userID
-//			AND f.HS_CODE = :hsCode
-//			AND f.COUNTRY = :country
-//			AND f.TARIFF = :tariff
-//			""", nativeQuery=true)
-//	String changeChatGPTAnswer(@Param("chatGPTAnswer") String chatGPTAnswer,@Param("userID") String userID,
-//			@Param("hsCode")String hsCode, @Param("country") String country,@Param("tariff") float tariff);
-//    
-	Optional<BookMarkEntity> findTopByHsCodeAndCountryAndTariffAndDateBetweenOrderByDateDesc(
-            String hsCode,
-            String country,
-            float tariff,
-            OffsetDateTime from,
-            OffsetDateTime to
-        );
+//    Optional<BookMarkEntity> findTopByHsCodeAndCountryAndTariffAndDateBetweenOrderByDateDesc(
+//            String hsCode,
+//            String country,
+//            float tariff,
+//            LocalDateTime from,
+//            LocalDateTime to
+//        );
+    @Modifying
+    @Transactional
+    @Query("UPDATE BookMarkEntity b " +
+           "SET b.price         = :price, " +
+           "    b.quantity      = :quantity, " +
+           "    b.calculation   = :calculation, " +
+           "    b.chatGPTAnswer = :chatGPTAnswer, " +
+           "    b.date          = :date " +
+           "WHERE b.userID = :userID " +
+           "  AND b.hsCode = :hsCode")
+    int updateByUserAndHs(
+        @Param("price")         int price,
+        @Param("quantity")      float quantity,
+        @Param("calculation")   String calculation,
+        @Param("chatGPTAnswer") String chatGPTAnswer,
+        @Param("date")          LocalDateTime date,
+        @Param("userID")        String userID,
+        @Param("hsCode")        String hsCode
+    );
+    
+	List<BookMarkDTO> findAllByUserID(String userID);
+	
+	
 }

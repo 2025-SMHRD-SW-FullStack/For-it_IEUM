@@ -3,8 +3,6 @@ package com.ieum.kr.service;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.OffsetDateTime;
 import java.util.Arrays;
 import java.util.List;
 
@@ -18,7 +16,6 @@ import com.ieum.kr.dto.ProductDTO;
 import com.ieum.kr.dto.RankDTO;
 import com.ieum.kr.dto.RankProjection;
 import com.ieum.kr.dto.TariffInfoDTO;
-import com.ieum.kr.entity.RankEntity;
 import com.ieum.kr.repository.TopRankRepository;
 
 @Service
@@ -140,8 +137,8 @@ public class SearchService {
         long minPriceDiff = diffBd.longValue();
 
         String result = """
-            ✅ 수입 원가 계산 (FTA 적용 기준)
-            물품 가격: %,d원 (%d대 × %,d원)
+            ✅ 수입 원가 계산 (FTA 적용 기준) 
+            물품 가격: %,d원 (%d개 × %,d원)
             CIF 기준 가격: %,d원
             관세 (FTA %.1f%%): %,d원
             부가세 (VAT 10%%): %,d원

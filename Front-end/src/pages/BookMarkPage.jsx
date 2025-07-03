@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import './BookMarkPage.css';
+import { getBookMarkList } from '../services/bookMarkService';
 
 const initialBookmarks = [
   { value: "a", title: "커피-(아아아러러러아아아러러러아아아어러러라앙아아ㅏ어러러러러러럴아ㅏㅇ아알아러ㅏ얼", text: "내용 1.dkfjslkjdfklsjfkljswklfdjslkjdfklsjdkfjsldfjlskijflkjskljfkdl.." },
@@ -13,6 +14,8 @@ const BookMarkPage = () => {
   const [modalOpen, setModalOpen] = useState(false);
   const [selectedValue, setSelectedValue] = useState(null);
 
+    const id = "ddddd"; // 예시로 사용된 아이디, 바꿔야함
+
   useEffect(() => {
     const saved = localStorage.getItem("bookmarks");
     if (saved) {
@@ -20,6 +23,15 @@ const BookMarkPage = () => {
     } else {
       setBookmarks(initialBookmarks);
     }
+    console.log("북마크 데이터 로드 시작");
+    const getList = async () => {
+      // 예시로 북마크 데이터를 가져오는 함수
+      const data = await getBookMarkList(id);
+      console.log("북마크 데이터:", data);
+      console.log("북마크 데이터 로드됨");
+    }
+    getList();
+
   }, []);
 
   console.log("bookmarks: ", bookmarks);
