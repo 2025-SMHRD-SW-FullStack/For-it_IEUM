@@ -1,7 +1,6 @@
 const buildPrompt4o = (data) => {
 
   const {
-    id,
     itemName,
     hsCode,
     baseTariff,

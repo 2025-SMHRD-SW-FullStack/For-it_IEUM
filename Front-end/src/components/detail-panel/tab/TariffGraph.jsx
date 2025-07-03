@@ -4,12 +4,16 @@ import useCardStore from '../../../stores/CardStore';
 import testItemArray from '../../../data/testItemArray';
 import './TariffGraph.css'
 
-const TariffGraph = () => {
+const TariffGraph = ({ overrideData = null }) => {
 
-  const { selectedCard, setSelectedCard } = useCardStore(); 
+  const { selectedCard } = useCardStore(); 
 
-  const selectedItem = testItemArray.find((item)=> item.id === selectedCard.id);
-  if(!selectedItem) return null;
+  const cardData = overrideData || selectedCard;
+
+  if (!cardData) return null;
+
+  const selectedItem = testItemArray.find((item)=> item.hs_code === cardData.hs_code);
+  if(!selectedItem) return <p>그래프 데이터를 찾을 수 없습니다.</p>;
 
   const charData = [
     {name: '기본 관세', value: selectedItem.baseTariff , fill: '#CFE8FC' },

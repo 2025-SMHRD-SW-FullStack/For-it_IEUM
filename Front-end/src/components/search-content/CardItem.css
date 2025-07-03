@@ -1,12 +1,13 @@
 .card{
-    width: fit-content;
+    width: 250px;
     height: fit-content;
     border-radius: 10px;
     box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.1);
     display: inline-flex;
-    flex-direction: row;
+    justify-content: space-around;
     padding: 10px;
     cursor: pointer;   
+    gap: 0.2rem;
   }
 
 .card:hover {
@@ -14,7 +15,7 @@
 }
 
 .card.selected{
-    background-color: #CFE8FC;
+    background-color: #e6f1ff;
 }
 
 .favorite{

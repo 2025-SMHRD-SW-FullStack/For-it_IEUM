@@ -9,7 +9,7 @@ export const login = async (userId, password) => {
 };
 
 export const join = async (userId,name, password,phoneNumber,email,serviceCheck) => {
-    const res = await apiClient.post('/login', { 
+    const res = await apiClient.post('/join', { 
         userId,
         name,
         password,

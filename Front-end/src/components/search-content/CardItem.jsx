@@ -1,20 +1,23 @@
-import React from 'react'
-import testItemArray from "../../data/testItemArray"
+import React, { useState } from 'react'
 import useCardStore from '../../stores/CardStore'
 import star from '../../assets/image/star.png'
-
+import filledStar from '../../assets/image/filledStarO.png' // 채워진 별 아이콘 추가
 import './CardItem.css'
 
-
-const CardItem = ({card}) => {
-
+const CardItem = ({ card }) => {
   const { selectedCard, setSelectedCard } = useCardStore();
 
-  const isSelected = (selectedCard && selectedCard.id) === card.id;
+  const isSelected = (selectedCard && selectedCard.hs_code) === card.hs_code;
 
-  const CardClick = () => {
-    // console.log(card);
+  const [isFavorite, setIsFavorite] = useState(false); // 즐겨찾기 상태
+
+  const handleCardClick = () => {
     setSelectedCard(card);
+  }
+
+  const toggleFavorite = (e) => {
+    e.stopPropagation(); // 부모 div 클릭 방지
+    setIsFavorite((prev) => !prev);
   }
 
   return (
@@ -32,7 +35,14 @@ const CardItem = ({card}) => {
           </div>
           <img src={star} alt='별 아이콘' className='favorite'/>
         </div>
-
+      </div>
+      <img
+        src={isFavorite ? filledStar : star}
+        alt='별 아이콘'
+        className='favorite'
+        onClick={toggleFavorite}
+      />
+    </div>
   )
 }
 

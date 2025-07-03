@@ -3,7 +3,7 @@ import useCardStore from '../../../stores/CardStore'
 import './CountryList.css'
 
 
-const CountryList = ({ countries = [], dropDown = false }) => {
+const CountryList = ({ countries = [], dropDown = false, className='' }) => {
 
   if (!countries || countries.length === 0) {
     return <p>국가 정보가 없습니다.</p>;
@@ -34,19 +34,17 @@ const CountryList = ({ countries = [], dropDown = false }) => {
   }
 
   return (
-    <div>
-        <div className='countryList'>
-            <label >🌍 FTA 체결 국가 목록</label>
-            <ul>
-            {countries.map((item, index) => (
-                <li 
-                key={index}
-                className={`country ${index === 0 ? 'lower': index === countries.length - 1 ? 'last' : ''}`}
-                >{index+1}위 {item.country} | {item.tariff}%</li>
-            ))}
-            </ul>
-        </div>
-    </div>
+      <div className={`countryList ${className} listContent`}>
+          <label className={`${className}`}>🌍 FTA 체결 국가 목록</label>
+          <ul>
+          {countries.map((item, index) => (
+              <li 
+              key={index}
+              className={`country ${index === 0 ? 'lower': index === countries.length - 1 ? 'last' : ''} ${className} list`}
+              >{index+1}위 {item.country} | {item.tariff}%</li>
+          ))}
+          </ul>
+      </div>
   )
 }
 

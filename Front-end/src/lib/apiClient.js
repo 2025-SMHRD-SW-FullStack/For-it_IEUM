@@ -2,7 +2,7 @@ import axios from 'axios';
 
 // axios 인스턴스 생성
 const apiClient = axios.create({
-  baseURL: 'http://192.168.219.217:8088/ieum',
+  baseURL: 'http://localhost:8088/ieum',
   headers: {
     'Content-Type': 'application/json',
   },

@@ -5,28 +5,31 @@ import TariffGraph from './TariffGraph';
 import CountryList from './CountryList';
 import testItemArray from '../../../data/testItemArray';
 
-const TariffComparisonTab = () => {
+const TariffComparisonTab = ({ overrideData = null, className = '' }) => {
 
-  const { selectedCard, clearSelectedCard } = useCardStore();
+   const { selectedCard } = useCardStore();
 
-  if (!selectedCard) return null; // 아무것도 선택 안 됐으면 패널 안 보여줌
+  // 예시 데이터가 있으면 그걸 우선 사용
+  const cardData = overrideData || selectedCard;
+
+  if (!cardData) return null;
 
   return (
-    <div className='tariffGroup'>
+    <div className={`tariffGroup ${className}`}>
       <div className='selectedCard'>
         <div className='textDetail'>
-          <div className='DetailLabel'>HS코드</div>
-          {selectedCard.hs_code}
+          <div className={`DetailLabel ${className}`}>HS코드</div>
+          <div className={`${className}`}>{cardData.hs_code}</div>
         </div>
         <div className='textDetail'>
-          <div className='DetailLabel'>품목명</div>
-          {selectedCard.product_name} 
+          <div className={`DetailLabel ${className}`}>품목명</div>
+          <div className={`${className}`}>{cardData.product_name}</div>
         </div>
       </div>
       <br/>
       <div className='TariffContainer'>
-        <TariffGraph />
-        <CountryList countries={selectedCard.availableCountries}/>     
+        <TariffGraph overrideData={cardData}/>
+        <CountryList countries={cardData.availableCountries} className={`${className}`}/>
       </div>
     </div>
   )

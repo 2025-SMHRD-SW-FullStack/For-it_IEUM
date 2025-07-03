@@ -10,9 +10,20 @@
 }
 
 .keyword.interest{
-    background-color: #CFE8FC;
+    background-color: #e6f1ff;
+}
+
+.keyword.selected {  
+  border: 0.15rem solid #4d4d4d;  
+  font-weight: bold; 
 }
 
 .keywordLabel {
     font-size: 22px;
+}
+
+.errorMsg {
+  color: #d32f2f;
+  font-size: 14px;
+  margin-top: 8px;
 }

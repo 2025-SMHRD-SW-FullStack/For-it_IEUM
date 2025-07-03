@@ -2,8 +2,8 @@ import React from 'react'
 import FrequentlySearched from '../components/Search/FrequentlySearched'
 import SearchTypeToggle from '../components/Search/SearchTypeToggle'
 import SearchBar from '../components/Search/SearchBar'
-import '../pages/MainPage.css'
 import ExampleDetail from '../components/ExampleResult/ExampleDetail'
+import '../pages/MainPage.css'
 
 const MainPage = () => {
   return (
@@ -13,9 +13,8 @@ const MainPage = () => {
             <SearchTypeToggle />
             <SearchBar />
         </div>
-        <div>
-          <ExampleDetail/>
-        </div>
+        
+        <ExampleDetail/>
     </div>
   )
 }

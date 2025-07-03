@@ -1,3 +1,13 @@
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
 
 body{
   overflow-x: hidden;
@@ -7,6 +17,7 @@ body{
   display: flex;
   flex-direction: column;
   align-items: center;
+  animation: fadeUp 0.8s ease-out;
 }
 
 .search_box {
@@ -254,8 +265,6 @@ body{
 }
 
 
-
-
 /* Search */
 
 /* FrequentlySearched */
@@ -282,7 +291,8 @@ padding:4rem 1rem; */
 
 .header_text{
   text-align:center;
-  padding:4rem 1rem;
+  padding: 2rem;
+  padding-top: 3rem;
 }
 .header_text h1{
   font-size:3rem;
@@ -364,23 +374,4 @@ padding:4rem 1rem; */
   padding:0 1.2rem;
   font-size:1rem;
   cursor:pointer;
-}
-
-
-
-/* 🔄 페이드 업 애니메이션 */
-@keyframes fadeUp {
-  from {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-/* 공통 클래스 - 부드럽게 위로 올라오며 나타남 */
-.fade-up {
-  animation: fadeUp 0.8s ease-out;
 }

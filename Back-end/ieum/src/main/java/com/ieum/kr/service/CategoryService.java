@@ -57,4 +57,25 @@ public class CategoryService {
 		
 		return list;
 	}
+
+
+	public void keywordSave(KeyWordDTO dto) {
+		System.out.println("[service dto]"+dto);
+		KeyWordEntity entity = new KeyWordEntity();
+		entity.setUserId(dto.getUserId());
+		entity.setHsCode(dto.getHsCode());
+		entity.setProductName(dto.getProductName());
+		keyWordRepository.save(entity);
+	}
+
+
+	public void keywordDelete(KeyWordDTO dto) {
+
+		KeyWordEntity entity = new KeyWordEntity(dto.getId(),dto.getUserId());
+//		entity.setId(dto.getId());
+//		entity.setUserId(dto.getUserId());
+		System.out.println("[id :"+entity.getId()+"][userId : "+entity.getUserId()+"]");
+		keyWordRepository.keywordDel(entity.getId(),entity.getUserId());
+		System.out.println("[삭제완료]");
+	}
 }
