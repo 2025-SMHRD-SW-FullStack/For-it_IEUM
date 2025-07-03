@@ -1,0 +1,90 @@
+/* 전체 header 컨테이너 */
+.header_main {
+  /* display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 24px;
+  background-color: #fff;
+  width: 90%;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  border-radius: 8px; 
+  z-index: 100;  */
+  width: 100%;
+  /* overflow-x: auto; */
+  /* white-space: nowrap; */
+  position: sticky; /* 필요하면 고정 */
+  top: 0;            /* sticky일 경우 필요 */
+  z-index: 100;       /* ✅ 전체 너비로 확장 */
+  padding: 12px 24px;
+  background-color: #fff;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); /* ✅ 그림자 */
+
+}
+.header_inner {
+  max-width: 1200px;     /* ✅ 너비 제한 */
+  margin: 0 auto;        /* ✅ 가운데 정렬 */
+  /* padding: 12px 24px; */
+  padding-left: 24px;
+  padding-right: 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+}
+/* 왼쪽: 로고 + 네비게이션 */
+.header_left {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+
+/* 오른쪽: 알림/북마크/유저 아이콘 */
+.header_right {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+/* .header_right img {
+  width: 24px;
+  height: 24px;
+  cursor: pointer;
+} */
+/* 로고 */
+/* .main_logo {
+  font-weight: 800;
+  font-size: 1.5rem;
+  color: #2563eb;
+} */
+
+
+/* 아이콘 공통 스타일 */
+/* .header_right img {
+  width: 28px;
+  height: 28px;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.header_right img:hover {
+  transform: scale(1.1);
+} */
+
+
+@media (max-width: 768px) {
+  .header_inner {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+  }
+
+  .header_left, .header_right {
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  .navi {
+    flex-wrap: wrap;
+    font-size: 0.85rem;
+  }
+}

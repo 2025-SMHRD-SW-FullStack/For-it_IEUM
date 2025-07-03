@@ -1,0 +1,18 @@
+.user-menu-container {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+
+.user-menu-icon {
+  width: 28px;
+  height: 28px;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.user-menu-icon:hover {
+  transform: scale(1.1);
+}
+
+

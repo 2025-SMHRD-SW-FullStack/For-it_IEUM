@@ -1,0 +1,30 @@
+.catchphrase h1 {
+
+  text-align: center;
+  font-size:3rem;
+  font-weight:700;
+  line-height:0.8;
+  margin-top: 5rem;
+  margin-bottom:8rem;
+/* text-align:center;
+padding:4rem 1rem; */
+}
+.catchphrase h2 {
+  text-align: center;
+  font-size:3rem;
+  font-weight:700;
+  line-height:0.8;
+  margin-bottom:4rem;
+}
+
+.header_text{
+  text-align:center;
+  padding: 2rem;
+  padding-top: 3rem;
+}
+.header_text h1{
+  font-size:3rem;
+  font-weight:700;
+  line-height:1.3;
+  margin-bottom:3rem;
+}

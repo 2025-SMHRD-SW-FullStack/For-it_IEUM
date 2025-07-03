@@ -1,0 +1,19 @@
+/* 네비게이션 메뉴 */
+.navi {
+  display: flex;
+  gap: 24px;
+  font-size: 0.95rem;
+  color: #4b5563;
+}
+
+.navi a {
+  text-decoration: none;
+  color: inherit;
+  transition: color 0.2s ease;
+  transition: transform 0.2s ease;
+}
+
+.navi a:hover {
+  color: #2563eb;
+  transform: scale(1.1);
+}
