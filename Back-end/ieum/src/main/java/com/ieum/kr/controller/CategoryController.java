@@ -43,54 +43,63 @@ public class CategoryController {
 	public ResponseEntity<?> keywordList(@RequestHeader(value = "Authorization", required = false) String authHeader) {
 
 		System.out.println("[categoryAll Controller 접근 확인]");
-		KeywordAllDTO all = new KeywordAllDTO();
+		KeyWordDTO uDto = new KeyWordDTO();
+		CategoryDTO aDto = new CategoryDTO();
 		if (authHeader != null) {
 			String userId = userService.getUserInfo(authHeader);
+			uDto.setUserId(userId);
 
-			if (userId != null) {
-				KeyWordDTO dto = new KeyWordDTO();
-				dto.setUserId(userId);
-				List<KeyWordDTO> userKeyword = cateService.userKeyWordList(dto);
-				List<KeyWordDTO> keyDto = new ArrayList<KeyWordDTO>();
-
-				for (KeyWordDTO userKeywordList : userKeyword) {
-					keyDto.add(userKeywordList);
-
-					all.setUserKeyword(keyDto);
-				}
-			}
+//			if (userId != null) {
+//				List<KeyWordDTO> userKeyword = cateService.userKeyWordList(dto);
+//				List<KeyWordDTO> keyDto = new ArrayList<KeyWordDTO>();
+//
+//				for (KeyWordDTO userKeywordList : userKeyword) {
+//					keyDto.add(userKeywordList);
+//
+//					all.setUserKeyword(keyDto);
+//				}
+//			}
 		}
-		List<CategoryDTO> result = cateService.keywordList();
-		List<CategoryDTO> cateList = new ArrayList<CategoryDTO>();
-		for (CategoryDTO cateDto : result) {
-			cateList.add(cateDto);
-
-			all.setKeywordAll(cateList);
-		}
-		System.out.println(all);
+//		List<CategoryDTO> result = cateService.keywordList();
+//		List<CategoryDTO> cateList = new ArrayList<CategoryDTO>();
+//		for (CategoryDTO cateDto : result) {
+//			cateList.add(cateDto);
+//
+//			all.setKeywordAll(cateList);
+//		}
+		
+//		cateService.listMerge(uDto, aDto);
 
 //		map.put(result, "keyword");
-
-		return ResponseEntity.ok(all);
+		KeywordAllDTO result = cateService.listMerge(uDto, aDto);
+		
+		System.out.println(result);
+//		return ResponseEntity.ok(cateService.listMerge(uDto, aDto));
+		return ResponseEntity.ok(result);
 	}
 
 	@PostMapping("/keyword/interest")
-	public void keywordSave(@RequestHeader(value = "Authorization", required = false) String authHeader,KeyWordDTO dto) {
+	public ResponseEntity<?> keywordSave(@RequestHeader(value = "Authorization", required = false) String authHeader,KeyWordDTO uDto) {
 
 		System.out.println("[categorySave Controller 접근 확인]");
+		CategoryDTO aDto = new CategoryDTO();
 		if (authHeader != null) {
 			String userId = userService.getUserInfo(authHeader);
-			dto.setUserId(userId);
-			cateService.keywordSave(dto);
+			uDto.setUserId(userId);
+			cateService.keywordSave(uDto);
 		}
+		
+		return ResponseEntity.ok(cateService.listMerge(uDto, aDto));
 	}
 	
 	@PostMapping("/keyword/delete")
-	public void KeywordDelete(@RequestHeader(value = "Authorization", required = false) String authHeader,KeyWordDTO dto) {
+	public ResponseEntity<?> KeywordDelete(@RequestHeader(value = "Authorization", required = false) String authHeader,KeyWordDTO uDto) {
+		CategoryDTO aDto = new CategoryDTO();
 		if (authHeader != null) {
 			String userId = userService.getUserInfo(authHeader);
-			dto.setUserId(userId);
-			cateService.keywordDelete(dto);
+			uDto.setUserId(userId);
+			cateService.keywordDelete(uDto);
 		}
+		return ResponseEntity.ok(cateService.listMerge(uDto, aDto));
 	}
 }

@@ -19,6 +19,7 @@ public class KeyWordDTO {
 	private String userId;
 	private String hsCode;
 	private String productName;
+	private String checkType;
 	
 	public static KeyWordDTO fromEntity(KeyWordEntity keyWordEntity) {
 		
@@ -27,6 +28,7 @@ public class KeyWordDTO {
 				.userId(keyWordEntity.getUserId())
 				.hsCode(keyWordEntity.getHsCode())
 				.productName(keyWordEntity.getProductName())
+				.checkType(keyWordEntity.getCheckType())
 				.build();
 	}
 }
