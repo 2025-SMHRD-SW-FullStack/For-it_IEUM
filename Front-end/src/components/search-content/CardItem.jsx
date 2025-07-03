@@ -24,9 +24,9 @@ const CardItem = ({card}) => {
         onClick={CardClick}
         >
           <div className='cardText'>
-            <div id="HS">HS코드: {card.hsCode}</div>
-            <div id="Name" title={card.itemName}>
-  품목명: {card.itemName.length > 6 ? card.itemName.slice(0, 6) + "..." : card.itemName}
+            <div id="HS">HS코드: {card.hs_code}</div>
+            <div id="Name" title={card.product_name}>
+  품목명: {card.product_name.length > 6 ? card.product_name.slice(0, 6) + "..." : card.product_name}
 </div>
 
           </div>

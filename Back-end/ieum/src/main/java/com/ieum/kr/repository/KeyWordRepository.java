@@ -9,7 +9,7 @@ import org.springframework.data.repository.query.Param;
 
 import com.ieum.kr.entity.KeyWordEntity;
 
-public interface KeyWordRepository extends JpaRepository<KeyWordEntity, String>{
+public interface KeyWordRepository extends JpaRepository<KeyWordEntity, Long>{
 
 	
 	@Query(value = """
