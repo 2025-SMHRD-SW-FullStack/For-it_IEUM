@@ -5,7 +5,7 @@ import '../../App.css';
 const SearchTypeToggle = ({ onKeywordClick }) => {
 
   const [isOpen, setIsOpen] = useState(false);
-  const keywords = ['FTA 원산지증명','HS코드 조회', '관세율 확인', '수출입 절차',''];
+  const keywords = ['FTA 원산지증명입니다','HS코드 조회', '관세율 확인', '수출입 절차','아런;ㅣㅏㅇ러;ㅣㅏㄴ어리ㅏㄴ어리ㅏㄴ어리ㅏㅇㄴㅀㅇㅀㅇㅀ'];
 
   const toggleOpen = () => setIsOpen(!isOpen);
 

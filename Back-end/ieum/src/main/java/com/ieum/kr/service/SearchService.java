@@ -42,11 +42,11 @@ public class SearchService {
 	}
 
 	// hs_code가 4자리 이상일 경우 세부사항 출력
-	public List<ProductDTO> searchDetailCategory(String hsCode) {
+	public List<TariffInfoDTO> searchDetailCategory(String hsCode) {
 		String url = baseURL + "/api/subcategories?main_code=" + hsCode;
-		ResponseEntity<ProductDTO[]> response = restTemplate.getForEntity(url, ProductDTO[].class);
-		ProductDTO[] categories = response.getBody();
-		List<ProductDTO> list = Arrays.asList(categories);
+		ResponseEntity<TariffInfoDTO[]> response = restTemplate.getForEntity(url, TariffInfoDTO[].class);
+		TariffInfoDTO[] categories = response.getBody();
+		List<TariffInfoDTO> list = Arrays.asList(categories);
 		return list;
 	}
 	
@@ -63,11 +63,12 @@ public class SearchService {
 	}
 	
 	// 품목명으로 검색했을때
-	public List<ProductDTO> searchProductName(String productName) {
+	public List<TariffInfoDTO> searchProductName(String productName) {
 		String url = baseURL + "/api/search-by-name?keyword="+productName;
-		ResponseEntity<ProductDTO[]> response = restTemplate.getForEntity(url, ProductDTO[].class);
-		ProductDTO[] categories = response.getBody();
-		List<ProductDTO> list = Arrays.asList(categories);
+		ResponseEntity<TariffInfoDTO[]> response = restTemplate.getForEntity(url, TariffInfoDTO[].class);
+		TariffInfoDTO[] categories = response.getBody();
+		List<TariffInfoDTO> list = Arrays.asList(categories);
+		System.out.println(list);
 		return list;
 	}
 	
