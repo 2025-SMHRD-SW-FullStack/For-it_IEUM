@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import './BookMarkPage.css';
 
 const initialBookmarks = [
-  { value: "a", title: "말 - 미국 (8%)dgdgdgdgdgdgdgdgdgdgdgdgdgdwjdakfwjdakfwjdfkasdlkfjs;dlkfaj;dlkfjalskdfjlkdjfs", text: "내용 1.dkfjslkjdfklsjfkljswklfdjslkjdfklsjdkfjsldfjlskijflkjskljfkdl.." },
+  { value: "a", title: "커피-(아아아러러러아아아러러러아아아어러러라앙아아ㅏ어러러러러러럴아ㅏㅇ아알아러ㅏ얼", text: "내용 1.dkfjslkjdfklsjfkljswklfdjslkjdfklsjdkfjsldfjlskijflkjskljfkdl.." },
   { value: "b", title: "두 번째 아이템dkfjslkdfjsldkjflkdjfl", text: "내용 2..." },
   { value: "c", title: "세 번째 아이템", text: "내용 3..." },
 ];

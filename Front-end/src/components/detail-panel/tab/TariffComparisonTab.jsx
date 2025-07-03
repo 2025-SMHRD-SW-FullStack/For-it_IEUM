@@ -16,11 +16,11 @@ const TariffComparisonTab = () => {
       <div className='selectedCard'>
         <div className='textDetail'>
           <div className='DetailLabel'>HS코드</div>
-          {selectedCard.hsCode}
+          {selectedCard.hs_code}
         </div>
         <div className='textDetail'>
           <div className='DetailLabel'>품목명</div>
-          {selectedCard.itemName} 
+          {selectedCard.product_name} 
         </div>
       </div>
       <br/>

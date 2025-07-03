@@ -135,7 +135,7 @@ body{
   font-size: 1rem;
   color: #333;
   user-select: none;
-  animation: fadeUp 0.8s ease-out;
+  /* animation: fadeUp 0.8s ease-out; */
 }
 
 .dropdown-container-toggle {
@@ -156,7 +156,7 @@ body{
   border: 1px solid #ddd;
   border-radius: 6px;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-  padding: 0 10px;
+
 
   display: flex;
   flex-direction: column;   /* ✅ 수직 정렬로 변경 */
@@ -169,6 +169,7 @@ body{
   transform: translateY(-10px);
   transition: all 0.3s ease;
   pointer-events: none;
+  padding: 8px 10px;
 }
 
 /*   
@@ -197,16 +198,44 @@ body{
 
 /* 펼쳐진 상태 (JS에서 .open 클래스 붙이기) */
 .dropdown-container-list.open {
-  padding: 8px 10px;
   max-height: 300px;
   opacity: 1;
   transform: translateY(0);
   pointer-events: auto;
+  overflow-y: auto;
   
+}
+
+.dropdown-container-list.open::-webkit-scrollbar {
+  width: 6px;
+}
+
+.dropdown-container-list.open::-webkit-scrollbar-thumb {
+  background: #ccc;
+  border-radius: 3px;
 }
 
 
 .dropdown-container-item {
+  /* background-color: #f0f8ff;
+  border-radius: 16px;
+  border: 1px solid #7cbfff;
+  padding: 6px 14px;
+  font-size: 0.9rem;
+  color: #007bff;
+  cursor: pointer;
+  transition: background-color 0.2s ease, transform 0.2s ease;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 300px; */
+
+   display: block;                   /* ✅ 중요 */
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+
+  max-width: 160px;                 /* ✅ 부모보다 좁게 */
   background-color: #f0f8ff;
   border-radius: 16px;
   border: 1px solid #7cbfff;
@@ -215,13 +244,7 @@ body{
   color: #007bff;
   cursor: pointer;
   transition: background-color 0.2s ease, transform 0.2s ease;
-  /* ❌ transform 삭제 */
 
-  /* 축약 */
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  max-width: 300px;
 
 }
 
@@ -284,7 +307,7 @@ padding:4rem 1rem; */
   box-sizing: border-box; /*패딩, 테두리까지 포함해서 width 계산*/
   padding: 0; /*내부 input 간격 조정*/
   padding-right: 10px;
-  animation: fadeUp 0.8s ease-out;
+  /* animation: fadeUp 0.8s ease-out; */
   /* margin-left: 40%; */
 }
 /* .search-wrapper {
