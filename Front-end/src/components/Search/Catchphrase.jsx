@@ -1,7 +1,8 @@
 import React from 'react';
 import { motion } from 'framer-motion';
+import './Catchphrase.css';
 
-const FrequentlySearched = () => {
+const Catchphrase = () => {
   return (
     <section className="header_text">
       <motion.h1
@@ -19,4 +20,4 @@ const FrequentlySearched = () => {
   );
 };
 
-export default FrequentlySearched;
+export default Catchphrase;

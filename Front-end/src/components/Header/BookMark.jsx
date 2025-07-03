@@ -15,7 +15,7 @@ const BookMark = () => {
     <div className="main_icon" onClick={handleClick} 
     style={{cursor:'pointer'
     }}>
-  <img src={star} alt='별 아이콘' />
+  {/* <img src={star} alt='별 아이콘' /> */}
   </div>
 )
 }

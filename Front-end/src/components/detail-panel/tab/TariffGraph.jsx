@@ -6,30 +6,35 @@ import './TariffGraph.css'
 
 const TariffGraph = ({ overrideData = null }) => {
 
-  const { selectedCard } = useCardStore(); 
+  const { selectedCard } = useCardStore();
+  const card = overrideData || selectedCard;
+  if (!card) return null;
 
-  const cardData = overrideData || selectedCard;
+  if (!card) return <p>그래프 데이터를 찾을 수 없습니다.</p>;
 
-  if (!cardData) return null;
-
-  const selectedItem = testItemArray.find((item)=> item.hs_code === cardData.hs_code);
-  if(!selectedItem) return <p>그래프 데이터를 찾을 수 없습니다.</p>;
-
-  const charData = [
-    {name: '기본 관세', value: selectedItem.baseTariff , fill: '#CFE8FC' },
-    {name: '최저 관세', value: selectedItem.lowestTariff, fill: '#63B5F5'}
-  ]
+  const baseTariff    = card.base_tariff    ?? 0;
+  const rates         = Array.isArray(card.top10_data)
+                        ? card.top10_data.map(i => i.rate ?? 0)
+                        : [];
+  const lowestTariff  = rates.length > 0
+                        ? Math.min(...rates)
+                        : card.lowestTariff ?? 0;
   
+  const chartData = [
+    { name: '기본 관세', value: baseTariff, fill: '#CFE8FC'},
+    { name: '최저 관세', value: lowestTariff, fill: '#63B5F5' }
+  ];
+
   return (
     <div className='tariffGraph'>
         <ResponsiveContainer width="100%" height="100%">
-            <BarChart data={charData}>
+            <BarChart data={chartData}>
                 <XAxis dataKey="name" />
                 <YAxis domain={[0, 'dataMax + 2']}/>
                 <Tooltip />
                 <Bar dataKey="value" barSize={60} >
                     <LabelList dataKey="value" position="top" formatter={(value) => `${value}%`} />
-                    {charData.map((entry, index) => (
+                    {chartData.map((entry, index) => (
                         <Cell key={`cell-${index}`} fill={entry.fill} />
                     ))}
                 </Bar>

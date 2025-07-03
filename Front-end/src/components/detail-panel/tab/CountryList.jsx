@@ -5,7 +5,14 @@ import './CountryList.css'
 
 const CountryList = ({ countries = [], dropDown = false, className='' }) => {
 
-  if (!countries || countries.length === 0) {
+  const { selectedCard } = useCardStore();
+
+    if (!selectedCard || !selectedCard.top10_data) {
+    return null;
+  }
+
+  const data = selectedCard.top10_data;
+  if (!data || data.length === 0) {
     return <p>국가 정보가 없습니다.</p>;
   }
 
@@ -19,13 +26,13 @@ const CountryList = ({ countries = [], dropDown = false, className='' }) => {
   if(dropDown) {
     return(
         <div className='countryContainer'>
-            <label>🌍 FTA 체결 국가 목록&nbsp;</label>
+            <label className='countryLabel'>🌍 FTA 체결 국가 목록&nbsp;</label>
             <select className='countrySelect'>
-                {countries.map((item, index) => (
+                {data.map((item, index) => (
                     <option 
                     key={index}
                     // className={}
-                    >{index+1}위 {item.country} | {item.tariff}%
+                    >{index+1}위 {item.name} | {item.rate}%
                     </option>
                 ))}
             </select>
@@ -35,13 +42,13 @@ const CountryList = ({ countries = [], dropDown = false, className='' }) => {
 
   return (
       <div className={`countryList ${className} listContent`}>
-          <label className={`${className}`}>🌍 FTA 체결 국가 목록</label>
+          <label className={`countryLabel ${className}`}>🌍 FTA 체결 국가 목록</label>
           <ul>
-          {countries.map((item, index) => (
+          {data.map((item, index) => (
               <li 
               key={index}
               className={`country ${index === 0 ? 'lower': index === countries.length - 1 ? 'last' : ''} ${className} list`}
-              >{index+1}위 {item.country} | {item.tariff}%</li>
+              >{index+1}위 {item.name} | {item.rate}%</li>
           ))}
           </ul>
       </div>

@@ -7,29 +7,6 @@
     align-items: center;
 }
 
-.LoginForm{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    height: 100%;
-    margin-top: 0.6rem;
-}
-
-.loginBtn{
-    width: 230px;
-    min-width: fit-content;
-    height: fit-content;
-    background-color: #CFE8FC;
-    color: #0B2A4E;
-    font-size: 16px;
-    font-weight: 600;
-    margin: 0.5rem 0px;
-    padding: 0.5rem;
-    border: 0px;
-    border-radius: 10px;
-    
-}
-
 .Join{
     display: flex;
     flex-direction: column;
@@ -37,10 +14,6 @@
     position: relative;
 }
 
-.loginBtn.join{
-    background-color: white;
-    border: 1px solid #959595;
-}
 
 .joinLabel{
     width: 100%;

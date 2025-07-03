@@ -1,22 +1,25 @@
-.inputGroup{
-    display: flex;
-    flex-direction: column;
-    max-width: 250px;
-    min-width: fit-content;
-    height: 100%;
+.inputGroup {
+  display: flex;
+  justify-content: space-between;  
+  /* justify-content: flex-end; */
+  align-items: center;
+  margin-bottom: 1.2rem;
+  /* width: 400px;                      */
+  font-size: 18px;
 }
 
-.loginLabel{
-    color: #0B2A4E;
-    padding-bottom: 0.3rem;
-    font-weight: 580;
+.loginLabel {
+  /* width: 100px;              */
+  /* text-align: right; */
+  margin-right: 10px;
+  color: #0B2A4E;
+  font-weight: 600;
 }
 
 .loginInput {
-    width: 300px;
-    min-width: 175px;
-    height: 2.5rem;
-    border: 0px;
-    border-bottom: 1px solid;
-    margin-bottom: 1.5rem;
+  /* flex: 1; */
+  height: 2.5rem;
+  border: 0;
+  border-bottom: 1px solid;
+  width: 200px;
 }

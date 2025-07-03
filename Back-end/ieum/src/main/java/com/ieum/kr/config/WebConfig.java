@@ -17,16 +17,16 @@ import io.swagger.v3.oas.annotations.security.SecurityScheme;
 public class WebConfig implements WebMvcConfigurer {
 	@Override
 	public void addCorsMappings(CorsRegistry registry) {
-//	        registry.addMapping("/ieum/**")  // 또는 "/**"로 전체 허용
-//	                //.allowedOrigins("http://localhost:5173","http://192.168.219.65:5173")  // React/Spring 사용하는 포트
+	        registry.addMapping("/ieum/**")  // 또는 "/**"로 전체 허용
+	                .allowedOrigins("http://localhost:5173","http://192.168.219.65:5173")  // React/Spring 사용하는 포트
 //	                //.allowedOrigins("*")  // 모든 URL허용
 //	                .allowedOriginPatterns("*")
-//	                .allowedMethods("GET", "POST", "PUT", "DELETE","OPTIONS")
-//	                .allowCredentials(true);
-	        registry.addMapping("/api/**")                          // "/ieum" 컨텍스트 이후의 경로
-			        .allowedOrigins("http://localhost:5173","http://192.168.219.65:5173")        // Vite(React) 개발 서버 주소
-			        .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS")
-			        .allowCredentials(true);
+	                .allowedMethods("GET", "POST", "PUT", "DELETE","OPTIONS")
+	                .allowCredentials(true);
+//	        registry.addMapping("/api/**")                          // "/ieum" 컨텍스트 이후의 경로
+//			        .allowedOrigins("http://localhost:5173","http://192.168.219.65:5173")        // Vite(React) 개발 서버 주소
+//			        .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS")
+//			        .allowCredentials(true);
 	        // Swagger/OpenAPI
 	        registry.addMapping("/v3/api-docs/**")
 	                .allowedOrigins("http://localhost:5173")

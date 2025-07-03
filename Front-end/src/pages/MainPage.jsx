@@ -1,14 +1,15 @@
 import React from 'react'
-import FrequentlySearched from '../components/Search/FrequentlySearched'
+import Catchphrase from '../components/Search/Catchphrase'
 import SearchTypeToggle from '../components/Search/SearchTypeToggle'
 import SearchBar from '../components/Search/SearchBar'
 import ExampleDetail from '../components/ExampleResult/ExampleDetail'
 import '../pages/MainPage.css'
+import Catchphrase from '../components/Search/Catchphrase'
 
 const MainPage = () => {
   return (
     <div className='Main'>
-        <FrequentlySearched />
+        <Catchphrase />
         <div className="search_box">
             <SearchTypeToggle />
             <SearchBar />

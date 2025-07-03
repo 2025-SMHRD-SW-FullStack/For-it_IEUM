@@ -14,7 +14,7 @@ export const getRank = async () =>{
 };
 
 export const getCalculation = async (price, quantity, tax, country, tariff) => {
-    const res = await apiClient.post('/api/calculation', { 
+    const res = await apiClient.post('/api/cal', { 
         price, 
         quantity, 
         tax, 
