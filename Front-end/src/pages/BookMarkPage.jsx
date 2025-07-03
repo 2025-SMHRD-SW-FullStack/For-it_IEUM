@@ -3,9 +3,41 @@ import './BookMarkPage.css';
 import { getBookMarkList } from '../services/bookMarkService';
 
 const initialBookmarks = [
-  { value: "a", title: "커피-(아아아러러러아아아러러러아아아어러러라앙아아ㅏ어러러러러러럴아ㅏㅇ아알아러ㅏ얼", text: "내용 1.dkfjslkjdfklsjfkljswklfdjslkjdfklsjdkfjsldfjlskijflkjskljfkdl.." },
-  { value: "b", title: "두 번째 아이템dkfjslkdfjsldkjflkdjfl", text: "내용 2..." },
-  { value: "c", title: "세 번째 아이템", text: "내용 3..." },
+  {
+    value: "item1",
+    title: "커피머신",
+    country: "미국",
+    hasHistory: true,
+    hasStrategy: true
+  },
+  {
+    value: "item2",
+    title: "스마트폰",
+    country: "베트남",
+    hasHistory: false,
+    hasStrategy: true
+  },
+  {
+    value: "item3",
+    title: "의료용 장갑",
+    country: "인도네시아",
+    hasHistory: true,
+    hasStrategy: false
+  },
+  {
+    value: "item4",
+    title: "TV 부품",
+    country: "중국",
+    hasHistory: false,
+    hasStrategy: false
+  },
+  {
+    value: "item5",
+    title: "자동차 엔진",
+    country: "독일",
+    hasHistory: true,
+    hasStrategy: true
+  }
 ];
 
 const BookMarkPage = () => {
@@ -33,8 +65,6 @@ const BookMarkPage = () => {
     getList();
 
   }, []);
-
-  console.log("bookmarks: ", bookmarks);
 
   useEffect(() => {
     localStorage.setItem("bookmarks", JSON.stringify(bookmarks));
@@ -67,19 +97,17 @@ const BookMarkPage = () => {
                 className="accordion-header"
                 onClick={() => handleToggle(item.value)}
               >
-                <span
-                  className="accordion-title"
-                  title={item.title}
-                >
-                  {item.title.length > 10 ? item.title.slice(0, 10) + "..." : item.title}
+                <span className="accordion-title" title={item.title}>
+                  {`${item.title.length > 10 ? item.title.slice(0, 10) + "..." : item.title} - ${item.country} - ${item.hasHistory ? "이력 있음" : "이력 없음"} - ${item.hasStrategy ? "전략 있음" : "전략 없음"}`}
                 </span>
-
                 <span className="accordion-icon">{isOpen ? "▲" : "▼"}</span>
               </button>
 
-              <div
-                className={`accordion-content ${isOpen ? "open" : ""}`}>
-                {item.text}
+              <div className={`accordion-content ${isOpen ? "open" : ""}`}>
+                <p><strong>품목명:</strong> {item.title}</p>
+                <p><strong>최저 관세 국가:</strong> {item.country}</p>
+                <p><strong>계산 이력:</strong> {item.hasHistory ? "있음" : "없음"}</p>
+                <p><strong>AI 전략 추천:</strong> {item.hasStrategy ? "있음" : "없음"}</p>
                 <button
                   className="delete-btn"
                   onClick={(e) => {
@@ -90,6 +118,7 @@ const BookMarkPage = () => {
                   삭제
                 </button>
               </div>
+
               {index !== bookmarks.length - 1 && <hr className="divider" />}
             </div>
           );

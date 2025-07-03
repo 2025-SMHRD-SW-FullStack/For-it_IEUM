@@ -6,6 +6,7 @@ import NotificationBell from './NotificationBell';
 import UserMenu from './UserMenu';
 import BookMark from './BookMark';
 import SearchBar from '../Search/SearchBar';
+import './Header.css';
 
 // 로그인 여부에 따라 컴포넌트 조건부 렌더링
 const Header = ({ isLoggedIn }) => {
@@ -22,7 +23,6 @@ const Header = ({ isLoggedIn }) => {
           {!hideSearchBar && <SearchBar />}
         </div>
         <div className="header_right">
-          {isLoggedIn && <NotificationBell />}
           <UserMenu isLoggedIn={isLoggedIn} />
           {isLoggedIn && <BookMark />}
         </div>
