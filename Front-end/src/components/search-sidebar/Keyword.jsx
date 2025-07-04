@@ -38,21 +38,6 @@ const Keyword = ({
     },
   });
 
-  // const { selectedCard, clearSelectedCard } = useCardStore();
-  // const [results, setResults] = useState([]);
-  
-  // const fetchResults = async (choice,query) => {
-  //   console.log(choice +' : '+ query);
-    
-  //         try {
-  //           const data = await searchItem(choice, query);
-  //           // setResults(data);
-  //           // navigate('/search', { replace: true });
-  //         } catch (error) {
-  //           console.error('검색 실패:', error);
-  //         }
-  //       };
-
   const handleClick = (e) => {
     if (!isDragging && onClick) {
       onClick(e);

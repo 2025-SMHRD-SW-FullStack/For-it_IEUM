@@ -3,13 +3,15 @@ import { toast } from 'react-toastify';
 import Keyword from './Keyword';
 
 const InterestKeyword = ({ interest, setInterest, Item ,userKeyword}) => {
+  
+  
   const keywords = userKeyword || [];
   
   const [, dropRef] = useDrop({
     accept: Item.KEYWORD,
     drop: (item) => {
       if (interest.includes(item.keyword)) return;
-      console.log(`드래그 확인 ${userKeyword[0].productName}`);
+      // console.log(`드래그 확인 ${userKeyword[0].productName}`);
       
       if (keywords.length >= 5) {
         toast.warn('관심 키워드는 최대 5개까지만 등록할 수 있어요.');
