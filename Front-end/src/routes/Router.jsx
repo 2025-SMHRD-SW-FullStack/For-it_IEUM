@@ -21,7 +21,7 @@ function Router({ isLoggedIn }) {
       <Route path="/" element={<MainPage key={location.key} />} />
       <Route path="/search" element={<SearchPage />} />
       <Route path="/login" element={<LoginPage />} />
-      <Route path='/join' element={<JoinPage/>} />
+      <Route path="/join" element={<JoinPage/>} />
       <Route path="/fta" element={<FtaPage />} />
       <Route path="/news" element={<NewsPage />} />
       <Route

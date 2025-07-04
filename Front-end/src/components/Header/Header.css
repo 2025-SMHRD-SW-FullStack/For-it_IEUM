@@ -29,8 +29,6 @@ html, body {
 
 }
 
-
-
 .header_inner {
   max-width: 1200px;     /* ✅ 너비 제한 */
   margin: 0 auto;        /* ✅ 가운데 정렬 */

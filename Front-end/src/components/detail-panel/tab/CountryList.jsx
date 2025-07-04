@@ -48,7 +48,7 @@ const CountryList = ({ countries = [], dropDown = false, className='' }) => {
               <li 
               key={index}
               className={`country ${index === 0 ? 'lower': index === countries.length - 1 ? 'last' : ''} ${className} list`}
-              >{index+1}위 {item.name} | {item.rate}%</li>
+              >{index+1}위 {item.name} | {item.rate*100}%</li>
           ))}
           </ul>
       </div>

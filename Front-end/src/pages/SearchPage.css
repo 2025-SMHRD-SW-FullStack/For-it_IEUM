@@ -1,19 +1,7 @@
-@keyframes fadeUp {
-  from {
-    opacity: 0;
-    transform: translateY(30px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
 .searchPage {
   display: flex;
   flex-direction: row;
-  height: calc(100vh - 108px);
-  animation: fadeUp 0.6s ease-out;
+  height: 100%;
 }
 
 .sideBar {
@@ -28,15 +16,6 @@
     box-sizing: border-box;
 }
 
-.searchContainer {
-  display: flex;
-  flex-direction: column;
-  height: calc(100vh - 108px);
-  width: 100%;
-  box-sizing: border-box;
-  margin-left: 3rem;
-}
-
 .searchBar {
   margin: 1%;
   margin-bottom: 2rem;
@@ -45,21 +24,22 @@
 
 .searchContentPanel{
   display: flex;
-  flex-direction: row;
-  /* height: 100%; */
+  flex-direction: column;
+  height: 100%;
   overflow: auto;
   position: relative;
 
 }
 
 .card-list{
+  height: 100%;
   flex: 1;
-  overflow: auto;
   display: flex;
   flex-wrap: wrap;
-  /* justify-content: center; */
   margin: 20px;
   gap: 0.65rem;
+
+  
     
 }
 

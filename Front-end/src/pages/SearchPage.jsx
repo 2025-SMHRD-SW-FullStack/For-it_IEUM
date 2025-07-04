@@ -44,13 +44,6 @@ const SearchPage = () => {
   fetchResults();
 }, [category, query]);
 
-  // useEffect(() => {
-  //   const params = new URLSearchParams(location.search);
-  //   if (params.get('category') || params.get('query')) {
-  //     navigate('/search', { replace: true });
-  //   }
-  // }, []);
-
   return (
     <div className='searchPage'>
       <div className='sideBar'>
@@ -62,6 +55,7 @@ const SearchPage = () => {
         </div>
 
         <div className="searchContentPanel">
+          <div className="searchContent">
             <div className="card-list">
               {results.length === 0 ? (
                 <p>검색 결과가 없습니다.</p>
@@ -71,6 +65,7 @@ const SearchPage = () => {
                 ))
               )}
             </div>
+          </div>
 
           {selectedCard && <DetailPanel />}
         </div>

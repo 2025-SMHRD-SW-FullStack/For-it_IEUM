@@ -12,7 +12,6 @@
   box-sizing: border-box; /*패딩, 테두리까지 포함해서 width 계산*/
   padding: 0; /*내부 input 간격 조정*/
   padding-right: 10px;
-  /* animation: fadeUp 0.8s ease-out; */
   /* margin-left: 40%; */
 }
 /* .search-wrapper {

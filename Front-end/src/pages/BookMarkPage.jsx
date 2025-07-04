@@ -3,44 +3,6 @@ import './BookMarkPage.css';
 import { getBookMarkList,deleteBookMark } from '../services/bookMarkService';
 import { useBookmarkStore } from '../stores/BookMarkStore';
 
-const initialBookmarks = [
-  {
-    value: "item1",
-    title: "커피머신",
-    country: "미국",
-    hasHistory: true,
-    hasStrategy: true
-  },
-  {
-    value: "item2",
-    title: "스마트폰",
-    country: "베트남",
-    hasHistory: false,
-    hasStrategy: true
-  },
-  {
-    value: "item3",
-    title: "의료용 장갑",
-    country: "인도네시아",
-    hasHistory: true,
-    hasStrategy: false
-  },
-  {
-    value: "item4",
-    title: "TV 부품",
-    country: "중국",
-    hasHistory: false,
-    hasStrategy: false
-  },
-  {
-    value: "item5",
-    title: "자동차 엔진",
-    country: "독일",
-    hasHistory: true,
-    hasStrategy: true
-  }
-];
-
 const BookMarkPage = () => {
   const [openItem, setOpenItem] = useState(null);
   const [modalOpen, setModalOpen] = useState(false);
