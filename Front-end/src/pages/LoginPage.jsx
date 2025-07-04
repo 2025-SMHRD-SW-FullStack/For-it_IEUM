@@ -10,7 +10,7 @@ import kakaoLogo from '../assets/image/kakao.jpg';
 import googleLogo from '../assets/image/google.png';
 
 const LoginPage = () => {
-  const [form, setForm] = useState({ id: '', password: '' });
+  const [form, setForm] = useState({ userId: '', password: '' });
   const navigate = useNavigate();
 
   const handleChange = (e) => {
