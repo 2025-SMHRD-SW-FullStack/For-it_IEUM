@@ -41,8 +41,6 @@ public class SearchController {
 	@Operation(summary="검색")
 	public ResponseEntity<?> goSearch(@RequestBody SearchDTO dto) {
 		List<?> result;
-		System.out.println("searchController");
-		System.out.println(dto);
 		if("productName".equals(dto.getChoice())) {
 			if (dto.getInput().matches("\\d+")) {
 				return ResponseEntity

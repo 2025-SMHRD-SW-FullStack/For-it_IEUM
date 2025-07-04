@@ -67,39 +67,57 @@ public class CategoryController {
 //
 //			all.setKeywordAll(cateList);
 //		}
-		
+
 //		cateService.listMerge(uDto, aDto);
 
 //		map.put(result, "keyword");
 		KeywordAllDTO result = cateService.listMerge(uDto, aDto);
-		
+
 		System.out.println(result);
 //		return ResponseEntity.ok(cateService.listMerge(uDto, aDto));
 		return ResponseEntity.ok(result);
 	}
 
 	@PostMapping("/keyword/interest")
-	public ResponseEntity<?> keywordSave(@RequestHeader(value = "Authorization", required = false) String authHeader,@RequestBody KeyWordDTO uDto) {
+	public ResponseEntity<?> keywordSave(@RequestHeader(value = "Authorization", required = false) String authHeader,
+			@RequestBody KeyWordDTO uDto) {
 
 		System.out.println("[categorySave Controller 접근 확인]");
 		System.out.println(uDto);
-		
+
 		CategoryDTO aDto = new CategoryDTO();
-		
+		boolean check = false;
 		if (authHeader != null) {
 			String userId = userService.getUserInfo(authHeader);
 			uDto.setUserId(userId);
 			// 회원의 카테고리 정보가 5보다 작을때만 카테고리 저장
-			if(cateService.listMerge(uDto, aDto).getUserKeyword().size() <5) {
-				cateService.keywordSave(uDto);
+			KeywordAllDTO list = cateService.listMerge(uDto, aDto);
+			System.out.println(list.getUserKeyword());
+			List<String> checkList = new ArrayList<>();
+			if (list.getUserKeyword() == null || list.getUserKeyword().size() < 5) {
+				if (list.getUserKeyword() == null) {
+					cateService.keywordSave(uDto);
+				}else{
+					for(int i = 0; i <list.getUserKeyword().size();i++) {
+						if(list.getUserKeyword().get(i).getHsCode().equals(uDto.getHsCode())) {
+							check = true;
+							break;
+						}
+						
+					}
+					if(!check) {
+						cateService.keywordSave(uDto);
+					}
+				}
 			}
 		}
-		
+
 		return ResponseEntity.ok(cateService.listMerge(uDto, aDto));
 	}
-	
+
 	@PostMapping("/keyword/delete")
-	public ResponseEntity<?> KeywordDelete(@RequestHeader(value = "Authorization", required = false) String authHeader,KeyWordDTO uDto) {
+	public ResponseEntity<?> KeywordDelete(@RequestHeader(value = "Authorization", required = false) String authHeader,
+			KeyWordDTO uDto) {
 		CategoryDTO aDto = new CategoryDTO();
 		if (authHeader != null) {
 			String userId = userService.getUserInfo(authHeader);
