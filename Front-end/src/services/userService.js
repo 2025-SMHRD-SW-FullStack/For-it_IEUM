@@ -8,14 +8,14 @@ export const login = async ({userId, password}) => {
     return res.data;
 };
 
-export const join = async (userId,name, password,phoneNumber,email,serviceCheck) => {
+export const join = async (userId, name, password,phoneNumber,email,serviceCheck) => {
     const res = await apiClient.post('/join', { 
         userId,
         name,
         password,
         phoneNumber,
         email,
-        serviceCheck
+        serviceCheck: JSON.stringify(serviceCheck)
     });
     return res.data;
 };

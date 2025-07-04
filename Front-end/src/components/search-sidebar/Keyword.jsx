@@ -2,6 +2,8 @@ import { useEffect } from 'react';
 import { useDrag } from 'react-dnd';
 import { keywordSaveItem } from '../../services/keyWordService';
 import { searchItem } from '../../services/searchService';
+import { useNavigate } from 'react-router-dom';
+
 const Keyword = ({
   keyword,
   hsCode,
@@ -13,9 +15,12 @@ const Keyword = ({
   isSelected = false,
   setUserKeyword,
 }) => {
+
+  const navigate = useNavigate();
+
   const [{ isDragging }, dragRef] = useDrag({
     type: Item.KEYWORD,
-    item: { keyword,hsCode,checkType },
+    item: { keyword, hsCode, checkType },
     canDrag: draggable,
     collect: (monitor) => ({
       isDragging: monitor.isDragging(),
@@ -25,9 +30,9 @@ const Keyword = ({
       if (item && monitor.didDrop()) {
         try {
           const response = await keywordSaveItem({
-            productName:item.keyword,
-            hsCode:item.hsCode,
-            checkType:item.checkType
+            productName: item.keyword,
+            hsCode: item.hsCode,
+            checkType: item.checkType
           });
           setUserKeyword(response.userKeyword)
           console.log('백엔드 저장 결과:', response);
@@ -41,17 +46,9 @@ const Keyword = ({
   const handleClick = (e) => {
     if (!isDragging && onClick) {
       onClick(e);
-      console.log('클릭');
-      console.log(keyword);
-      console.log(hsCode);
-      console.log(checkType);
-
-        const choice = checkType
-        const query = hsCode
-        console.log(`choice`+choice);
-        console.log(`hsCode`+query);
-        
-        // fetchResults(choice,query)
+      const choice = checkType
+      const query = hsCode
+      navigate(`/search?category=${choice}&query=${query}`);
     }
   };
 

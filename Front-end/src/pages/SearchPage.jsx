@@ -44,13 +44,6 @@ const SearchPage = () => {
   fetchResults();
 }, [category, query]);
 
-  // useEffect(() => {
-  //   const params = new URLSearchParams(location.search);
-  //   if (params.get('category') || params.get('query')) {
-  //     navigate('/search', { replace: true });
-  //   }
-  // }, []);
-
   return (
     <div className='searchPage'>
       <div className='sideBar'>
