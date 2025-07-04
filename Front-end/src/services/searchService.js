@@ -23,3 +23,12 @@ export const getCalculation = async (price, quantity, tax, country, tariff) => {
     });
     return res.data;
 };
+
+export const saveSearchData = async (productName, hsCode, date) => {
+    const res = await apiClient.post('/api/save', { 
+        productName, 
+        hsCode, 
+        date 
+    });
+    return res.data;
+}

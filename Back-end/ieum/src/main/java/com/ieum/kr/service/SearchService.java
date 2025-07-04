@@ -15,6 +15,7 @@ import com.ieum.kr.dto.CalculationDTO;
 import com.ieum.kr.dto.ProductDTO;
 import com.ieum.kr.dto.RankDTO;
 import com.ieum.kr.dto.RankProjection;
+import com.ieum.kr.dto.SearchDTO;
 import com.ieum.kr.dto.TariffInfoDTO;
 import com.ieum.kr.repository.TopRankRepository;
 
@@ -28,6 +29,10 @@ public class SearchService {
 	TopRankRepository topRankRepo;
 	
 	String baseURL = "http://localhost:8010";
+	
+	public void saveSearchData(RankDTO dto) {
+		topRankRepo.save(dto.toEntity());
+	}
 
 	// hs_code가 3자리 이하일때 대분류를 찾는 기능
 	public List<ProductDTO> searchMainCategory(String hsCode) {
@@ -65,7 +70,6 @@ public class SearchService {
 		ResponseEntity<TariffInfoDTO[]> response = restTemplate.getForEntity(url, TariffInfoDTO[].class);
 		TariffInfoDTO[] categories = response.getBody();
 		List<TariffInfoDTO> list = Arrays.asList(categories);
-		System.out.println(list);
 		return list;
 	}
 	

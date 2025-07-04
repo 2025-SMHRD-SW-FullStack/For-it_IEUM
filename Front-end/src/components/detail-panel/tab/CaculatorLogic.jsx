@@ -8,7 +8,7 @@ const CaculatorLogic = ({className = '',trigger}) => {
 
   const { selectedCard } = useCardStore();
 
-  const {quantity, unitPrice} = useCalCulStore();
+  const {quantity, unitPrice, setCalculation} = useCalCulStore();
 
   const [calculationResult, setCalculationResult] = useState(null);
   const [loading, setLoading] = useState(false)
@@ -31,7 +31,8 @@ const CaculatorLogic = ({className = '',trigger}) => {
           selectedCard.top10_data[0].name,
           selectedCard.top10_data[0].rate
         );
-        setCalculationResult(data.calculation ?? data)
+        setCalculationResult(data.calculation ?? data);
+        setCalculation(data.calculation ?? data);
       } catch (err) {
       } finally{
         setLoading(false)

@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.ieum.kr.dto.CalculationDTO;
+import com.ieum.kr.dto.RankDTO;
 import com.ieum.kr.dto.RankProjection;
 import com.ieum.kr.dto.SearchDTO;
 import com.ieum.kr.service.SearchService;
@@ -69,9 +70,16 @@ public class SearchController {
 	@PostMapping("/cal")
 	@Operation(summary="계산")
 	public CalculationDTO goCalculation(@RequestBody CalculationDTO dto) {
-		System.out.println(dto);
 		CalculationDTO result = searchService.useCalcul(dto);
 		return result;
+	}
+	
+	@PostMapping("/save")
+	@Operation(summary="저장")
+	public void saveSearchData(@RequestBody RankDTO dto) {
+		System.out.println("저장");
+		System.out.println(dto);
+		searchService.saveSearchData(dto);
 	}
 	
 }

@@ -21,8 +21,8 @@ public class BookMarkService {
 	@Autowired
 	BookMarkRepository bookmarkrepo;
 
-	public List<BookMarkDTO> bookMarkList(BookMarkDTO dto) {
-		List<BookMarkDTO> list = bookmarkrepo.findAllByUserID(dto.getUserID());
+	public List<BookMarkDTO> bookMarkList(String userID) {
+		List<BookMarkDTO> list = bookmarkrepo.findAllByUserID(userID);
 		return list;
 	}
 
@@ -39,12 +39,12 @@ public class BookMarkService {
 			    dto.getHsCode()
 			);
 			if (updated > 0) {
-			    return "기존 레코드 업데이트";
+			    return "update";
 			} else {
 			    BookMarkEntity e = dto.toEntity();
 			    e.setDate(LocalDateTime.now(ZoneId.of("Asia/Seoul")).truncatedTo(ChronoUnit.SECONDS));
 			    bookmarkrepo.save(e);
-			    return "새 레코드 저장";
+			    return "save";
 			}
 
 	}
@@ -53,9 +53,9 @@ public class BookMarkService {
 		try {
 			bookmarkrepo.deleteById(dto.getSeqNumber());
 		} catch (Exception e) {
-			return "삭제 실패";
+			return "fail";
 		}
-		return "삭제 성공";
+		return "success";
 	}
 
 }

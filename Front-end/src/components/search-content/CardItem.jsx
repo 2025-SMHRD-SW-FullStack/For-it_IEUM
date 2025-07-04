@@ -29,7 +29,7 @@ const CardItem = ({ card }) => {
       <div className='cardText'>
         <div id="HS">HS코드: {card.hs_code}</div>
         <div id="Name" title={card.product_name}>
-          품목명: {card.product_name.length > 6 ? card.product_name.slice(0, 6) + "..." : card.product_name}
+          품목명: {card.product_name.length > 7 ? card.product_name.slice(0, 7) + "..." : card.product_name}
         </div>
       </div>
       <img

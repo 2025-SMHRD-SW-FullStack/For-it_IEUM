@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import './BookMarkPage.css';
-import { getBookMarkList } from '../services/bookMarkService';
+import { getBookMarkList,deleteBookMark } from '../services/bookMarkService';
+import { useBookmarkStore } from '../stores/BookMarkStore';
 
 const initialBookmarks = [
   {
@@ -41,34 +42,21 @@ const initialBookmarks = [
 ];
 
 const BookMarkPage = () => {
-  const [bookmarks, setBookmarks] = useState(initialBookmarks);
   const [openItem, setOpenItem] = useState(null);
   const [modalOpen, setModalOpen] = useState(false);
   const [selectedValue, setSelectedValue] = useState(null);
-
-    const id = "ddddd"; // 예시로 사용된 아이디, 바꿔야함
+  const { bookmark, setBookmark } = useBookmarkStore();
 
   useEffect(() => {
-    const saved = localStorage.getItem("bookmarks");
-    if (saved) {
-      setBookmarks(JSON.parse(saved));
-    } else {
-      setBookmarks(initialBookmarks);
-    }
-    console.log("북마크 데이터 로드 시작");
     const getList = async () => {
-      // 예시로 북마크 데이터를 가져오는 함수
-      const data = await getBookMarkList(id);
-      console.log("북마크 데이터:", data);
-      console.log("북마크 데이터 로드됨");
+      const data = await getBookMarkList();
+      setBookmark(data);
+      console.log("북마크 데이터Page", data);
     }
     getList();
 
   }, []);
 
-  useEffect(() => {
-    localStorage.setItem("bookmarks", JSON.stringify(bookmarks));
-  }, [bookmarks]);
 
   const handleToggle = (value) => {
     setOpenItem((prev) => (prev === value ? null : value));
@@ -79,52 +67,64 @@ const BookMarkPage = () => {
     setModalOpen(true);
   };
 
-  const confirmDelete = () => {
-    setBookmarks((prev) => prev.filter((item) => item.value !== selectedValue));
-    setModalOpen(false);
-    setSelectedValue(null);
+  const confirmDelete = async () => {
+    
+    const newList = bookmark.filter(item => item.seqNumber !== selectedValue);
+    const result = await deleteBookMark(selectedValue);
+    if (result == "success") {
+      setBookmark(newList);
+      setModalOpen(false);
+      setSelectedValue(null);
+    }
   };
 
   return (
     <div className="bookmark-container">
       <h1 className="bookmark-title">북마크 페이지</h1>
+      {bookmark.length === 0 ? (
+         <p className="empty-message">아직 저장된 북마크가 없어요.</p>
+        ):(
       <div className="accordion-container">
-        {bookmarks.map((item, index) => {
-          const isOpen = openItem === item.value;
+        {bookmark.map((item, index) => {
+          const isOpen = openItem === item.seqNumber;
+          const rawTitle = item.productName ?? "";
+          const shortTitle = rawTitle.length > 10 ? rawTitle.slice(0, 10) + "..." : rawTitle;
+          const hasHistory = Boolean(item.calculation);
+          const hasStrategy = Boolean(item.chatGPTAnswer);
           return (
-            <div key={item.value} className="accordion-item">
+            <div key={item.seqNumber} className="accordion-item">
               <button
                 className="accordion-header"
-                onClick={() => handleToggle(item.value)}
+                onClick={() => handleToggle(item.seqNumber)}
               >
-                <span className="accordion-title" title={item.title}>
-                  {`${item.title.length > 10 ? item.title.slice(0, 10) + "..." : item.title} - ${item.country} - ${item.hasHistory ? "이력 있음" : "이력 없음"} - ${item.hasStrategy ? "전략 있음" : "전략 없음"}`}
+                <span className="accordion-title" title={item.productName}>
+                  {`${shortTitle} - ${item.country ?? ""} - ${hasHistory ? "이력 있음" : "이력 없음"} - ${hasStrategy ? "전략 있음" : "전략 없음"}`}
                 </span>
                 <span className="accordion-icon">{isOpen ? "▲" : "▼"}</span>
               </button>
 
               <div className={`accordion-content ${isOpen ? "open" : ""}`}>
-                <p><strong>품목명:</strong> {item.title}</p>
+                <p><strong>품목명:</strong> {item.productName}</p>
                 <p><strong>최저 관세 국가:</strong> {item.country}</p>
-                <p><strong>계산 이력:</strong> {item.hasHistory ? "있음" : "없음"}</p>
-                <p><strong>AI 전략 추천:</strong> {item.hasStrategy ? "있음" : "없음"}</p>
+                <p><strong>계산 이력:</strong> {hasHistory ? "있음" : "없음"}</p>
+                <p><strong>AI 전략 추천:</strong> {hasStrategy ? "있음" : "없음"}</p>
                 <button
                   className="delete-btn"
                   onClick={(e) => {
                     e.stopPropagation();
-                    handleDeleteClick(item.value);
+                    handleDeleteClick(item.seqNumber);
                   }}
                 >
                   삭제
                 </button>
               </div>
 
-              {index !== bookmarks.length - 1 && <hr className="divider" />}
+              {index !== bookmark.length - 1 && <hr className="divider" />}
             </div>
           );
         })}
       </div>
-
+      )}
       {modalOpen && (
         <div className="modal-overlay">
           <div className="modal">
