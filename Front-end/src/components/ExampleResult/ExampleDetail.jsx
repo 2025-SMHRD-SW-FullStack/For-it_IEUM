@@ -5,18 +5,28 @@ import './ExampleDetail.css'
 import CaculatorLogic from '../detail-panel/tab/CaculatorLogic';
 
 const ExampleDetail = () => {
-
   const exampleData = testItemArray[0];
 
   return (
     <div className='ExampleGroup'>
-        <p className='exampleText'>
-          품목을 검색하면, 이렇게 국가별 관세 정보를 확인할 수 있어요!
-        </p>
+      <p className='exampleText'>
+        품목을 검색하면, 이렇게 국가별 관세 정보를 확인할 수 있어요!
+      </p>
 
-        <div className='exampleContent'>
+      <div className='exampleContent'>
+
+        {/* 1. 관세 비교 탭  */}
+        <div className='exampleBox'>
           <TariffComparisonTab overrideData={exampleData} className='exampleTariff'/>
+        </div>
+
+        {/* 2. 계산기 로직  */}
+        <div className='exampleBox'>
           <CaculatorLogic className='exampleLogic'/>
+        </div>
+
+        {/* 3. AI 요약   */}
+        <div className='exampleBox'>
           <div className='exampleAIText'>
             📌 품목 요약 <br />  
             - 커피 원두(0921.21-0000) <br />
@@ -33,8 +43,10 @@ const ExampleDetail = () => {
               물류비와 납기 측면에서도 유리함. <br />
           </div>
         </div>
+
+      </div>
     </div>
   )
 }
 
-export default ExampleDetail
+export default ExampleDetail;

@@ -17,14 +17,29 @@
 }
 
 .sideBar {
-    border-right: 1px solid #959595;
-    position: relative;
-    padding: 2rem;
-    width: 20%;
-    min-width: 250px;
-    max-width: 280px;
-    transition: all 0.3s ease;
-    box-sizing: border-box;
+  border-right: 1px solid #959595;
+  position: relative;
+  padding: 2rem;
+  width: 260px;           /* 고정 너비 */
+  flex-shrink: 0;         /* 줄어들지 않도록 설정 */
+  box-sizing: border-box;
+
+}
+
+
+.searchBar {
+  margin: 1%;
+  margin-bottom: 2rem;
+}
+
+
+.searchContentPanel{
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  overflow: auto;
+  position: relative;
+
 }
 
 .card-list{
