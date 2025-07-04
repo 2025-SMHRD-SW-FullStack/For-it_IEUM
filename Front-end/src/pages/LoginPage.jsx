@@ -10,7 +10,7 @@ import kakaoLogo from '../assets/image/kakao.jpg';
 import googleLogo from '../assets/image/google.png';
 
 const LoginPage = () => {
-  const [form, setForm] = useState({ userId: '', password: '' });
+  const [form, setForm] = useState({ id: '', password: '' });
   const navigate = useNavigate();
 
   const handleChange = (e) => {
@@ -19,8 +19,8 @@ const LoginPage = () => {
   };
 
   // 현재 입력이 안되서 id, pasword 지정한거임 로그인 됨 
-  const user= 'nano'
-  const pw = '123'
+  const user= 'nano1'
+  const pw = '1234'
   const fetchResults = async () => {
         try {
           const response = await login({
@@ -30,7 +30,7 @@ const LoginPage = () => {
           console.log(response);
             localStorage.setItem('accessToken', response.result.token); // 해당 해더에 토큰 저장
           // navigate('/search', { replace: true });
-          console.log(localStorage.getItem('accessToken'));
+          
         } catch (error) {
           console.error('로그인:', error);
         }
