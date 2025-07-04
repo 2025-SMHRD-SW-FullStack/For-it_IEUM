@@ -1,4 +1,4 @@
-import { Routes, Route, Navigate } from 'react-router-dom';
+import { Routes, Route, Navigate, useLocation } from 'react-router-dom';
 import MainPage from '../pages/MainPage';
 import SearchPage from '../pages/SearchPage';
 import FtaPage from '../pages/FtaPage';
@@ -15,9 +15,10 @@ function PrivateRoute({ isLoggedIn, children }) {
 }
 
 function Router({ isLoggedIn }) {
+  const location = useLocation();
   return (
     <Routes>
-      <Route path="/" element={<MainPage />} />
+      <Route path="/" element={<MainPage key={location.key} />} />
       <Route path="/search" element={<SearchPage />} />
       <Route path="/login" element={<LoginPage />} />
       <Route path='/join' element={<JoinPage/>} />
