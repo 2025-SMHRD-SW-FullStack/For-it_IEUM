@@ -8,7 +8,7 @@ import InterestKeyword from './interestKeyword';
 import Keyword from './Keyword';
 import './KeywordSideBar.css';
 import { keywordItem } from '../../services/keyWordService';
-
+import { keywordSaveItem } from '../../services/keyWordService';
 export const Item = {
   KEYWORD: 'keyword',
 };
@@ -32,8 +32,11 @@ const KeywordSideBar = () => {
 
 
 
+
   const [interest, setInterest] = useState([]);
   const [selectedKeyword, setSelectedKeyword] = useState(null);
+  const [allKeywords, setAllKeywords] = useState([]);
+  const [userKeyword,setUserKeyword] =useState([])
   const navigate = useNavigate();
 
   const handleClick = (keyword) => {
@@ -41,15 +44,18 @@ const KeywordSideBar = () => {
     navigate(`/search?keyword=${encodeURIComponent(keyword)}`);
   };
 
-  // const [keyword,setKeyword] =useState([]);
+  
 
 useEffect(()=>{
 
   const fetchResults = async () => {
       try {
         const data = await keywordItem();   // axios.get 결과
-        console.log(data.keywordAll);
-        // setKeyword(data);
+        setAllKeywords(data.keywordAll);
+        setUserKeyword(data.userKeyword)
+        console.log(data.userKeyword); // 회원 키워드 
+        console.log(data.keywordAll); // 전체 키워드
+        
           
         // navigate('/search', { replace: true });
       } catch (error) {
@@ -61,6 +67,7 @@ useEffect(()=>{
 
 
 
+
   return (
     <DndProvider backend={HTML5Backend}>
       <div>
@@ -68,10 +75,12 @@ useEffect(()=>{
         <div>
           <b className="keywordLabel">분류 리스트</b>
           <br />
-          {keywords.map((keyword, i) => (
+          {allKeywords.map((keyword, i) => (
             <Keyword
               key={i}
-              keyword={keyword}
+              keyword={keyword.productName}
+              hsCode={keyword.hsCode}
+              checkType={keyword.checkType}
               draggable={true}
               Item={Item}
               isSelected={selectedKeyword === keyword}

@@ -1,6 +1,6 @@
 import apiClient from "../lib/apiClient";
 
-export const login = async (userId, password) => {
+export const login = async ({userId, password}) => {
     const res = await apiClient.post('/login', { 
         userId, 
         password 

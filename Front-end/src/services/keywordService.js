@@ -4,8 +4,7 @@ export const keywordItem = async () => {
     const res = await apiClient.post('/keyword');
     return res.data;
 };
-const checkType = 'hsCode';
-export const keywordSaveItem = async (hsCode, productName) => {
+export const keywordSaveItem = async ({hsCode, productName,checkType}) => {
     const res = await apiClient.post('/keyword/interest',{
         hsCode,
         productName,
@@ -13,6 +12,7 @@ export const keywordSaveItem = async (hsCode, productName) => {
     })
     return res.data;};
 
+    
     export const keywordDeleteItem = async (id) => {
     const res = await apiClient.post('/keyword/delete',{
         id
