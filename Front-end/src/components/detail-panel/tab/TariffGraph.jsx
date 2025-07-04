@@ -11,14 +11,17 @@ const TariffGraph = ({ overrideData = null }) => {
   if (!card) return null;
 
   if (!card) return <p>그래프 데이터를 찾을 수 없습니다.</p>;
-
-  const baseTariff    = card.base_tariff    ?? 0;
+  
+  const rawBaseTariff    = card.base_tariff    ?? 0;
   const rates         = Array.isArray(card.top10_data)
                         ? card.top10_data.map(i => i.rate ?? 0)
                         : [];
-  const lowestTariff  = rates.length > 0
+  const rawLowestTariff  = rates.length > 0
                         ? Math.min(...rates)
                         : card.lowestTariff ?? 0;
+
+  const baseTariff   = rawBaseTariff   * 100;
+  const lowestTariff = rawLowestTariff * 100;
   
   const chartData = [
     { name: '기본 관세', value: baseTariff, fill: '#CFE8FC'},
