@@ -41,8 +41,6 @@ html, body {
   overflow-y: auto;    /* 본문 영역에만 세로 스크롤 허용 */
 }
 
-
-
 .header_inner {
   max-width: 1200px;     /* ✅ 너비 제한 */
   margin: 0 auto;        /* ✅ 가운데 정렬 */
