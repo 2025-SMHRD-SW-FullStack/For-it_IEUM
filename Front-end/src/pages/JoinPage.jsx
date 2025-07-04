@@ -3,15 +3,22 @@ import { useNavigate } from 'react-router-dom';
 import AuthForm from '../components/User/AuthForm';
 
 const JoinPage = () => {
-  const [form, setForm] = useState({ id: '', password: '', tel: '' });
+  const [form, setForm] = useState({
+  userId: '',
+  password: '',
+  passwordConfirm: '',
+  tel: '',
+  emailId: '',
+  emailDomain: '',
+});
 
-  const [agree, setAgree] = useState({
-    all: false,
-    terms: false,
-    privacy: false,
-    marketing: false,
-    marketingChannel: '', // 'kakao' or 'email'
-  });
+const [agree, setAgree] = useState({
+  all: false,
+  terms: false,
+  privacy: false,
+  notice: false,
+  noticeChannel: '',
+});
 
   const navigate = useNavigate();
 
