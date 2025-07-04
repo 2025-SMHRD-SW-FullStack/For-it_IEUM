@@ -2,6 +2,7 @@
     display: flex;
     flex-direction: column;
     width: 100%;
+    height: 100%;
     padding-top: 60px;
     justify-content: center;
     align-items: center;
@@ -28,9 +29,25 @@
 .joinInput{
     display: flex;
     flex-direction: row;
-    margin: 0.5rem;
 }
 
+.passwordWrapper {
+    display: flex;               
+    flex-direction: column;
+    align-items: flex-end;
+}
+
+.passwordMessage {
+    width: fit-content;
+    color: green;
+    font-size: 0.85rem;
+    margin-top: -0.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.passwordMessage.error {
+    color: red;
+}
 
 .loginBtn{
     width: 300px;
@@ -56,6 +73,7 @@
     display: flex;
     flex-direction: column;
     font-size: 14px;
+    margin-bottom: 1rem;
 }
 
 .checkboxLabel{
@@ -74,20 +92,6 @@
 .channelSelect{
     display: flex;
     justify-content: center;
-}
-
-.telInputWrapper {
-    display: flex;
-    gap: 5px;
-    margin: 0.5rem 0;
-}
-
-.telInputWrapper input {
-    width: 60px;
-    text-align: center;
-    padding: 0.3rem;
-    border: 1px solid #ccc;
-    border-radius: 5px;
 }
 
 .emailWrapper {

@@ -53,6 +53,7 @@
 
 .newsCard:hover {
   transform: translateY(-4px);
+  background-color: #e2e8f0;
 }
 
 .newsTitle {

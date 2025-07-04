@@ -1,20 +1,13 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import UserInput from './UserInput';
 import './AuthForm.css';
 
-const AuthForm = ({
-  type,
-  form,
-  setForm,
-  onChange,
-  onSubmit,
-  onSocialClick,
-  socialButtons,
-  agree,
-  setAgree,
-  className = ''
-}) => {
+const AuthForm = ({ type,  form,  setForm,  
+                    onChange,  onSubmit,  onSocialClick,
+                    socialButtons,  agree,  setAgree,  className = '' }) => {
+
   const isLogin = type === 'login';
+  const [passwordMessage, setPasswordMessage] = useState('');
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -22,7 +15,6 @@ const AuthForm = ({
     if (name === 'tel') {
       const onlyNums = value.replace(/[^0-9]/g, '');
       let formatted = onlyNums;
-
       if (onlyNums.length <= 3) {
         formatted = onlyNums;
       } else if (onlyNums.length <= 7) {
@@ -37,6 +29,18 @@ const AuthForm = ({
 
     setForm((prev) => ({ ...prev, [name]: value }));
   };
+
+  useEffect(() => {
+    if (!isLogin) {
+      if (form.passwordConfirm && form.password !== form.passwordConfirm) {
+        setPasswordMessage('비밀번호가 일치하지 않습니다.');
+      } else if (form.passwordConfirm && form.password === form.passwordConfirm) {
+        setPasswordMessage('비밀번호가 일치합니다.');
+      } else {
+        setPasswordMessage('');
+      }
+    }
+  }, [form.password, form.passwordConfirm, isLogin]);
 
   const onAgreeChange = (e) => {
     const { name, type, value, checked } = e.target;
@@ -81,27 +85,40 @@ const AuthForm = ({
           <UserInput
             name="userId"
             label="아이디"
-            value={form.id}
-            onChange={onChange}
+            value={form.userid}
+            onChange={handleChange}
             className={`${isLogin ? '' : 'joinInput'}`}
           />
           <UserInput
             name="password"
             label="비밀번호"
             value={form.password}
-            onChange={onChange}
+            onChange={handleChange}
             className={`${isLogin ? '' : 'joinInput'}`}
           />
 
           {!isLogin && (
             <>
+            <div className='passwordWrapper'>
               <UserInput
                 name="passwordConfirm"
-                label="비밀번호 재입력"
+                label="비밀번호 확인"
                 value={form.passwordConfirm || ''}
-                onChange={onChange}
+                onChange={handleChange}
                 className="joinInput"
               />
+              {passwordMessage && (
+                <div
+                  className={`passwordMessage ${
+                    passwordMessage.includes('일치하지') ? 'error' : ''
+                  }`}
+                >
+                  {passwordMessage}
+                </div>
+              )}
+
+            </div>
+
               <UserInput
                 name="tel"
                 label="전화번호"

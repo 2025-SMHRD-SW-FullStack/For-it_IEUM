@@ -77,6 +77,7 @@ public class CategoryService {
 
 			for (KeyWordDTO userKeywordList : userKeyword) {
 				keyDto.add(userKeywordList);
+				
 
 				all.setUserKeyword(keyDto);
 			}

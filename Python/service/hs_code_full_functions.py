@@ -4,8 +4,7 @@ from fastapi import FastAPI, Query
 from fastapi.middleware.cors import CORSMiddleware
 from typing import List
 import pandas as pd
-import json
-
+import math
 
 app = FastAPI()
 
@@ -17,10 +16,7 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-class ProductDTO(BaseModel):
-    hs_code: str
-    product_name: str
-
+# --- Pydantic Models ---
 class TariffListItem(BaseModel):
     name: str
     rate: float
@@ -31,150 +27,123 @@ class TariffInfoDTO(BaseModel):
     base_tariff: Optional[float]
     top10_data: List[TariffListItem]
 
-# 엑셀 파일 로드 및 전처리
+# --- 엑셀 파일 로드 및 전처리 ---
 file_path = "../data/HS별 관세율표.xlsx"
 df = pd.read_excel(file_path)
+# 컬럼명 정리
 df.columns = [col.replace("한ㆍ", "") for col in df.columns]
-df['세번'] = df['세번'].astype(str).str.zfill(4)
-df['세번길이'] = df['세번'].str.len()
-df['코드4자리'] = df['세번'].str[:4]
+# 기본적으로 4자리로 맞춤 (zfill)
+df['세번'] = df['세번'].astype(str)
 
-# 기본세율 파싱 함수
-def parse_base_tariff(val):
+def pad_hscode(code: str) -> str:
+    s = code.strip()
+    if len(s) in (3, 5, 9):
+        return s.zfill(len(s) + 1)
+    return s.zfill(4)
+
+df['hs_code'] = df['세번'].apply(pad_hscode)
+df['hs_len'] = df['hs_code'].str.len()
+# 관세 컬럼 식별
+tariff_cols = [c for c in df.columns if '세율' in c or '관세' in c]
+
+# --- 기본세율 파싱 함수 ---
+def parse_base_tariff(val) -> Optional[float]:
+    # 결측(NaN) 처리
+    if pd.isna(val):
+        return None
     try:
-        return float(val)
+        num = float(val)
     except:
         if isinstance(val, str) and "무세" in val:
             return 0.0
         return None
+    # 수치로 변환했을 때 NaN인지 확인
+    if math.isnan(num):
+        return None
+    return num
 
-# 1. 대분류 필터 함수
-@app.get("/api/main-categories",response_model=List[ProductDTO])
-def get_main_categories(input_code: str = Query(...)):
-    main_df = df[df['세번길이'] <= 4]
-    filtered = main_df[main_df['세번'].str.startswith(input_code)]
-    result = filtered[['세번', '한글품명']].drop_duplicates().sort_values('세번').reset_index(drop=True)
-    return result.rename(columns={"세번": "hs_code", "한글품명": "product_name"}).to_dict(orient="records")
-	
-# 2. 대분류 코드로 소분류 출력
- 
-@app.get("/api/subcategories", response_model=List[TariffInfoDTO])
-def get_subcategories_with_tariffs(main_code: str = Query(...)):
-    # 1) 기본세율이 있는 소분류만 먼저 걸러냄
-    sub_df = df[
-        df['세번'].str.startswith(main_code, na=False)
-        & pd.to_numeric(df['기본세율 - A'], errors='coerce').notna()
+def format_hscode(code: str) -> str:
+    s = code
+    if len(s) == 10:
+        return f"{s[:4]}.{s[4:6]}-{s[6:]}"
+    if len(s) == 6:
+        return f"{s[:4]}.{s[4:]}"
+    return s
+
+# --- 엔드포인트: HS 코드로 검색 ---
+@app.get("/api/search-by-code", response_model=List[TariffInfoDTO])
+def search_by_code(
+    code: str = Query(..., description="HS 코드 접두사 입력, 03 등")
+):
+    filtered = df[
+        df['hs_code'].str.startswith(code)
+        & df['기본세율 - A'].apply(lambda x: parse_base_tariff(x) is not None)
     ]
-
-    # 2) 중복 제거한 HS 코드 목록
-    unique_hs_codes = sub_df['세번'].drop_duplicates().tolist()
-
-    results = []
-    for hs in unique_hs_codes:
-        row = df[df['세번'] == hs].iloc[0]
-
-        # 3) 관세 컬럼에서 숫자 변환 후 top10
-        tariff_cols = [c for c in df.columns if '세율' in c or '관세' in c]
-        tariffs = row[tariff_cols].apply(pd.to_numeric, errors='coerce').dropna()
-        if tariffs.empty:
-            continue  # 관세 컬럼 자체에 값이 하나도 없으면 스킵
-
-        top10 = tariffs.sort_values().head(10)
-        top10_data = [{"name": k, "rate": float(v)} for k, v in top10.items()]
-
-        results.append({
-            "product_name":  row["한글품명"],
-            "hs_code":       row["세번"],
-            "base_tariff":   parse_base_tariff(row.get("기본세율 - A")),
-            "top10_data":    top10_data
-        })
-
+    results: List[TariffInfoDTO] = []
+    unique_codes = sorted(
+        filtered['hs_code'].drop_duplicates().tolist(),
+        key=lambda x: (len(x), x)
+    )
+    for hs in unique_codes:
+        row = filtered[filtered['hs_code'] == hs].iloc[0]
+        base_val = parse_base_tariff(row.get('기본세율 - A'))
+        # 관세값 파싱 및 NaN 제거
+        rates = (
+            row[tariff_cols]
+            .apply(pd.to_numeric, errors='coerce')
+            .dropna()
+        )
+        rates = rates[~rates.apply(lambda v: math.isnan(v))]
+        top10 = rates.sort_values().head(10)
+        items = [TariffListItem(name=k, rate=float(v)) for k, v in top10.items()]
+        # base_val이 NaN이었으면 None으로
+        if base_val is not None and math.isnan(base_val):
+            base_val = None
+        formatted_hs = format_hscode(hs)
+        results.append(TariffInfoDTO(
+            product_name=row['한글품명'],
+            hs_code=formatted_hs,
+            base_tariff=base_val,
+            top10_data=items
+        ))
     return results
- 
 
-# 3. 소분류 코드로 관세 정보 출력
-@app.get("/api/tariff-info",response_model=TariffInfoDTO)
-def get_tariff_info(hs_code: str = Query(...)):
-    row_df = df[df['세번'] == hs_code]
-    if row_df.empty:
-        return {"error": f"No matching HS code: {hs_code}"}
-
-    row = row_df.iloc[0]
-    tariff_cols = [col for col in df.columns if '세율' in col or '관세' in col]
-    tariffs = row[tariff_cols].apply(pd.to_numeric, errors='coerce').dropna()
-    top10_data = tariffs.sort_values().head(10)
-    top10_data = [{"name": k, "rate": float(v)} for k, v in top10_data.items()]
-
-    return {
-        "product_name": row["한글품명"],
-        "hs_code": row["세번"],
-        "base_tariff": parse_base_tariff(row.get("기본세율 - A")),
-        "top10_data": top10_data
-    }
-
-# 4. 한글품명 키워드 검색 함수
-def parse_base_tariff(raw) -> float:
-
-    # 1) 결측 처리
-    if pd.isna(raw):
-        return None
-
-    # 2) 이미 숫자라면 (기본세율을 숫자로 읽어온 경우)
-    if isinstance(raw, (int, float)):
-        return float(raw)
-
-    # 3) 문자열인 경우
-    txt = str(raw).strip().lower()
-    if txt == 'free':
-        return 0.0
-    if txt.endswith('%'):
-        try:
-            return float(txt[:-1]) / 100
-        except ValueError:
-            return None
-    try:
-        return float(txt)
-    except ValueError:
-        return None
-
+# --- 엔드포인트: 품명 키워드로 검색 ---
 @app.get("/api/search-by-name", response_model=List[TariffInfoDTO])
-def search_by_product_name(keyword: str = Query(...)):
-    filtered = df[df['한글품명'].str.contains(keyword, case=False, na=False)]
-    hs_list = filtered['세번'].drop_duplicates().tolist()
-    unique_hs = sorted(hs_list, key=lambda x: int(x))
-
-    results = []
-    tariff_cols = [c for c in df.columns if '세율' in c or '관세' in c]
-
-    for hs in unique_hs:
-        row = df[df['세번'] == hs].iloc[0]
-        entry = {
-            "product_name": row["한글품명"],
-            "hs_code":      hs,
-            "base_tariff":  None,       
-            "top10_data":   []          
-        }
-
-        base_raw = row.get("기본세율 - A")
-        base_val = parse_base_tariff(base_raw)
-        if base_val is not None:
-            entry["base_tariff"] = base_val
-
-            tariffs = (
-                row[tariff_cols]
-                .apply(pd.to_numeric, errors='coerce')
-                .dropna()
-            )
-            top10 = tariffs.sort_values().head(10)
-            entry["top10_data"] = [
-                {"name": k, "rate": float(v)} for k, v in top10.items()
-            ]
-
-        results.append(entry)
-
+def search_by_name(
+    keyword: str = Query(..., description="상품명 키워드 검색")
+):
+    filtered = df[
+        df['한글품명'].str.contains(keyword, case=False, na=False)
+        & df['기본세율 - A'].apply(lambda x: parse_base_tariff(x) is not None)
+    ]
+    results: List[TariffInfoDTO] = []
+    unique_codes = sorted(
+        filtered['hs_code'].drop_duplicates().tolist(),
+        key=lambda x: (len(x), x)
+    )
+    for hs in unique_codes:
+        row = filtered[filtered['hs_code'] == hs].iloc[0]
+        base_val = parse_base_tariff(row.get('기본세율 - A'))
+        rates = (
+            row[tariff_cols]
+            .apply(pd.to_numeric, errors='coerce')
+            .dropna()
+        )
+        rates = rates[~rates.apply(lambda v: math.isnan(v))]
+        top10 = rates.sort_values().head(10)
+        items = [TariffListItem(name=k, rate=float(v)) for k, v in top10.items()]
+        if base_val is not None and math.isnan(base_val):
+            base_val = None
+        formatted_hs = format_hscode(hs)
+        results.append(TariffInfoDTO(
+            product_name=row['한글품명'],
+            hs_code=formatted_hs,
+            base_tariff=base_val,
+            top10_data=items
+        ))
     return results
 
 if __name__ == "__main__":
     import uvicorn
     uvicorn.run(app, host="0.0.0.0", port=8000)
-

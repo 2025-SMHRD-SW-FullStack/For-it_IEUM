@@ -65,13 +65,15 @@ useEffect(()=>{
     fetchResults();
 },[]);
 
-
+const tk = localStorage.getItem('accessToken')
 
 
   return (
     <DndProvider backend={HTML5Backend}>
       <div>
-        <InterestKeyword interest={interest} setInterest={setInterest} Item={Item} />
+      {tk &&
+        <InterestKeyword interest={interest} setInterest={setInterest} Item={Item} userKeyword={userKeyword}/>
+        }
         <div>
           <b className="keywordLabel">분류 리스트</b>
           <br />
@@ -85,6 +87,7 @@ useEffect(()=>{
               Item={Item}
               isSelected={selectedKeyword === keyword}
               onClick={() => handleClick(keyword)}
+              setUserKeyword= {setUserKeyword}
             />
           ))}
         </div>
