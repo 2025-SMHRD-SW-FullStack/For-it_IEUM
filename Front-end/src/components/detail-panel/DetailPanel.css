@@ -1,11 +1,10 @@
 .detailPanel {
   display: flex;
   flex-direction: column;
-  width: 675px;
+  flex: 2;
   min-width: 400px;
   height: 100%;
   background-color: white;
-  padding: 1rem;
   box-sizing: border-box;
   border-left: 1px solid #ccc;
   border-radius: 10px 0px 0px 10px;

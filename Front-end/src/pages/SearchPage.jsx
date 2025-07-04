@@ -62,6 +62,7 @@ const SearchPage = () => {
         </div>
 
         <div className="searchContentPanel">
+          <div className="searchContent">
             <div className="card-list">
               {results.length === 0 ? (
                 <p>검색 결과가 없습니다.</p>
@@ -71,6 +72,7 @@ const SearchPage = () => {
                 ))
               )}
             </div>
+          </div>
 
           {selectedCard && <DetailPanel />}
         </div>

@@ -1,31 +1,10 @@
-@keyframes fadeUp {
-  from {
-    opacity: 0;
-    transform: translateY(30px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
 .newsPage {
   display: flex;
   flex-direction: row;
   justify-content: center;
-  height: calc(100vh - 108px);
-  overflow: hidden;
-  animation: fadeUp 0.6s ease-out;
-  padding-left: 10rem;
-}
-
-.newsWrapper {
-  display: flex;
-  flex: 1;
-  flex-direction: row;
-  width: 80%; 
-  max-width: 1600px;
   height: 100%;
+  overflow: hidden;
+  padding-left: 10rem;
 }
 
 .news-list {

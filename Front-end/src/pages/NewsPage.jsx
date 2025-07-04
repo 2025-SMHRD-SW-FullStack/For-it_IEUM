@@ -26,7 +26,6 @@ const NewsPage = () => {
 
   return (
     <div className={`newsPage ${showNews ? 'show-panel' : ''}`}>
-      <div className="newsWrapper">
         <div className="news-list">
           {items.map(item => (
             <div
@@ -35,8 +34,7 @@ const NewsPage = () => {
               onClick={() => {
                 setSelectedItem(item);
                 setShowNews(true);
-              }}
-            >
+              }}>
               <h3 className="newsTitle">{stripTags(item.title)}</h3>
               <small className="newsDate">
                 {new Date(item.pubDate).toLocaleString('ko-KR')}
@@ -48,7 +46,6 @@ const NewsPage = () => {
             </div>
           ))}
         </div>
-      </div>
 
       {showNews && (
         <NewsPanel

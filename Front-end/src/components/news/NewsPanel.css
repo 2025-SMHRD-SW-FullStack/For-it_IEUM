@@ -16,6 +16,7 @@
 
 .news-panel.show {
   transform: translateX(0);
+  border-radius: 10px;
 }
 
 .news-content {
