@@ -12,6 +12,8 @@ import BookmarkButton from './button/BookmarkButton';
 import buildPrompt4o from '../../api/Prompt4o';
 import useOpenAI from '../../api/openAI';
 import testItemArray from '../../data/testItemArray';
+import { saveSearchData } from '../../services/searchService';
+
 
 const DetailPanel = () => {
   const { selectedCard, clearSelectedCard } = useCardStore();
@@ -26,6 +28,13 @@ const DetailPanel = () => {
   // 카드 선택 시 상태 초기화
   useEffect(() => {
     if (selectedCard) {
+      console.log("선택된 카드:", selectedCard);
+      saveSearchData(
+        selectedCard.product_name,
+        selectedCard.hs_code,
+        new Date()
+      ).then(res => {
+        console.log("검색 데이터 저장 성공:", res);})
       setShouldRender(true);
       setTimeout(() => setIsVisible(true), 10);
       setAiSubmitted(false);  // 새 카드일 땐 전략 초기화

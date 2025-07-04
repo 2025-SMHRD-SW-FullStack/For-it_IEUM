@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import './AIStrategyTab.css'
 import useCardStore from "../../../stores/CardStore";
 import { chatGPTItem } from '../../../services/chatGPTService';
+import useChatGPTStore from '../../../stores/ChatGPTStore';
 
 const AIStrategyTab = () => {
 
@@ -9,7 +10,7 @@ const AIStrategyTab = () => {
   const [loading, setLoading] = useState(false);
 
   const{selectedCard} = useCardStore();
-  console.log(selectedCard);
+  const {setChatGPTResponse} = useChatGPTStore();
 
   useEffect(() => {
   
@@ -20,14 +21,9 @@ const AIStrategyTab = () => {
 
       try {
         const data = await chatGPTItem(selectedCard);
-        console.log(data.answer);
-        
+        setChatGPTResponse(data.answer); // chatGPTStore에 데이터 저장
         setChatResponse(data.answer);
-        console.log(chatResponse);
-        
-        // navigate('/search', { replace: true });
       } catch (error) {
-        console.error('검색 실패:', error);
         setChatResponse(null);
       }finally{
         setLoading(false);
