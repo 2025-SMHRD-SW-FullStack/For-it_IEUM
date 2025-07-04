@@ -8,11 +8,21 @@ import { useNavigate } from 'react-router-dom'
 
 const UserMenu = ({ isLoggedIn }) => {
 
+  // 토큰 클린(로그아웃임)
+  const tokenClean = ()=>{
+    // 1. 로컬스토리지에서 토큰 삭제
+    localStorage.removeItem('accessToken');
+    // 2. axios 인스턴스 헤더 초기화 (있다면)
+    delete apiClient.defaults.headers.common['accessToken'];
+  }
+
   const navigate = useNavigate();
 
   const userLogin = () => {
     navigate("/login")
   }
+
+  
 
   return (
     <div className="user-menu-container">
@@ -32,6 +42,7 @@ const UserMenu = ({ isLoggedIn }) => {
         style={{cursor:'pointner'}}
         />
       )}
+      <button onClick={tokenClean}>토큰 클린</button>
     </div>
   )
 }

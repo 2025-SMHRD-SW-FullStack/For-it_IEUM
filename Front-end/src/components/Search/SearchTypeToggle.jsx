@@ -5,6 +5,7 @@ import './SearchTypeToggle.css';
 import { getRank } from '../../services/searchService';
 
 const SearchTypeToggle = ({ onKeywordClick }) => {
+  const [isHovered, setIsHovered] = useState(false);
 
   const [isOpen, setIsOpen] = useState(false);
   const [keywords, setKeywords] = useState([]);
@@ -32,10 +33,14 @@ const SearchTypeToggle = ({ onKeywordClick }) => {
   const toggleOpen = () => setIsOpen(!isOpen);
 
   return (
-    <div className="dropdown-container">
-      <div className="dropdown-container-header" onClick={toggleOpen}>
+    <div
+      className="dropdown-container"
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
+    >
+      <div className="dropdown-container-header">
         <span className="dropdown-container-title">자주 찾는 품목</span>
-        <span className="dropdown-container-toggle">{isOpen ? '▲' : '▼'}</span>
+        <span className="dropdown-container-toggle">{isHovered ? '▲' : '▼'}</span>
       </div>
     <div className={`dropdown-container-list ${isOpen ? 'open' : ''}`}>
   {keywords.map((keyword, index) => (
@@ -55,4 +60,4 @@ const SearchTypeToggle = ({ onKeywordClick }) => {
   );
 };
 
-export default SearchTypeToggle
+export default SearchTypeToggle;
