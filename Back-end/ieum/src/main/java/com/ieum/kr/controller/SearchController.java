@@ -41,6 +41,8 @@ public class SearchController {
 	@Operation(summary="검색")
 	public ResponseEntity<?> goSearch(@RequestBody SearchDTO dto) {
 		List<?> result;
+		System.out.println("searchController");
+		System.out.println(dto);
 		if("productName".equals(dto.getChoice())) {
 			if (dto.getInput().matches("\\d+")) {
 				return ResponseEntity
@@ -55,14 +57,8 @@ public class SearchController {
 						.badRequest()
 						.body(Map.of("error", "HS 코드는 숫자만 입력 가능합니다."));
 			}
-			int len = dto.getInput().length();
-			if(len < 4) {
-				result = searchService.searchMainCategory(dto.getInput());
-			}else if(len == 4) {
-				result = searchService.searchDetailCategory(dto.getInput());
-			}else {
-				result = searchService.searchLowTariff(dto.getInput());
-			}
+
+			result = searchService.searchProduct(dto.getInput());
 		}
 		return ResponseEntity.ok(result);
 	}

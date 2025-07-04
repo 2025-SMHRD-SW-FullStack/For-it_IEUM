@@ -15,6 +15,11 @@
     transition: all 0.3s ease;
 }
 
+.tab:hover {
+  transform: translateY(1px);
+  background-color: #e2e8f0;
+}
+
 .tab.active {
     border-bottom: 2px solid #808080;
     background-color: #CFE8FC;

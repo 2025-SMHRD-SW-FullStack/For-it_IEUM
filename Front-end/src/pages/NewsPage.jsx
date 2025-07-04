@@ -6,6 +6,7 @@ import NewsPanel from '../components/news/NewsPanel';
 const stripTags = str => str.replace(/<\/?[^>]+(>|$)/g, "");
 
 const NewsPage = () => {
+  
   const [items, setItems] = useState([]);
   const [selectedItem, setSelectedItem] = useState(null);
   const [showNews, setShowNews] = useState(false);

@@ -37,7 +37,7 @@ const AIStrategyTab = () => {
   
 
   return (
-    <div>
+    <div className="AIContent">
       <pre className="AIText">
         {loading
           ? "AI가 전략을 분석 중입니다..."

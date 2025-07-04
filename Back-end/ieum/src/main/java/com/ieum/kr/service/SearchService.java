@@ -34,44 +34,24 @@ public class SearchService {
 		topRankRepo.save(dto.toEntity());
 	}
 
-	// hs_code가 3자리 이하일때 대분류를 찾는 기능
-	public List<ProductDTO> searchMainCategory(String hsCode) {
-		String url = baseURL + "/api/main-categories?input_code=" + hsCode;
-		ResponseEntity<ProductDTO[]> response = restTemplate.getForEntity(url, ProductDTO[].class);
-		ProductDTO[] categories = response.getBody();
-		List<ProductDTO> list = Arrays.asList(categories);
-		return list;
-	}
-
-	// hs_code가 4자리 이상일 경우 세부사항 출력
-	public List<TariffInfoDTO> searchDetailCategory(String hsCode) {
-		String url = baseURL + "/api/subcategories?main_code=" + hsCode;
+	// hs_code로 검색했을경우
+	public List<TariffInfoDTO> searchProduct(String hsCode){
+		String url = baseURL + "/api/search-by-code?code="+hsCode;
 		ResponseEntity<TariffInfoDTO[]> response = restTemplate.getForEntity(url, TariffInfoDTO[].class);
-		TariffInfoDTO[] categories = response.getBody();
-		List<TariffInfoDTO> list = Arrays.asList(categories);
+		TariffInfoDTO[] product = response.getBody();
+		List<TariffInfoDTO> list = Arrays.asList(product);
 		return list;
 	}
 	
-	// 소분류로 검색했을때 최저관세 10개 출력
-	public List<TariffInfoDTO> searchLowTariff(String hsCode) {
-		String url = baseURL + "/api/tariff-info?hs_code="+hsCode;
-		ResponseEntity<TariffInfoDTO> response = restTemplate.getForEntity(url, TariffInfoDTO.class);
-		TariffInfoDTO dto = response.getBody();
-		LocalDate now = LocalDate.now();
-		RankDTO rank = new RankDTO(dto.getHsCode(),dto.getProductName(),now);
-		topRankRepo.save(rank.toEntity());
-		List<TariffInfoDTO> list = Arrays.asList(dto);
-		return list;
-	}
-	
-	// 품목명으로 검색했을때
-	public List<TariffInfoDTO> searchProductName(String productName) {
+	// 물품명으로 검색
+	public List<TariffInfoDTO> searchProductName(String productName){
 		String url = baseURL + "/api/search-by-name?keyword="+productName;
 		ResponseEntity<TariffInfoDTO[]> response = restTemplate.getForEntity(url, TariffInfoDTO[].class);
-		TariffInfoDTO[] categories = response.getBody();
-		List<TariffInfoDTO> list = Arrays.asList(categories);
+		TariffInfoDTO[] product = response.getBody();
+		List<TariffInfoDTO> list = Arrays.asList(product);
 		return list;
 	}
+	
 	
 	// 검색 순위 출력
 	public List<RankProjection> searchTopRank() {
@@ -163,5 +143,5 @@ public class SearchService {
 		dto.setCalculation(result);
 		return dto;
 	}
-
+	
 }
