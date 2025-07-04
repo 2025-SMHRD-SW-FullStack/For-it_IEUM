@@ -62,6 +62,7 @@ const LoginPage = () => {
         form={form}
         onChange={handleChange}
         onSubmit={handleSubmit}
+        setForm={setForm}
       />
 
       <Social buttons={socialButtons} onClick={handleSocialLogin} />
