@@ -29,18 +29,6 @@ html, body {
 
 }
 
-.page-wrapper {
-  height: 100vh;
-  display: flex;
-  flex-direction: column;
-  overflow: hidden; /* 전체 페이지 스크롤 막기 */
-}
-
-.page-content {
-  flex: 1;             /* 헤더 제외 나머지 영역 차지 */
-  overflow-y: auto;    /* 본문 영역에만 세로 스크롤 허용 */
-}
-
 
 
 .header_inner {

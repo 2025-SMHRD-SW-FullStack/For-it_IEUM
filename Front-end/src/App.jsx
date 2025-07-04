@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { BrowserRouter } from 'react-router-dom';
 import Header from './components/Header/Header';
 import Router from './routes/Router';
+import './animations/animations.css';
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);

@@ -1,16 +1,27 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { useNavigate, useLocation } from 'react-router-dom';
 import search from '../../assets/image/search.png';
-import { useNavigate } from 'react-router-dom';
 import './SearchBar.css';
 
 const SearchBar = () => {
+  const navigate = useNavigate();
+  const location = useLocation();
+
   const [query, setQuery] = useState('');
   const [category, setCategory] = useState('productName');
-  const navigate = useNavigate();
+
+  useEffect(() => {
+    const params = new URLSearchParams(location.search);
+    const q = params.get('query');
+    const c = params.get('category');
+
+    if (q) setQuery(q);
+    if (c) setCategory(c);
+  }, [location.search]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    
+
     if (query.trim()) {
       navigate(`/search?category=${category}&query=${encodeURIComponent(query.trim())}`);
     } else {
@@ -39,7 +50,7 @@ const SearchBar = () => {
         value={query}
         onChange={(e) => setQuery(e.target.value)}
       />
-      <button type="submit" aria-label="검색" onClick={handleSubmit}>
+      <button type="submit" aria-label="검색">
         <span>
           <img src={search} alt="검색 아이콘" style={{ width: '20px', height: '20px' }} />
         </span>
@@ -48,6 +59,4 @@ const SearchBar = () => {
   );
 };
 
-export default SearchBar
-
-
+export default SearchBar;

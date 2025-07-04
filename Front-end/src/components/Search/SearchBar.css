@@ -15,7 +15,12 @@
   /* animation: fadeUp 0.8s ease-out; */
   /* margin-left: 40%; */
 }
-
+/* .search-wrapper {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  padding: 20px;
+} */
 
 .search-box img {
   width: 5px;
