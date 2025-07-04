@@ -77,8 +77,6 @@ public class SearchController {
 	@PostMapping("/save")
 	@Operation(summary="저장")
 	public void saveSearchData(@RequestBody RankDTO dto) {
-		System.out.println("저장");
-		System.out.println(dto);
 		searchService.saveSearchData(dto);
 	}
 	

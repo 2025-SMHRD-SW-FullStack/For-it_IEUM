@@ -88,7 +88,7 @@ const BookMarkPage = () => {
         {bookmark.map((item, index) => {
           const isOpen = openItem === item.seqNumber;
           const rawTitle = item.productName ?? "";
-          const shortTitle = rawTitle.length > 10 ? rawTitle.slice(0, 10) + "..." : rawTitle;
+          const shortTitle = rawTitle.length > 20 ? rawTitle.slice(0, 20) + "..." : rawTitle;
           const hasHistory = Boolean(item.calculation);
           const hasStrategy = Boolean(item.chatGPTAnswer);
           return (
@@ -98,7 +98,9 @@ const BookMarkPage = () => {
                 onClick={() => handleToggle(item.seqNumber)}
               >
                 <span className="accordion-title" title={item.productName}>
-                  {`${shortTitle} - ${item.country ?? ""} - ${hasHistory ? "이력 있음" : "이력 없음"} - ${hasStrategy ? "전략 있음" : "전략 없음"}`}
+                  {`${shortTitle} | ${item.country ?? ""} (${item.tariff}%) `}
+                  <br/>
+                  {` 계산 이력 : ${hasHistory ? "O" : "X"} | AI 전략 추천 : ${hasStrategy ? "O" : "X"}`}
                 </span>
                 <span className="accordion-icon">{isOpen ? "▲" : "▼"}</span>
               </button>

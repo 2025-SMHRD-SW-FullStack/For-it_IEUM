@@ -33,13 +33,10 @@ public class BookMarkController {
 	@Operation(summary = "북마크 목록")
 	public ResponseEntity<List<BookMarkDTO>> getBookMarkList(
 			@RequestHeader(value = "Authorization", required = false) String authHeader) {
+		String userID = "";
 		if (authHeader != null) {
-			String userId = userService.getUserInfo(authHeader);
-			//dto.setUserID(userId);
+			userID = userService.getUserInfo(authHeader);
 		}
-		System.out.println("BookMarkList");
-		//dto.setUserID("bbbb");
-		String userID = "bbbb";
 		List<BookMarkDTO> list = bookMarkService.bookMarkList(userID);
 		return ResponseEntity.ok(list);
 	}
@@ -52,7 +49,6 @@ public class BookMarkController {
 			String userId = userService.getUserInfo(authHeader);
 			dto.setUserID(userId);
 		}
-		dto.setUserID("bbbb");
 		String msg = bookMarkService.saveBookMark(dto);
 		return msg;
 	}
