@@ -1,71 +1,8 @@
-/* 검색바 */
-/* 화면 비율 고정 */
-
-
-.search-box{
-  display:flex;
-  border:2px solid #dadada;
-  border-radius:9999px;
-  overflow:hidden;
-  width:550px;
-  /* width:50%; */
-  box-sizing: border-box; /*패딩, 테두리까지 포함해서 width 계산*/
-  padding: 0; /*내부 input 간격 조정*/
-  padding-right: 10px;
-  /* margin-left: 40%; */
-}
-/* .search-wrapper {
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  padding: 20px;
-} */
-
-.search-box img {
-  width: 5px;
-  height: 5px;
-}
-
-.search-box img:hover {
-  transform: scale(1.05);
-}
-
-.select-wrapper select{
-  border:none;
-  outline: none;
-  background:#e6f1ff;
-  padding:.9rem 1rem;
-  font-size:.9rem;
-  cursor:pointer;
-  border-radius: 35px;
-  /* 브라우저 기본 UI 제거 (화살표 포함) */
-  appearance: none;
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  height: 100%;
-}
-.select-wrapper {
+.sideBar {
+  border-right: 1px solid #959595;
   position: relative;
-}
-
-.select-wrapper::after {
-  content: '▼'; 
-  position: absolute;
-  right: 5px;
-  top: 50%;
-  transform: translateY(-50%);
-  pointer-events: none;
-  font-size: 0.6rem;
-}
-
-.search-box input{
-  flex:1;border:none;padding:0 1rem;font-size:.9rem;
-}
-.search-box input:focus{outline:none;}
-.search-box button{
-  border:none;
-  background:transparent;
-  padding:0 1.2rem;
-  font-size:1rem;
-  cursor:pointer;
+  padding: 2rem;
+  width: 260px;           /* 고정 너비 */
+  flex-shrink: 0;         /* 줄어들지 않도록 설정 */
+  box-sizing: border-box;
 }
