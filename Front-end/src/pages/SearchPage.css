@@ -1,11 +1,22 @@
 .searchPage {
   display: flex;
   flex-direction: row;
-  height: 100%;
+  overflow: hidden;
+}
+
+.searchContainer{
+  display: flex;
+  flex-direction: row;
+}
+
+.searchWrapper {
+  display: flex;
+  flex-direction: column;
+  flex: 2;
+  margin: 2rem 4rem;
 }
 
 .sideBar {
-    /* border-top: 1px solid #6d6d6d; */
     border-right: 1px solid #959595;
     position: relative;
     padding: 2rem;
@@ -16,30 +27,7 @@
     box-sizing: border-box;
 }
 
-.searchBar {
-  margin: 1%;
-  margin-bottom: 2rem;
-}
-
-
-.searchContentPanel{
-  display: flex;
-  flex-direction: column;
-  height: 100%;
-  overflow: auto;
-  position: relative;
-
-}
-
 .card-list{
-  height: 100%;
-  flex: 1;
-  display: flex;
-  flex-wrap: wrap;
-  margin: 20px;
-  gap: 0.65rem;
-
-  
-    
+  margin-top: 1rem;
 }
 
