@@ -79,14 +79,20 @@ public class CategoryController {
 	}
 
 	@PostMapping("/keyword/interest")
-	public ResponseEntity<?> keywordSave(@RequestHeader(value = "Authorization", required = false) String authHeader,KeyWordDTO uDto) {
+	public ResponseEntity<?> keywordSave(@RequestHeader(value = "Authorization", required = false) String authHeader,@RequestBody KeyWordDTO uDto) {
 
 		System.out.println("[categorySave Controller 접근 확인]");
+		System.out.println(uDto);
+		
 		CategoryDTO aDto = new CategoryDTO();
+		
 		if (authHeader != null) {
 			String userId = userService.getUserInfo(authHeader);
 			uDto.setUserId(userId);
-			cateService.keywordSave(uDto);
+			// 회원의 카테고리 정보가 5보다 작을때만 카테고리 저장
+			if(cateService.listMerge(uDto, aDto).getUserKeyword().size() <5) {
+				cateService.keywordSave(uDto);
+			}
 		}
 		
 		return ResponseEntity.ok(cateService.listMerge(uDto, aDto));
