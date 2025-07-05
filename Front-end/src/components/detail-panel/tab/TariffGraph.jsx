@@ -1,17 +1,15 @@
-import React, { PureComponent } from 'react';
+import React from 'react';
 import { BarChart, Bar,  XAxis, YAxis, Tooltip, ResponsiveContainer, Cell, LabelList } from 'recharts';
 import useCardStore from '../../../stores/CardStore';
-import testItemArray from '../../../data/testItemArray';
 import './TariffGraph.css'
 
 const TariffGraph = ({ overrideData = null }) => {
 
   const { selectedCard } = useCardStore();
-  const card = overrideData || selectedCard;
-  if (!card) return null;
+  const card = overrideData ? overrideData : selectedCard;
 
   if (!card) return <p>그래프 데이터를 찾을 수 없습니다.</p>;
-  
+
   const rawBaseTariff    = card.base_tariff    ?? 0;
   const rates         = Array.isArray(card.top10_data)
                         ? card.top10_data.map(i => i.rate ?? 0)

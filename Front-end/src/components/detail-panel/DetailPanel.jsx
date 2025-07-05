@@ -11,8 +11,9 @@ import BookmarkButton from './button/BookmarkButton';
 
 import buildPrompt4o from '../../api/Prompt4o';
 import useOpenAI from '../../api/openAI';
-import testItemArray from '../../data/testItemArray';
+import testItem from '../../data/testItem';
 import { saveSearchData } from '../../services/searchService';
+import useCalCulStore from '../../stores/CalculStore';
 
 
 const DetailPanel = () => {
@@ -21,6 +22,9 @@ const DetailPanel = () => {
   const [isVisible, setIsVisible] = useState(false);
   const [shouldRender, setShouldRender] = useState(false);
 
+  // 품목 관련 상태
+  const { reset } = useCalCulStore();
+
   // AI 전략 관련 상태
   const [aiSubmitted, setAiSubmitted] = useState(false);
   const { loading, response, fetchAI } = useOpenAI();
@@ -28,7 +32,8 @@ const DetailPanel = () => {
   // 카드 선택 시 상태 초기화
   useEffect(() => {
     if (selectedCard) {
-      console.log("선택된 카드:", selectedCard);
+      setActiveTab('tariff');
+      reset();
       saveSearchData(
         selectedCard.product_name,
         selectedCard.hs_code,
@@ -47,7 +52,7 @@ const DetailPanel = () => {
   // AI 전략 탭에 진입하면 자동 호출
   useEffect(() => {
     if (activeTab === 'strategy' && selectedCard && !aiSubmitted) {
-      const selectedItem = testItemArray.find(item => item.id === selectedCard.id);
+      const selectedItem = testItem.find(item => item.id === selectedCard.id);
       const prompt = buildPrompt4o(selectedItem);
       fetchAI(prompt);
       setAiSubmitted(true);
@@ -78,7 +83,10 @@ const DetailPanel = () => {
           <CloseButton clearSelectedCard={clearSelectedCard} setIsVisible={setIsVisible} />
           <BookmarkButton activeTab={activeTab} selectedCard={selectedCard} />
         </div>
+
+      <div className='activeTab' key={activeTab}>
         {renderActiveTab()}
+      </div>
       </div>
     </aside>
   );

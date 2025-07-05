@@ -2,6 +2,7 @@ import React from 'react'
 import './UserMenu.css'
 import star from "../../assets/image/star.png"
 import login from '../../assets/image/login.png'
+import login_filled from '../../assets/image/login_filled.png'
 import mypage from '../../assets/image/mypage.png'
 import bell from '../../assets/image/bell.png'
 import { useNavigate,Link } from 'react-router-dom'
@@ -43,7 +44,7 @@ const UserMenu = () => {
         <>
           <img src={bell} alt='알림 아이콘'  className="user-menu-icon" style={{cursor:'pointner'}}/>
           <img src={mypage} alt="회원정보수정"  className="user-menu-icon" style={{cursor:'pointner'}}/>
-          <img src={login} alt="로그인 아이콘"  onClick={() => tokenClean()}  className="user-menu-icon" style={{cursor:'pointner'}}/>
+          <img src={login_filled} alt="로그아웃 아이콘"  onClick={() => tokenClean()}  className="user-menu-icon" style={{cursor:'pointner'}}/>
           <Link to="/BookMarkPage"><img src={star} alt='별 아이콘' className="user-menu-icon" style={{cursor:'pointner'}}/></Link>
         </>
       ) : (
@@ -55,7 +56,6 @@ const UserMenu = () => {
         style={{cursor:'pointner'}}
         />
       )}
-      <button onClick={tokenClean}>토큰 클린</button>
     </div>
   )
 }

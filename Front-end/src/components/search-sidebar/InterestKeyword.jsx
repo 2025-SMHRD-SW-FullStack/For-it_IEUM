@@ -1,8 +1,10 @@
 import { useDrop } from 'react-dnd';
 import { toast } from 'react-toastify';
 import Keyword from './Keyword';
+import { keywordDeleteItem } from '../../services/keyWordService';
+import deleteIcon from '../../assets/image/delete.png';
 
-const InterestKeyword = ({ interest, setInterest, Item ,userKeyword}) => {
+const InterestKeyword = ({ interest, setInterest, Item ,userKeyword,setUserKeyword}) => {
   
   
   const keywords = userKeyword || [];
@@ -21,7 +23,22 @@ const InterestKeyword = ({ interest, setInterest, Item ,userKeyword}) => {
     },
   });
 
-  
+  const keywordDelete = async (id) => {
+    console.log("확인");
+    console.log(id);
+    
+      
+        try {
+          const response = await keywordDeleteItem(id);
+          console.log(response);
+          
+          setUserKeyword(response.userKeyword);
+        } catch (error) {
+          console.error('검색 실패:', error);
+        }
+      
+
+  }
 
 
   return (
@@ -42,7 +59,11 @@ const InterestKeyword = ({ interest, setInterest, Item ,userKeyword}) => {
             onClick={() => setInterest(interest.filter((k) => k !== keyword))}
             draggable={false}
           />
-        <button>닫기</button>
+          <img 
+            src={deleteIcon} 
+            alt="삭제" 
+            onClick={e=>{e.stopPropagation;keywordDelete(keyword.id)}} 
+            style={{width:20}} />
       </div>
           
         ))}

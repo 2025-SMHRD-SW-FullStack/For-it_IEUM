@@ -1,21 +1,25 @@
 import { create } from 'zustand';
 
-export const useTokenStore = create((set) => ({
-  accessToken: null,
-  isLoggedIn: false,
+export const useTokenStore = create((set) => {
+  // accessToken: null,
+  // isLoggedIn: false,
+  const storedToken = localStorage.getItem('accessToken')
+  return{
 
+    accessToken:storedToken,
+    isLoggedIn:!!storedToken,
   // 토큰 설정
   setAccessToken: (token) =>
-    set({
-      accessToken: token,
-      isLoggedIn: true,
-    }),
+    {
+      localStorage.setItem('accessToken', token);
+      set({ accessToken: token, isLoggedIn: true });
+    },
 
   // 토큰 제거
   clearAccessToken: () =>
-    set({
-    accessToken: localStorage.removeItem('accessToken'),
-                    // delete apiClient.defaults.headers.common['accessToken']}
-    isLoggedIn: false,
-    }),
-}));
+    {
+      localStorage.removeItem('accessToken');
+      set({ accessToken: null, isLoggedIn: false });
+    },
+};
+});

@@ -3,13 +3,19 @@ import './NewsPage.css';
 import { newsItem } from '../services/newsService';
 import NewsPanel from '../components/news/NewsPanel';
 
-const stripTags = str => str.replace(/<\/?[^>]+(>|$)/g, "");
-
 const NewsPage = () => {
   
   const [items, setItems] = useState([]);
   const [selectedItem, setSelectedItem] = useState(null);
   const [showNews, setShowNews] = useState(false);
+
+  const stripTagsAndDecode = str => {
+    const withoutTags = str.replace(/<\/?[^>]+(>|$)/g, "");
+    const txt = document.createElement('textarea');
+    txt.innerHTML = withoutTags;
+    return txt.value;
+  };
+
 
   const fetchResults = async () => {
     try {
@@ -35,7 +41,7 @@ const NewsPage = () => {
                 setSelectedItem(item);
                 setShowNews(true);
               }}>
-              <h3 className="newsTitle">{stripTags(item.title)}</h3>
+              <h3 className="newsTitle">{stripTagsAndDecode(item.title)}</h3>
               <small className="newsDate">
                 {new Date(item.pubDate).toLocaleString('ko-KR')}
               </small>
@@ -47,8 +53,9 @@ const NewsPage = () => {
           ))}
         </div>
 
-      {showNews && (
+      {showNews && selectedItem &&(
         <NewsPanel
+          key={selectedItem.id}
           item={selectedItem}
           setIsVisible={setShowNews}
           onClose={() => setSelectedItem(null)}

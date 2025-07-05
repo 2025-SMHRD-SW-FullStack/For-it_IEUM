@@ -1,8 +1,8 @@
 const testItemArray = [
   {
-    product_name: "커피 원두",
     hs_code: "0901.21-0000",
-    baseTariff: 8,
+    product_name: "커피 원두",
+    baseTariff: 0.08,
     lowestTariff: 0,
     lowestCountry: "베트남",
     availableCountries: [

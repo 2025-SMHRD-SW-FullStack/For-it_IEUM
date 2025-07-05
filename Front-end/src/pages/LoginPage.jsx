@@ -20,27 +20,6 @@ const LoginPage = () => {
     setForm((prev) => ({ ...prev, [name]: value }));
   };
 
-  // 현재 입력이 안되서 id, pasword 지정한거임 로그인 됨 
-  // const user= 'nano1'
-  // const pw = '1234'
-  const fetchResults = async (form) => {
-    console.log(form);
-    
-        try {
-          const response = await login({
-            userId:form.userId,
-            password:form.password,
-        });   // axios.get 결과
-          console.log(response);
-            localStorage.setItem('accessToken', response.result.token); // 해당 해더에 토큰 저장
-          setAccessToken(response.result.token); // 토큰 스토어에 액세스 토큰 설정
-          isLoggedIn(true); // 로그인 상태 업데이트
-            // navigate('/search', { replace: true });
-          
-        } catch (error) {
-          console.error('로그인:', error);
-        }
-      };
 
   const handleSubmit = (e) => {
     e.preventDefault();

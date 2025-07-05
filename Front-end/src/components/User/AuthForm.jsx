@@ -5,10 +5,11 @@ import { useTokenStore } from '../../stores/TokenStore';
 //import { login } from '../../services/authService';
 import { useNavigate } from 'react-router-dom';
 import { login } from '../../services/userService'; 
+import { toast, ToastContainer } from 'react-toastify';
 //Front-end\src\services\authService.js
 
 const AuthForm = ({ type,  form,  setForm,  
-                    onChange,  onSuccess,  onSocialClick,
+                    onChange,  onSubmit,  onSocialClick,
                     socialButtons,  agree,  setAgree,  className = '' }) => {
 
   const isLogin = type === 'login';
@@ -62,14 +63,15 @@ const AuthForm = ({ type,  form,  setForm,
         setAccessToken(accessToken.result.token);
         // 4) 부모 컴포넌트에 성공 콜백
         navigate('/'); // 로그인 성공 후 홈으로 이동
-        onSuccess?.();
       } catch (err) {
         console.error(err);
+        toast.warn('아이디와 패스워드를 확인해주세요!');
         // TODO: 오류 메시지 보여주기
       }
     } else {
       // 회원가입 로직(onSubmit 콜백으로 처리)
-      onSuccess?.();
+      
+      onSubmit?.(e);
     }
   };
 
@@ -269,6 +271,18 @@ const AuthForm = ({ type,  form,  setForm,
           ))}
         </div>
       )}
+      <ToastContainer
+          position="top-center"
+          autoClose={2000}
+          hideProgressBar={true}
+          toastStyle={{ width: 'fit-content', whiteSpace: 'nowrap' }} // 너비 넓히고 줄바꿈 방지
+          newestOnTop={false}
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
+        />
     </div>
   );
 };

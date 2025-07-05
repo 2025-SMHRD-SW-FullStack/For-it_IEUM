@@ -3,35 +3,26 @@ import useCardStore from '../../../stores/CardStore'
 import './CountryList.css'
 
 
-const CountryList = ({ countries = [], dropDown = false, className='' }) => {
-
+const CountryList = ({ overrideData = null, dropDown = false, className='' }) => {
+  
   const { selectedCard } = useCardStore();
-
-    if (!selectedCard || !selectedCard.top10_data) {
-    return null;
-  }
-
-  const data = selectedCard.top10_data;
-  if (!data || data.length === 0) {
+  const card = overrideData ?? selectedCard;
+  
+  if (!card || !Array.isArray(card.top10_data) || card.top10_data.length === 0) {
     return <p>국가 정보가 없습니다.</p>;
   }
 
-//   // 관세율로 정렬해서 저장하고 싶을때
-//   const sortedCountries =
-//   typeof countries?.[0] === 'object'
-//     ? [...countries].sort((a, b) => a.tariff - b.tariff)
-//     : countries;
-
+  const data = card.top10_data;
 
   if(dropDown) {
     return(
         <div className='countryContainer'>
-            <label className='countryLabel'>🌍 FTA 체결 국가 목록&nbsp;</label>
-            <select className='countrySelect'>
+            <label className='countryLabel'>FTA 체결 국가 목록</label>
+              <select defaultValue="" className="countrySelect">
+                <option value="" disabled>FTA 세율을 선택해주세요</option>
                 {data.map((item, index) => (
                     <option 
                     key={index}
-                    // className={}
                     >{index+1}위 {item.name} | {item.rate}%
                     </option>
                 ))}
@@ -42,7 +33,7 @@ const CountryList = ({ countries = [], dropDown = false, className='' }) => {
 
   return (
       <div className={`countryList ${className} listContent`}>
-          <label className={`countryLabel ${className}`}>🌍 FTA 체결 국가 목록</label>
+          <label className={`countryLabel ${className}`}>FTA 체결 국가 목록</label>
           <ul >
           {data.map((item, index) => (
               <li 

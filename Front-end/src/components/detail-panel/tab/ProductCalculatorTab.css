@@ -1,55 +1,75 @@
-.input{
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-}
-
-.inputContent{
+.input {
     display: flex;
     flex-direction: column;
-    justify-content: center; 
-}
-
-.inputContainer{
-    max-width: fit-content;
-    min-width: 100px;
-    padding: 10px;
-    border: 1px solid #797979;
-    background-color: white;
-    border-radius: 15px;
-}
-
-.inputContainer.quantity{
-    margin-bottom: 10px;
-}
-
-.ProductInput{
-    height: 40px;
-    border: 0px;
-    border-bottom:solid 1px #cacaca;
-    padding: 5px;
-    background: transparent;
-    font-size: 16px;
-    /* border-collapse:collapse; */
-}
-
-.ProductInput.quantity{
-    padding-right: 3.24em;
-}
-
-.CacultateBtn{
-    width: 100%;
-    max-width: 200px;
-    min-width: fit-content;
-    background-color: #CFE8FC;
-    border: 1px solid #cacaca;
+    align-items: center;
+    gap: 1.5rem;
+    background-color: #f9fbfd;
     border-radius: 10px;
-    font-size: large;
-    padding: 2%;
-    margin-bottom: 1rem;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+.inputContent {
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+    flex-wrap: wrap;
 }
 
-.resultLogic{
-    height: 100%;
-    
+.inputContainer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 280px;
+    padding: 10px 15px;
+    border: 1px solid #b0b0b0;
+    background-color: #ffffff;
+    border-radius: 12px;
+    box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.03);
+    font-size: 15px;
+}
+
+.inputLabel {
+    margin-right: 10px;
+    white-space: nowrap;
+    font-weight: 500;
+}
+
+.ProductInput {
+    flex: 1;
+    height: 36px;
+    border: none;
+    border-bottom: 2px solid #c2c2c2;
+    padding: 4px 6px;
+    font-size: 15px;
+    background: transparent;
+    transition: border-color 0.3s;
+}
+
+.ProductInput:focus {
+    outline: none;
+    border-bottom: 2px solid #57a6f8;
+}
+
+.unitLabel {
+    margin-left: 10px;
+    white-space: nowrap;
+    color: #666;
+    font-size: 14px;
+}
+
+.CacultateBtn {
+    width: 100%;
+    min-width: fit-content;
+    background-color: #cfe8fc;
+    border: 1px solid #b0d4f1;
+    border-radius: 10px;
+    font-size: 17px;
+    font-weight: 500;
+    padding: 10px 20px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-top: 1rem;
+}
+
+.CacultateBtn:hover {
+    background-color: #b1d9f7;
 }

@@ -3,11 +3,10 @@ import './TariffComparisonTab.css'
 import useCardStore from '../../../stores/CardStore';
 import TariffGraph from './TariffGraph';
 import CountryList from './CountryList';
-import testItemArray from '../../../data/testItemArray';
 
 const TariffComparisonTab = ({ overrideData = null, className = '' }) => {
 
-   const { selectedCard } = useCardStore();
+  const { selectedCard } = useCardStore();
 
   // 예시 데이터가 있으면 그걸 우선 사용
   const cardData = overrideData || selectedCard;
@@ -29,7 +28,7 @@ const TariffComparisonTab = ({ overrideData = null, className = '' }) => {
       <br/>
       <div className='TariffContainer'>
         <TariffGraph overrideData={cardData}/>
-        <CountryList countries={cardData.availableCountries} className={`${className}`}/>
+        <CountryList overrideData={cardData} className={`${className}`}/>
       </div>
     </div>
   )

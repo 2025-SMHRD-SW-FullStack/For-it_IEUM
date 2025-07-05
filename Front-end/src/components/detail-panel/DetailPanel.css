@@ -49,3 +49,7 @@
   opacity: 1;
   transition: opacity 0.3s ease;
 }
+
+.activeTab{
+  padding: 1.2rem
+}
