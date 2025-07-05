@@ -56,7 +56,6 @@ const UserMenu = () => {
         style={{cursor:'pointner'}}
         />
       )}
-      <button onClick={tokenClean}>토큰 클린</button>
     </div>
   )
 }

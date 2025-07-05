@@ -3,6 +3,7 @@ import { useDrag } from 'react-dnd';
 import { keywordSaveItem } from '../../services/keyWordService';
 import { searchItem } from '../../services/searchService';
 import { useNavigate } from 'react-router-dom';
+import deleteIcon from '../../assets/image/delete.png';
 
 const Keyword = ({
   keyword,
@@ -14,6 +15,7 @@ const Keyword = ({
   Item = { KEYWORD: 'keyword' }, // fallback 기본값
   isSelected = false,
   setUserKeyword,
+  children,
 }) => {
 
   const navigate = useNavigate();
@@ -53,7 +55,7 @@ const Keyword = ({
   };
 
   return (
-    <div
+    <div 
       ref={draggable ? dragRef : null}
       className={`keyword ${draggable ? '' : 'interest'} ${isSelected ? 'selected' : ''}`}
       onClick={handleClick}
@@ -65,6 +67,7 @@ const Keyword = ({
       keywordId={`${keywordId}`}
     >
       {keyword}
+      {children}
     </div>
   );
 };
