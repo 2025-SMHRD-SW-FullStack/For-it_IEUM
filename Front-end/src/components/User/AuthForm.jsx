@@ -73,39 +73,39 @@ const AuthForm = ({ type,  form,  setForm,
     }
   };
 
-  // const onAgreeChange = (e) => {
-  //   const { name, type, value, checked } = e.target;
+  const onAgreeChange = (e) => {
+    const { name, type, value, checked } = e.target;
 
-  //   if (type === 'checkbox') {
-  //     setAgree((prev) => {
-  //       const updated = { ...prev };
+    if (type === 'checkbox') {
+      setAgree((prev) => {
+        const updated = { ...prev };
 
-  //       if (name === 'all') {
-  //         updated.all = checked;
-  //         updated.terms = checked;
-  //         updated.privacy = checked;
-  //         updated.notice = checked;
-  //         if (!checked) updated.noticeChannel = '';
-  //       } else if (name === 'noticeChannel') {
-  //         // 복수 선택 가능한 채널 로직
-  //         const current = new Set((prev.noticeChannel || '').split(',').filter(Boolean));
-  //         if (checked) {
-  //           current.add(value);
-  //         } else {
-  //           current.delete(value);
-  //         }
-  //         updated.noticeChannel = Array.from(current).join(',');
-  //       } else {
-  //         updated[name] = checked;
-  //         if (name === 'notice' && !checked) {
-  //           updated.noticeChannel = '';
-  //         }
-  //       }
+        if (name === 'all') {
+          updated.all = checked;
+          updated.terms = checked;
+          updated.privacy = checked;
+          updated.notice = checked;
+          if (!checked) updated.noticeChannel = '';
+        } else if (name === 'noticeChannel') {
+          // 복수 선택 가능한 채널 로직
+          const current = new Set((prev.noticeChannel || '').split(',').filter(Boolean));
+          if (checked) {
+            current.add(value);
+          } else {
+            current.delete(value);
+          }
+          updated.noticeChannel = Array.from(current).join(',');
+        } else {
+          updated[name] = checked;
+          if (name === 'notice' && !checked) {
+            updated.noticeChannel = '';
+          }
+        }
 
-  //       return updated;
-  //     });
-  //   }
-  // };
+        return updated;
+      });
+    }
+  };
 
   return (
     <div className='authWrapper'>
