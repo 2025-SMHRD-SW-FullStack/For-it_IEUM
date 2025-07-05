@@ -15,24 +15,6 @@ export const Item = {
 
 const KeywordSideBar = () => {
 
-  const keywords = [
-    '전기전자',
-    '의료용품',
-    '가구조명',
-    '생활용품',
-    '의류',
-    '스포츠용품',
-    '자동차부품',
-    '식품',
-    '문구류',
-    '완구',
-    '화장품',
-    '주방용품',
-  ];
-
-
-
-
   const [interest, setInterest] = useState([]);
   const [selectedKeyword, setSelectedKeyword] = useState(null);
   const [allKeywords, setAllKeywords] = useState([]);
