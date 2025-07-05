@@ -117,7 +117,8 @@ public class CategoryController {
 
 	@PostMapping("/keyword/delete")
 	public ResponseEntity<?> KeywordDelete(@RequestHeader(value = "Authorization", required = false) String authHeader,
-			KeyWordDTO uDto) {
+			@RequestBody KeyWordDTO uDto) {
+		System.out.println("컨트롤러 확인"+uDto.getId());
 		CategoryDTO aDto = new CategoryDTO();
 		if (authHeader != null) {
 			String userId = userService.getUserInfo(authHeader);
