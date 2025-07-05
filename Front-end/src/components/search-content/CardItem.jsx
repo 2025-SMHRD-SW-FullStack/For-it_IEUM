@@ -3,7 +3,7 @@ import useCardStore from '../../stores/CardStore'
 import star from '../../assets/image/star.png'
 import filledStar from '../../assets/image/filledStarO.png' // 채워진 별 아이콘 추가
 import './CardItem.css'
-import { saveBookMarks,getBookMarkList,deleteBookMark } from '../../services/bookMarkService';
+import { saveBookMarks, getBookMarkList, deleteBookMark } from '../../services/bookMarkService';
 
 const CardItem = ({ card }) => {
   const { selectedCard, setSelectedCard } = useCardStore();
@@ -16,13 +16,31 @@ const CardItem = ({ card }) => {
     setSelectedCard(card);
   }
 
-  const toggleFavorite = (e) => {
+  const toggleFavorite = async (e) => {
     e.stopPropagation(); // 부모 div 클릭 방지
     setIsFavorite((prev) => !prev);
+    console.log('즐겨찾기 토글:', !isFavorite);
+    console.log('카드 정보:', card);
+    if (!isFavorite) {
+      const saveBookMark = await saveBookMarks(
+        card.hs_code,
+        card.product_name,
+        card.base_tariff,
+        card.top10_data[0].name,
+        card.top10_data[0].rate,
+        "",
+        "",
+        "",
+        ""
+      );
+    }else{
+      const delBookMark = await deleteBookMark(card.hs_code);
+      console.log('즐겨찾기 삭제:', delBookMark);
+    }
   }
 
   useEffect(() => {
-    const fetchFavorites = async () => { 
+    const fetchFavorites = async () => {
       try {
         const favorites = await getBookMarkList();
         const isFav = favorites.some(fav => fav.hsCode === card.hs_code);

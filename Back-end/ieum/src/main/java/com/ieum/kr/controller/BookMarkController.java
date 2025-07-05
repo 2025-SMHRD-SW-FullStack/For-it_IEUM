@@ -61,6 +61,8 @@ public class BookMarkController {
 			String userId = userService.getUserInfo(authHeader);
 			dto.setUserID(userId);
 		}
+		System.out.println("delBookMark");
+		System.out.println(dto);
 		String result = bookMarkService.delBookMark(dto);
 		return result;
 	}

@@ -44,5 +44,13 @@ public interface BookMarkRepository extends JpaRepository<BookMarkEntity, Intege
     
 	List<BookMarkDTO> findAllByUserID(String userID);
 	
-	
+    @Modifying
+    @Transactional
+    @Query("DELETE FROM BookMarkEntity b " +
+           " WHERE b.userID = :userID " +
+           "   AND b.hsCode = :hsCode")
+    int deleteByUserIDAndHsCodeJPQL(
+        @Param("userID") String userID,
+        @Param("hsCode") String hsCode
+    );
 }

@@ -19,9 +19,9 @@ export const getBookMarkList = async () => {
     return res.data;
 }
 
-export const deleteBookMark = async (seqNumber) => {
+export const deleteBookMark = async (hsCode) => {
     const res = await apiClient.post(`/bookmark/del`,{
-        seqNumber
+        hsCode
     });
     return res.data;
 }
