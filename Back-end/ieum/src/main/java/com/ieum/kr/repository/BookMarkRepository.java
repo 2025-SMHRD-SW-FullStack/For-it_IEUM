@@ -48,9 +48,9 @@ public interface BookMarkRepository extends JpaRepository<BookMarkEntity, Intege
     @Transactional
     @Query("DELETE FROM BookMarkEntity b " +
            " WHERE b.userID = :userID " +
-           "   AND b.hsCode = :hsCode")
+           "   AND b.seqNumber = :seqNumber")
     int deleteByUserIDAndHsCodeJPQL(
         @Param("userID") String userID,
-        @Param("hsCode") String hsCode
+        @Param("seqNumber") int seqNumber
     );
 }

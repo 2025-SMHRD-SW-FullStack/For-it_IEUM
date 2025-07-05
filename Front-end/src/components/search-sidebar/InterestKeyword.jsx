@@ -2,6 +2,8 @@ import { useDrop } from 'react-dnd';
 import { toast } from 'react-toastify';
 import Keyword from './Keyword';
 import { keywordDeleteItem } from '../../services/keyWordService';
+import deleteIcon from '../../assets/image/delete.png';
+
 const InterestKeyword = ({ interest, setInterest, Item ,userKeyword,setUserKeyword}) => {
   
   
@@ -57,7 +59,11 @@ const InterestKeyword = ({ interest, setInterest, Item ,userKeyword,setUserKeywo
             onClick={() => setInterest(interest.filter((k) => k !== keyword))}
             draggable={false}
           />
-        <button onClick={()=>keywordDelete(keyword.id)}>닫기</button>
+          <img 
+            src={deleteIcon} 
+            alt="삭제" 
+            onClick={e=>{e.stopPropagation;keywordDelete(keyword.id)}} 
+            style={{width:20}} />
       </div>
           
         ))}
