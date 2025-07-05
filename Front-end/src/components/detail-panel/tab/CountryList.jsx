@@ -43,16 +43,16 @@ const CountryList = ({ countries = [], dropDown = false, className='' }) => {
   return (
       <div className={`countryList ${className} listContent`}>
           <label className={`countryLabel ${className}`}>🌍 FTA 체결 국가 목록</label>
-          <ul>
+          <ul >
           {data.map((item, index) => (
               <li 
               key={index}
-              className={`country ${index === 0 ? 'lower': index === countries.length - 1 ? 'last' : ''} ${className} list`}
+              className={`country ${index === 0 ? 'lower': index === data.length-1 ? 'last' : ''} ${className} list`}
               >{index+1}위 {item.name} | {item.rate*100}%</li>
           ))}
           </ul>
       </div>
-  )
+  )  
 }
 
 export default CountryList

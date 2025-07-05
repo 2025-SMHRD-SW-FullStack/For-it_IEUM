@@ -26,35 +26,35 @@ const KeywordSideBar = () => {
     navigate(`/search?keyword=${encodeURIComponent(keyword)}`);
   };
 
-  
+  useEffect(()=>{
 
-useEffect(()=>{
+    const fetchResults = async () => {
+        try {
+          const data = await keywordItem();   // axios.get 결과
+          setAllKeywords(data.keywordAll);
+          setUserKeyword(data.userKeyword)
+          console.log(data.userKeyword); // 회원 키워드 
+          console.log(data.keywordAll); // 전체 키워드
+        } catch (error) {
+          console.error('검색 실패:', error);
+        }
+      };
+      fetchResults();
+  },[]);
 
-  const fetchResults = async () => {
-      try {
-        const data = await keywordItem();   // axios.get 결과
-        setAllKeywords(data.keywordAll);
-        setUserKeyword(data.userKeyword)
-        console.log(data.userKeyword); // 회원 키워드 
-        console.log(data.keywordAll); // 전체 키워드
-        
-          
-        // navigate('/search', { replace: true });
-      } catch (error) {
-        console.error('검색 실패:', error);
-      }
-    };
-    fetchResults();
-},[]);
-
-const tk = localStorage.getItem('accessToken')
-
+  const tk = localStorage.getItem('accessToken')
 
   return (
     <DndProvider backend={HTML5Backend}>
       <div>
       {tk &&
-        <InterestKeyword interest={interest} setInterest={setInterest} Item={Item} userKeyword={userKeyword}/>
+        <InterestKeyword
+          interest={interest}
+          setInterest={setInterest}
+          Item={Item}
+          userKeyword={userKeyword}
+          setUserKeyword={setUserKeyword}
+        />
         }
         <div>
           <b className="keywordLabel">분류 리스트</b>

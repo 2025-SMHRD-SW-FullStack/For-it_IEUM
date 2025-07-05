@@ -8,8 +8,6 @@
 
 
 .countryList{
-    max-width: 200px;
-    min-width: fit-content;
     box-sizing: border-box;
 }
 
@@ -23,13 +21,14 @@
 }
 
 .country{
-    max-width: 250px;
     min-width: fit-content;
     border: 1px solid #8a8a8a;
     border-bottom: 0px;
-    font-size: 20px;
     list-style-type: none;
     padding: 5px;
+    font-size: 18px;
+    word-break: keep-all; /* 단어 기준으로 줄바꿈 */
+    white-space: normal;  /* 여러 줄 허용 */
 }
 
 .country.lower{

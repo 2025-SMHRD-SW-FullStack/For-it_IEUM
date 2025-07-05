@@ -1,6 +1,5 @@
 .tariffGraph{
-    max-width: 50%;
-    min-width: 250px;
+    width: 100%;
     height: 14rem;
-    margin-right: 2rem;
+    margin-right: 20px;
 }

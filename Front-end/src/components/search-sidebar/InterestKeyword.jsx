@@ -17,7 +17,6 @@ const InterestKeyword = ({ interest, setInterest, Item ,userKeyword}) => {
         toast.warn('관심 키워드는 최대 5개까지만 등록할 수 있어요.');
         return;
       }
-
       setInterest([...interest, item.keyword]);
     },
   });
@@ -30,19 +29,23 @@ const InterestKeyword = ({ interest, setInterest, Item ,userKeyword}) => {
       
       <b className="keywordLabel">관심 있는 키워드</b>
       <br/>
-      {keywords.length === 0 ? <p className="placeholder">여기로 드래그하세요</p>:
-      
-      keywords.map((keyword, i) => (
-        <Keyword
-          key={i}
-          keywordId={keyword.id}
-          keyword={keyword.productName}
-          hsCode ={keyword.hsCode}
-          checkType={keyword.checkType}
-          onClick={() => setInterest(interest.filter((k) => k !== keyword))}
-          draggable={false}
-        />
-      ))}
+        {keywords.length === 0 ? <p className="placeholder">여기로 드래그하세요</p>:
+        
+        keywords.map((keyword, i) => (
+          <div>
+          <Keyword
+            key={i}
+            keywordId={keyword.id}
+            keyword={keyword.productName}
+            hsCode ={keyword.hsCode}
+            checkType={keyword.checkType}
+            onClick={() => setInterest(interest.filter((k) => k !== keyword))}
+            draggable={false}
+          />
+        <button>닫기</button>
+      </div>
+          
+        ))}
       
     </div>
   );

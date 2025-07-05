@@ -147,7 +147,8 @@
 .modal-actions {
   margin-top: 24px;
   display: flex;
-  justify-content: space-around;
+  justify-content: center;
+  gap: 0.4rem;
 }
 
 /* 취소 버튼 */

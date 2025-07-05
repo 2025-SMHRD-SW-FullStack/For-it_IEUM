@@ -1,12 +1,15 @@
 .searchPage {
   display: flex;
   flex-direction: row;
+  height: 100%;
   overflow: hidden;
 }
 
-.searchContainer{
+.searchContainer {
   display: flex;
   flex-direction: row;
+  height: 100%;
+  overflow: hidden;
 }
 
 .searchWrapper {
@@ -14,6 +17,7 @@
   flex-direction: column;
   flex: 2;
   margin: 2rem 4rem;
+  overflow: hidden; /* 내부 요소에게 스크롤 권한 위임 */
 }
 
 .sideBar {
@@ -23,26 +27,23 @@
   width: 260px;           /* 고정 너비 */
   flex-shrink: 0;         /* 줄어들지 않도록 설정 */
   box-sizing: border-box;
-
 }
-
 
 .searchBar {
   margin: 1%;
   margin-bottom: 2rem;
 }
 
-
-.searchContentPanel{
+.searchContentPanel {
   display: flex;
   flex-direction: column;
   height: 100%;
-  overflow: auto;
   position: relative;
-
 }
 
-.card-list{
+.card-list {
+  flex: 1;
+  overflow-y: auto;  
   margin-top: 1rem;
+  min-height: 0;    
 }
-

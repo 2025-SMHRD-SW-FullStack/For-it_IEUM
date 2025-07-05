@@ -12,8 +12,7 @@
 }
 
 .textDetail{
-    max-width: 560px;
-    min-width: 200px;
+    min-width: fit-content;
     border-bottom: 1px solid #959595;
     padding-bottom: 0.3rem;
     margin-bottom: 0.5rem;
@@ -32,5 +31,6 @@
 
 .TariffContainer{
     display: flex;
-    display: row;
+    justify-content: space-between;
+    width: 100%;
 }

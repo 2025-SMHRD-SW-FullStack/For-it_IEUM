@@ -37,16 +37,13 @@ const AIStrategyTab = () => {
   
 
   return (
-    <div className="AIContent">
-      <pre className="AIText">
-        {loading
-          ? "AI가 전략을 분석 중입니다..."
-          : chatResponse
-            ? chatResponse
-            : "AI 응답을 받지 못했습니다."}
-      </pre>
-      
-    </div>
+    <pre className="AIText">
+      {loading
+        ? "AI가 전략을 분석 중입니다..."
+        : chatResponse
+          ? chatResponse
+          : "AI 응답을 받지 못했습니다."}
+    </pre>
   );
 };
 

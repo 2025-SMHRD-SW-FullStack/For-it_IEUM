@@ -44,12 +44,16 @@ const CaculatorLogic = ({className = '',trigger}) => {
 
   return (
     <div className={`logic ${className}`} style={{ whiteSpace: 'pre-line' }}> 
-    {loading && <p>계산 중…</p>}
-      {error && <p className="error">오류 발생: {error.message}</p>}
+    {loading && <div>계산 중…</div>}
+      {error && <div className="error">오류 발생: {error.message}</div>}
       {!loading && !error && (
         calculationResult != null
-          ? <p>계산 결과: {calculationResult}</p>
-          : <p>아직 계산된 값이 없습니다.</p>
+          ? <div>
+              <strong>계산 결과</strong>
+              <br/>
+              {calculationResult}
+            </div>
+          : <div>아직 계산된 값이 없습니다.</div>
       )}</div>
   )
 }

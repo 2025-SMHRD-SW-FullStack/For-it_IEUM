@@ -8,9 +8,7 @@
 }
 
 .dropdown-container-header {
-  /* width: 100%; */
   display: flex;
-  justify-content: space-between;
   align-items: center;
   cursor: pointer;
   border-bottom: 1px solid #ccc;
