@@ -10,9 +10,9 @@ const FtaCountryGrid = () => {
     <div className="fta-country-wrapper">
       <h2>FTA 체결 국가</h2>
       <div className="fta-country-grid">
-       {ftaCountries.map((country)=>(
+       {ftaCountries.map((country,i)=>(
           <a
-            key={country.id}
+            key={i}
             href={country.external}
             target="_blank"
             rel="noopener noreferrer"
