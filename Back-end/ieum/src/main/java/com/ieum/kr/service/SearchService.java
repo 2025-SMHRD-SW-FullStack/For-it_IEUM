@@ -129,7 +129,7 @@ public class SearchService {
             총 세금: %,d원
 
             ✅ 총 수입 비용: 약 %,d원
-            1대당 총 수입단가: 약 %,d원
+            1개당 총 수입단가: 약 %,d원
 
             ✅ 차이점: %,d원
             """.formatted(

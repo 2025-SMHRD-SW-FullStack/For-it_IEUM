@@ -1,7 +1,7 @@
 import apiClient from '../lib/apiClient';
 
 export const login = async (credentials) => {
-  const response = await apiClient.post('/api/login', credentials);
+  const response = await apiClient.post('/login', credentials);
 
   const { accessToken } = response.data;
   if (accessToken) {

@@ -7,11 +7,14 @@ import UserMenu from './UserMenu';
 import BookMark from './BookMark';
 import SearchBar from '../Search/SearchBar';
 import './Header.css';
+import { useTokenStore } from '../../stores/TokenStore';
+//Front-end\src\stores\TokenStore.js
 
 // 로그인 여부에 따라 컴포넌트 조건부 렌더링
-const Header = ({ isLoggedIn }) => {
+const Header = () => {
   const location = useLocation(); // 현재 경로 감지
-  const hideSearchBar = location.pathname === '/' || location.pathname === '/login'|| location.pathname === '/search';
+  const hideSearchBar = location.pathname === '/' || location.pathname === '/login' || location.pathname === '/search';
+  const { isLoggedIn } = useTokenStore();
 
   return (
     <header className="header_main">
@@ -23,7 +26,7 @@ const Header = ({ isLoggedIn }) => {
           {!hideSearchBar && <SearchBar />}
         </div>
         <div className="header_right">
-          <UserMenu isLoggedIn={isLoggedIn} />
+          <UserMenu />
           {isLoggedIn && <BookMark />}
         </div>
       </div>

@@ -1,13 +1,20 @@
 import React, { useEffect, useState } from 'react';
 import UserInput from './UserInput';
 import './AuthForm.css';
+import { useTokenStore } from '../../stores/TokenStore';
+//import { login } from '../../services/authService';
+import { useNavigate } from 'react-router-dom';
+import { login } from '../../services/userService'; 
+//Front-end\src\services\authService.js
 
 const AuthForm = ({ type,  form,  setForm,  
-                    onChange,  onSubmit,  onSocialClick,
+                    onChange,  onSuccess,  onSocialClick,
                     socialButtons,  agree,  setAgree,  className = '' }) => {
 
   const isLogin = type === 'login';
   const [passwordMessage, setPasswordMessage] = useState('');
+  const { setAccessToken, clearAccessToken  } = useTokenStore();
+  const navigate = useNavigate();
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -42,43 +49,67 @@ const AuthForm = ({ type,  form,  setForm,
     }
   }, [form.password, form.passwordConfirm, isLogin]);
 
-  const onAgreeChange = (e) => {
-    const { name, type, value, checked } = e.target;
-
-    if (type === 'checkbox') {
-      setAgree((prev) => {
-        const updated = { ...prev };
-
-        if (name === 'all') {
-          updated.all = checked;
-          updated.terms = checked;
-          updated.privacy = checked;
-          updated.notice = checked;
-          if (!checked) updated.noticeChannel = '';
-        } else if (name === 'noticeChannel') {
-          // 복수 선택 가능한 채널 로직
-          const current = new Set((prev.noticeChannel || '').split(',').filter(Boolean));
-          if (checked) {
-            current.add(value);
-          } else {
-            current.delete(value);
-          }
-          updated.noticeChannel = Array.from(current).join(',');
-        } else {
-          updated[name] = checked;
-          if (name === 'notice' && !checked) {
-            updated.noticeChannel = '';
-          }
-        }
-
-        return updated;
-      });
+  const handleSubmit = async e => {
+    e.preventDefault();
+    if (isLogin) {
+      try {
+        // 1) 로그인 API 호출
+        const  accessToken  = await login({userId:form.userId, password:form.password});
+        // 2) localStorage 에 저장
+        localStorage.setItem('accessToken', accessToken.result.token);
+        // 3) Zustand 스토어에 저장 (isLoggedIn도 true로)
+        console.log('로그인 성공:', accessToken.result.token);
+        setAccessToken(accessToken.result.token);
+        // 4) 부모 컴포넌트에 성공 콜백
+        navigate('/'); // 로그인 성공 후 홈으로 이동
+        onSuccess?.();
+      } catch (err) {
+        console.error(err);
+        // TODO: 오류 메시지 보여주기
+      }
+    } else {
+      // 회원가입 로직(onSubmit 콜백으로 처리)
+      onSuccess?.();
     }
   };
 
+  // const onAgreeChange = (e) => {
+  //   const { name, type, value, checked } = e.target;
+
+  //   if (type === 'checkbox') {
+  //     setAgree((prev) => {
+  //       const updated = { ...prev };
+
+  //       if (name === 'all') {
+  //         updated.all = checked;
+  //         updated.terms = checked;
+  //         updated.privacy = checked;
+  //         updated.notice = checked;
+  //         if (!checked) updated.noticeChannel = '';
+  //       } else if (name === 'noticeChannel') {
+  //         // 복수 선택 가능한 채널 로직
+  //         const current = new Set((prev.noticeChannel || '').split(',').filter(Boolean));
+  //         if (checked) {
+  //           current.add(value);
+  //         } else {
+  //           current.delete(value);
+  //         }
+  //         updated.noticeChannel = Array.from(current).join(',');
+  //       } else {
+  //         updated[name] = checked;
+  //         if (name === 'notice' && !checked) {
+  //           updated.noticeChannel = '';
+  //         }
+  //       }
+
+  //       return updated;
+  //     });
+  //   }
+  // };
+
   return (
     <div className='authWrapper'>
-      <form className='authForm' onSubmit={onSubmit}>
+      <form className={`authForm ${className}`} onSubmit={handleSubmit}>
         <h2>{isLogin ? '로그인' : '회원가입'}</h2>
 
         <div className='inputWrapper'>

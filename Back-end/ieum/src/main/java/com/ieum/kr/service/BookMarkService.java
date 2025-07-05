@@ -51,7 +51,8 @@ public class BookMarkService {
 
 	public String delBookMark(BookMarkDTO dto) {
 		try {
-			bookmarkrepo.deleteById(dto.getSeqNumber());
+			//bookmarkrepo.deleteById(dto.getHsCode());
+			bookmarkrepo.deleteByUserIDAndHsCodeJPQL(dto.getUserID(),dto.getHsCode());
 		} catch (Exception e) {
 			return "fail";
 		}
