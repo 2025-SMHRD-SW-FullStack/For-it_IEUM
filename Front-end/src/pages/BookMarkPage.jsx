@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import './BookMarkPage.css';
 import { getBookMarkList,deleteBookMark } from '../services/bookMarkService';
 import { useBookmarkStore } from '../stores/BookMarkStore';
+import { useTokenStore } from "../stores/TokenStore";
 
 const BookMarkPage = () => {
   const [openItem, setOpenItem] = useState(null);

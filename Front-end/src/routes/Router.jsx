@@ -6,8 +6,11 @@ import BookMarkPage from '../pages/BookMarkPage';
 import LoginPage from '../pages/LoginPage';
 import JoinPage from '../pages/JoinPage';
 import NewsPage from '../pages/NewsPage';
+import { useTokenStore } from '../stores/TokenStore';
 
-function PrivateRoute({ isLoggedIn, children }) {
+function PrivateRoute({ children }) {
+  const { isLoggedIn} = useTokenStore();
+  
   if (!isLoggedIn) {
     return <Navigate to="/" replace />;
   }

@@ -14,7 +14,8 @@ export const useTokenStore = create((set) => ({
   // 토큰 제거
   clearAccessToken: () =>
     set({
-      accessToken: null,
-      isLoggedIn: false,
+    accessToken: localStorage.removeItem('accessToken'),
+                    // delete apiClient.defaults.headers.common['accessToken']}
+    isLoggedIn: false,
     }),
 }));
