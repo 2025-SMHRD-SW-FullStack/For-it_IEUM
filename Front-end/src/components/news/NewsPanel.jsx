@@ -1,22 +1,47 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import './NewsPanel.css';
 import CloseButton from '../detail-panel/button/CloseButton';
-
-const stripTags = str => str.replace(/<\/?[^>]+(>|$)/g, '');
 
 const NewsPanel = ({ item, setIsVisible, onClose }) => {
   const [isShown, setIsShown] = useState(false);
   const [canIframe, setCanIframe] = useState(null);
+  const timerRef = useRef(null);
+
+  const stripTagsAndDecode = str => {
+    const withoutTags = str.replace(/<\/?[^>]+(>|$)/g, "");
+    const txt = document.createElement('textarea');
+    txt.innerHTML = withoutTags;
+    return txt.value;
+  };
 
   useEffect(() => {
-    if (item) {
-      setCanIframe(null);
-      setTimeout(() => setIsShown(true), 10);
-    }
+    if (!item) return;
+
+    // 초기화
+    clearTimeout(timerRef.current);
+    setCanIframe(null);
+    setIsShown(false);
+
+    // 짧은 딜레이 후 슬라이드 인
+    setTimeout(() => setIsShown(true), 10);
+
+    // 2초 내 onLoad/onError 없으면 실패 처리
+    timerRef.current = setTimeout(() => {
+      setCanIframe(prev => (prev === null ? false : prev));
+    }, 2000);
+
+    return () => clearTimeout(timerRef.current);
   }, [item]);
 
-  const handleIframeLoad = () => setCanIframe(true);
-  const handleIframeError = () => setCanIframe(false);
+  const handleIframeLoad = () => {
+    clearTimeout(timerRef.current);
+    setCanIframe(true);
+  };
+
+  const handleIframeError = () => {
+    clearTimeout(timerRef.current);
+    setCanIframe(false);
+  };
 
   const handleClose = () => {
     setIsShown(false);
@@ -26,48 +51,44 @@ const NewsPanel = ({ item, setIsVisible, onClose }) => {
     }, 300);
   };
 
-  if (!item) return null;
-
   return (
-    <div className={`news-panel ${isShown ? 'show' : 'hide'}`}>
+    <div className={`news-panel ${isShown ? 'show' : ''}`}>
       <div className="btnContainer">
         <CloseButton onClick={handleClose} />
       </div>
 
-      <div className="news-content">
-        {canIframe === true && (
-          <iframe
-            className="news-iframe"
-            src={item.link}
-            title={stripTags(item.title)}
-          />
-        )}
+      {canIframe === null && (
+        <p className="loading-text">원문을 불러오는 중입니다...</p>
+      )}
 
-        {canIframe === false && (
-          <>
-            <h3 className="newsTitle">{stripTags(item.title)}</h3>
-            <small>{new Date(item.pubDate).toLocaleString('ko-KR')}</small>
-            <div
-              className="news-html"
-              dangerouslySetInnerHTML={{ __html: item.description }}
-            />
-            <a href={item.link} target="_blank" rel="noopener noreferrer">
-              원문 보기 →
-            </a>
-          </>
-        )}
+      <iframe
+        key={item?.link} // 중요: item 변경 시 iframe도 강제 remount
+        className={`news-iframe ${
+          canIframe === null
+            ? 'hidden'
+            : canIframe === true
+            ? 'visible'
+            : ''
+        }`}
+        src={item.link}
+        title={stripTagsAndDecode(item.title)}
+        onLoad={handleIframeLoad}
+        onError={handleIframeError}
+      />
 
-        {canIframe === null && (
-          <iframe
-            className="news-iframe"
-            src={item.link}
-            title={stripTags(item.title)}
-            onLoad={handleIframeLoad}
-            onError={handleIframeError}
-            style={{ display: 'none' }}
+      {canIframe === false && (
+        <div className="fallback-news">
+          <h3 className="newsTitle">{stripTagsAndDecode(item.title)}</h3>
+          <small>{new Date(item.pubDate).toLocaleString('ko-KR')}</small>
+          <div
+            className="news-html"
+            dangerouslySetInnerHTML={{ __html: item.description }}
           />
-        )}
-      </div>
+          <a href={item.link} target="_blank" rel="noopener noreferrer">
+            원문 보기 →
+          </a>
+        </div>
+      )}
     </div>
   );
 };

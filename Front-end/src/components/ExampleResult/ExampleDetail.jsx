@@ -1,11 +1,11 @@
 import React from 'react'
-import testItemArray from '../../data/testItemArray';
+import testItem from '../../data/testItem';
 import TariffComparisonTab from '../detail-panel/tab/TariffComparisonTab'
 import './ExampleDetail.css'
 import CaculatorLogic from '../detail-panel/tab/CaculatorLogic';
 
 const ExampleDetail = () => {
-  const exampleData = testItemArray[0];
+  const exampleData = testItem[0];
 
   return (
     <div className='ExampleGroup'>
@@ -22,12 +22,25 @@ const ExampleDetail = () => {
 
         {/* 2. 계산기 로직  */}
         <div className='exampleBox'>
-          <CaculatorLogic className='exampleLogic'/>
+          <div className='exampleDetailText'>
+            <b>계산 결과</b><br /> 
+            ✅ 수입 원가 계산 (FTA 적용 기준)<br /> 
+            물품 가격: 5,000,000원 (500개 × 10,000원)<br /> 
+            CIF 기준 가격: 5,500,000원<br /> 
+            관세 (FTA 0.0%): 0원<br /> 
+            부가세 (VAT 10%): 550,000원<br /> 
+            총 세금: 550,000원<br /> 
+            <br /> 
+            ✅ 총 수입 비용: 약 6,050,000원<br /> 
+            1개당 총 수입단가: 약 12,100원<br /> 
+            <br /> 
+            ✅ 차이점: 3,025원<br /> 
+          </div>
         </div>
 
         {/* 3. AI 요약   */}
         <div className='exampleBox'>
-          <div className='exampleAIText'>
+          <div className='exampleDetailText'>
             📌 품목 요약 <br />  
             - 커피 원두(0921.21-0000) <br />
               : 특정 품목에 대한 정보가 제공되지 않음. <br />

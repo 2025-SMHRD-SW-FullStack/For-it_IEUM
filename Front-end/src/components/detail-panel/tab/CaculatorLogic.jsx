@@ -16,31 +16,31 @@ const CaculatorLogic = ({className = '',trigger}) => {
 
 
   useEffect(() => {
-    if (!selectedCard) return;
-    if (quantity == null)  return; 
-    if (unitPrice == null) return;
+  if (!selectedCard || !quantity || !unitPrice) return;
 
-    const fetchData = async () => {
-      setLoading(true)
-      setError(null)
-      try {
-        const data = await getCalculation(
-          unitPrice,
-          quantity,
-          selectedCard.base_tariff,
-          selectedCard.top10_data[0].name,
-          selectedCard.top10_data[0].rate
-        );
-        setCalculationResult(data.calculation ?? data);
-        setCalculation(data.calculation ?? data);
-      } catch (err) {
-      } finally{
-        setLoading(false)
-      }
+  const fetchData = async () => {
+    setLoading(true);
+    setError(null);
+    try {
+      const data = await getCalculation(
+        unitPrice,
+        quantity,
+        selectedCard.base_tariff,
+        selectedCard.top10_data[0].name,
+        selectedCard.top10_data[0].rate
+      );
+      setCalculationResult(data.calculation ?? data);
+      setCalculation(data.calculation ?? data);
+    } catch (err) {
+      console.error("계산 API 오류:", err);
+      setError(err);
+    } finally {
+      setLoading(false);
+    }
     };
 
-    fetchData();
-  }, [trigger, selectedCard, quantity, unitPrice]);
+      fetchData();
+    }, [trigger]);
 
   return (
     <div className={`logic ${className}`} style={{ whiteSpace: 'pre-line' }}> 
