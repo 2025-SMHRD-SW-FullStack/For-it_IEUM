@@ -50,26 +50,21 @@ const SearchPage = () => {
         <KeywordSideBar  />
       </div>
       <div className="searchContainer">
-        <div className="searchBar">
+        <div className='searchWrapper'>
           <SearchBar />
-        </div>
-
-        <div className="searchContentPanel">
-          <div className="searchContent">
-            <div className="card-list">
-              {results.length === 0 ? (
-                <p>검색 결과가 없습니다.</p>
-              ) : (
-                results.map((card) => (
-                  <CardItem key={card.id} card={card} />
-                ))
-              )}
-            </div>
+          <div className="card-list">
+            {results.length === 0 ? (
+              <p>검색 결과가 없습니다.</p>
+            ) : (
+              results.map((card) => (
+                <CardItem key={card.id} card={card} />
+              ))
+            )}
           </div>
+        </div>
 
           {selectedCard && <DetailPanel />}
         </div>
-      </div>
     </div>
   );
 };

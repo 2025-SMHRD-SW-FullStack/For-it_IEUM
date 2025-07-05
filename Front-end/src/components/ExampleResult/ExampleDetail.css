@@ -22,6 +22,7 @@
     padding: 0px;
     margin: 0px;
     font-size: 16px;
+    
 }
 
 .exampleTariff.listContent{
@@ -43,19 +44,29 @@
     font-size: 12px;
 }
 
-.exampleContent{
-    display: flex;
-    flex-direction: row;
-    height: 100%;
-    /* padding: 1rem; */
-    margin: 1rem;
-    align-items: stretch;
+.exampleContent {
+  display: flex;
+  flex-direction: row;  
+  gap: 1.5rem;              /* ✅ 각 박스 사이 간격 */
+  width: 100%;
+  margin-top: 1rem;
 }
 
-.exampleAIText{
-    width: fit-content;
-    border: 1px solid black;
-    /* margin-bottom: 1rem; */
-    padding: 0.5rem;
-    font-size: 12px;
+.exampleBox {
+  border: 1px solid #dcdcdc;
+  border-radius: 10px;
+  padding: 1.25rem;
+  background-color: #fafafa;
+  box-shadow: 0 1px 6px rgba(0, 0, 0, 0.05);
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  display: flex;
+}
+
+
+.exampleAIText {
+  font-size: 13px;
+  color: #333;
+  line-height: 1.6;
 }

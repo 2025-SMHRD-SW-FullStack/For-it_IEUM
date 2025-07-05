@@ -30,10 +30,10 @@ const TariffGraph = ({ overrideData = null }) => {
 
   return (
     <div className='tariffGraph'>
-        <ResponsiveContainer width="100%" height="100%">
+        <ResponsiveContainer width="100%" height="100%" padding="0px">
             <BarChart data={chartData}>
                 <XAxis dataKey="name" />
-                <YAxis domain={[0, 'dataMax + 2']}/>
+                <YAxis domain={[0, 'dataMax + 5']}/>
                 <Tooltip />
                 <Bar dataKey="value" barSize={60} >
                     <LabelList dataKey="value" position="top" formatter={(value) => `${value}%`} />

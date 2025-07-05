@@ -1,25 +1,13 @@
-/* 검색바 */
-/* 화면 비율 고정 */
-
-
 .search-box{
   display:flex;
   border:2px solid #dadada;
   border-radius:9999px;
   overflow:hidden;
   width:550px;
-  /* width:50%; */
   box-sizing: border-box; /*패딩, 테두리까지 포함해서 width 계산*/
   padding: 0; /*내부 input 간격 조정*/
   padding-right: 10px;
-  /* margin-left: 40%; */
 }
-/* .search-wrapper {
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  padding: 20px;
-} */
 
 .search-box img {
   width: 5px;
