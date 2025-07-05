@@ -2,11 +2,14 @@ import React, { useEffect, useState } from 'react'
 import '../../App.css';
 import './SearchTypeToggle.css';
 import { getRank } from '../../services/searchService';
+import { useNavigate } from 'react-router-dom';
 
-const SearchTypeToggle = ({ onKeywordClick }) => {
+// const SearchTypeToggle = ({ onKeywordClick }) => {
+const SearchTypeToggle = () => {
   const [isHovered, setIsHovered] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
   const [keywords, setKeywords] = useState([]);
+  const navigate = useNavigate();
 
   const fetchKeywords = async () => {
     try {
@@ -18,6 +21,10 @@ const SearchTypeToggle = ({ onKeywordClick }) => {
     } catch (error) {
       console.error("키워드 가져오기 실패:", error);
     }
+  }
+
+  const goSearch = (keyword) => {
+    navigate(`/search?category=hsCode&query=${keyword.hsCode}`);
   }
 
   useEffect(() => {
@@ -44,7 +51,7 @@ const SearchTypeToggle = ({ onKeywordClick }) => {
           <button
             key={index}
             className="dropdown-container-item"
-            onClick={() => onKeywordClick?.(keyword)}
+            onClick={() => goSearch(keyword)}
             title={keyword.productName}
           >
             {keyword.productName}

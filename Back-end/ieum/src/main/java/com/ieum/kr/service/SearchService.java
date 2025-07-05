@@ -9,15 +9,18 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.client.RestTemplate;
 
 import com.ieum.kr.dto.CalculationDTO;
-import com.ieum.kr.dto.ProductDTO;
 import com.ieum.kr.dto.RankDTO;
 import com.ieum.kr.dto.RankProjection;
-import com.ieum.kr.dto.SearchDTO;
 import com.ieum.kr.dto.TariffInfoDTO;
+import com.ieum.kr.entity.RankEntity;
 import com.ieum.kr.repository.TopRankRepository;
+
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.PersistenceContext;
 
 @Service
 public class SearchService {
@@ -28,15 +31,22 @@ public class SearchService {
 	@Autowired
 	TopRankRepository topRankRepo;
 	
+	@PersistenceContext
+	private EntityManager em;
+	
 	String baseURL = "http://localhost:8010";
 	
+	@Transactional
 	public void saveSearchData(RankDTO dto) {
-		topRankRepo.save(dto.toEntity());
+		RankEntity entity = dto.toEntity();
+		em.persist(entity);
+//		topRankRepo.save(dto.toEntity());
 	}
 
 	// hs_code로 검색했을경우
 	public List<TariffInfoDTO> searchProduct(String hsCode){
-		String url = baseURL + "/api/search-by-code?code="+hsCode;
+		String sanitized = hsCode.replaceAll("\\D+", "");
+		String url = baseURL + "/api/search-by-code?code="+sanitized;
 		ResponseEntity<TariffInfoDTO[]> response = restTemplate.getForEntity(url, TariffInfoDTO[].class);
 		TariffInfoDTO[] product = response.getBody();
 		List<TariffInfoDTO> list = Arrays.asList(product);

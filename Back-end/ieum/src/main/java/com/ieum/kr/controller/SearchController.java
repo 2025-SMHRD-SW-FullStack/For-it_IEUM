@@ -50,12 +50,6 @@ public class SearchController {
 			result = searchService.searchProductName(dto.getInput());
 			return ResponseEntity.ok(result);
 		}else {
-			if (!dto.getInput().matches("\\d+")) {
-				return ResponseEntity
-						.badRequest()
-						.body(Map.of("error", "HS 코드는 숫자만 입력 가능합니다."));
-			}
-
 			result = searchService.searchProduct(dto.getInput());
 		}
 		return ResponseEntity.ok(result);
