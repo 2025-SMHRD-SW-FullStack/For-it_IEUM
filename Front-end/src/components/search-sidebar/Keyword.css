@@ -1,0 +1,17 @@
+.keyword{
+    border: 0.1rem solid #bdbdbd;
+    display: inline-block;
+    padding: 5px;
+    margin: 10px 6px 0 0;
+    border-radius: 5px;
+    font-size: 19px;
+}
+
+.keyword.interest{
+    background-color: #e6f1ff;
+}
+
+.keyword.selected {  
+  border: 0.15rem solid #4d4d4d;  
+  font-weight: bold; 
+}

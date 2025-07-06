@@ -7,7 +7,7 @@ import Catchphrase from '../components/Search/Catchphrase'
 
 const MainPage = () => {
   return (
-    <div className='Main'>
+    <div className='mainPage'>
         <Catchphrase />
         <div className="search_box">
             <SearchTypeToggle />

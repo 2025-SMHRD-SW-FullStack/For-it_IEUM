@@ -1,0 +1,16 @@
+.interestZone {
+    margin-bottom: 1rem;
+}
+
+.interestKeyword{
+    display: inline-flex;
+    align-items: center;
+    margin-right: 6px;
+
+}
+
+.deleteIcon {
+    width: 18px;
+    margin-top: 13px;
+    cursor: pointer;
+}

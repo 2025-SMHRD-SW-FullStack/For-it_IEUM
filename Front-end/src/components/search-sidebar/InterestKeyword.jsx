@@ -3,18 +3,19 @@ import { toast } from 'react-toastify';
 import Keyword from './Keyword';
 import { keywordDeleteItem } from '../../services/keyWordService';
 import deleteIcon from '../../assets/image/delete.png';
+import './InterestKeyword.css'
 
-const InterestKeyword = ({ interest, setInterest, Item ,userKeyword,setUserKeyword}) => {
-  
-  
+const InterestKeyword = ({ interest, setInterest, Item, userKeyword, setUserKeyword }) => {
+
+
   const keywords = userKeyword || [];
-  
+
   const [, dropRef] = useDrop({
     accept: Item.KEYWORD,
-    drop:  (item) => {
+    drop: (item) => {
       if (interest.includes(item.keyword)) return;
       // console.log(`드래그 확인 ${userKeyword[0].productName}`);
-      
+
       if (keywords.length >= 5) {
         toast.warn('관심 키워드는 최대 5개까지만 등록할 수 있어요.');
         return;
@@ -26,48 +27,47 @@ const InterestKeyword = ({ interest, setInterest, Item ,userKeyword,setUserKeywo
   const keywordDelete = async (id) => {
     console.log("확인");
     console.log(id);
-    
-      
-        try {
-          const response = await keywordDeleteItem(id);
-          console.log(response);
-          
-          setUserKeyword(response.userKeyword);
-        } catch (error) {
-          console.error('검색 실패:', error);
-        }
-      
+
+    try {
+      const response = await keywordDeleteItem(id);
+      console.log(response);
+
+      setUserKeyword(response.userKeyword);
+    } catch (error) {
+      console.error('검색 실패:', error);
+    }
+
 
   }
 
 
   return (
     <div ref={dropRef} className="interestZone">
-      
+
       <b className="keywordLabel">관심 있는 키워드</b>
-      <br/>
-        {keywords.length === 0 ? <p className="placeholder">여기로 드래그하세요</p>:
-        
+      <br />
+      {keywords.length === 0 ? <p className="placeholder">여기로 드래그하세요</p> :
+
         keywords.map((keyword, i) => (
-          <div>
-          <Keyword
-            key={i}
-            keywordId={keyword.id}
-            keyword={keyword.productName}
-            hsCode ={keyword.hsCode}
-            checkType={keyword.checkType}
-            onClick={() => setInterest(interest.filter((k) => k !== keyword))}
-            draggable={false}
-          />
-          <img 
-            src={deleteIcon} 
-            alt="삭제" 
-            onClick={e=>{e.stopPropagation;keywordDelete(keyword.id)}} 
-            style={{width:20}} />
-      </div>
-          
+          <div className='interestKeyword'>
+            <Keyword
+              key={i}
+              keywordId={keyword.id}
+              keyword={keyword.productName}
+              hsCode={keyword.hsCode}
+              checkType={keyword.checkType}
+              onClick={() => setInterest(interest.filter((k) => k !== keyword))}
+              draggable={false}
+            />
+            <img
+              src={deleteIcon}
+              alt="삭제"
+              onClick={e => { e.stopPropagation; keywordDelete(keyword.id) }}
+              className='deleteIcon'/>
+          </div>
+
         ))}
-      
+
     </div>
   );
 };

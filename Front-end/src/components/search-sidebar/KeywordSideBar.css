@@ -1,23 +1,3 @@
-.keyword{
-    border: 0.1rem solid #bdbdbd;
-    padding: auto;
-    display: inline-block;
-    padding: 5px;
-    margin: 10px 5px;
-    margin-left: 0px;
-    border-radius: 5px;
-    font-size: 17px;
-}
-
-.keyword.interest{
-    background-color: #e6f1ff;
-}
-
-.keyword.selected {  
-  border: 0.15rem solid #4d4d4d;  
-  font-weight: bold; 
-}
-
 .keywordLabel {
     font-size: 22px;
 }

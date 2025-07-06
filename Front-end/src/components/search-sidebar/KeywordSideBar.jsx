@@ -4,7 +4,7 @@ import { HTML5Backend } from 'react-dnd-html5-backend';
 import { useNavigate } from 'react-router-dom';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import InterestKeyword from './interestKeyword';
+import InterestKeyword from './InterestKeyword';
 import Keyword from './Keyword';
 import './KeywordSideBar.css';
 import { keywordItem } from '../../services/keyWordService';

@@ -3,7 +3,7 @@ import { useDrag } from 'react-dnd';
 import { keywordSaveItem } from '../../services/keyWordService';
 import { searchItem } from '../../services/searchService';
 import { useNavigate } from 'react-router-dom';
-import deleteIcon from '../../assets/image/delete.png';
+import './Keyword.css'
 
 const Keyword = ({
   keyword,
