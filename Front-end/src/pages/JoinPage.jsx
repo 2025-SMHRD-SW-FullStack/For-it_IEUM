@@ -29,7 +29,6 @@ const JoinPage = () => {
   };
 
   const handleSocialClick = (platform) => {
-    console.log(`${platform} 버튼 클릭됨`);
   };
 
 
@@ -60,7 +59,6 @@ const JoinPage = () => {
         email,
         serviceCheck
       );
-      console.log('회원가입 성공:', data);
       toast.warn('회원가입이 완료되었습니다.');
       // alert('회원가입이 완료되었습니다.');
 

@@ -37,9 +37,7 @@ const Keyword = ({
             checkType: item.checkType
           });
           setUserKeyword(response.userKeyword)
-          console.log('백엔드 저장 결과:', response);
         } catch (err) {
-          console.error('저장 실패:', err);
         }
       }
     },

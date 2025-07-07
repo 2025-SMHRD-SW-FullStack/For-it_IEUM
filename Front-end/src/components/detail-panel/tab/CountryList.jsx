@@ -19,7 +19,6 @@ const CountryList = ({ overrideData = null, dropDown = false, className = '' }) 
   const setCountryAndTariff = (item) => {
     setCountry(item.name);
     setTariff(item.rate);
-    console.log(`Selected Country: ${item.name}, Tariff Rate: ${(item.rate * 100).toFixed(2)}`);
   }
 
   if (dropDown) {
@@ -32,7 +31,6 @@ const CountryList = ({ overrideData = null, dropDown = false, className = '' }) 
             const selectedItem = data[selectedIndex - 1];
             if (selectedItem) {
               setCountryAndTariff(selectedItem);
-              // console.log(`Selected Country: ${selectedItem.name}, Tariff Rate: ${selectedItem.rate}`);
             }
           }
           }>

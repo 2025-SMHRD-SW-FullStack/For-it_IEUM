@@ -33,10 +33,7 @@ const KeywordSideBar = () => {
           const data = await keywordItem();   // axios.get 결과
           setAllKeywords(data.keywordAll);
           setUserKeyword(data.userKeyword)
-          console.log(data.userKeyword); // 회원 키워드 
-          console.log(data.keywordAll); // 전체 키워드
         } catch (error) {
-          console.error('검색 실패:', error);
         }
       };
       fetchResults();

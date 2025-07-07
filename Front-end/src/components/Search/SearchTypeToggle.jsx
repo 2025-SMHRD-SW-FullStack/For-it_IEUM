@@ -16,10 +16,8 @@ const SearchTypeToggle = () => {
       const response = await getRank();
       if (response && response.length > 0) {
         setKeywords(response);
-        console.log("키워드 가져오기 성공:", response);
       }
     } catch (error) {
-      console.error("키워드 가져오기 실패:", error);
     }
   }
 

@@ -39,7 +39,7 @@ const DetailPanel = () => {
         selectedCard.hs_code,
         new Date()
       ).then(res => {
-        console.log("검색 데이터 저장 성공:", res);})
+        })
       setShouldRender(true);
       setTimeout(() => setIsVisible(true), 10);
       setAiSubmitted(false);  // 새 카드일 땐 전략 초기화

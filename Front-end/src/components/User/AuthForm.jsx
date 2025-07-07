@@ -59,12 +59,10 @@ const AuthForm = ({ type,  form,  setForm,
         // 2) localStorage 에 저장
         localStorage.setItem('accessToken', accessToken.result.token);
         // 3) Zustand 스토어에 저장 (isLoggedIn도 true로)
-        console.log('로그인 성공:', accessToken.result.token);
         setAccessToken(accessToken.result.token);
         // 4) 부모 컴포넌트에 성공 콜백
         navigate('/'); // 로그인 성공 후 홈으로 이동
       } catch (err) {
-        console.error(err);
         toast.warn('아이디와 패스워드를 확인해주세요!');
         // TODO: 오류 메시지 보여주기
       }

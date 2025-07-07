@@ -145,7 +145,7 @@ public class SearchService {
             """.formatted(
                 productPrice, quantityInt, dto.getPrice(),
                 cifPrice,
-                dto.getTariff(),   // 1.2 → "1.2%"
+                dto.getTariff()*100,   // 1.2 → "1.2%"
                 tariffPrice,
                 vat, totalTax, totalCost,
                 perUnit, minPriceDiff
