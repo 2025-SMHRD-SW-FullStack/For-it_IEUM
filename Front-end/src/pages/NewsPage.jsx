@@ -4,7 +4,7 @@ import { newsItem } from '../services/newsService';
 import NewsPanel from '../components/news/NewsPanel';
 
 const NewsPage = () => {
-  
+
   const [items, setItems] = useState([]);
   const [selectedItem, setSelectedItem] = useState(null);
   const [showNews, setShowNews] = useState(false);
@@ -31,7 +31,40 @@ const NewsPage = () => {
   }, []);
 
   return (
-    <div className={`newsPage ${showNews ? 'show-panel' : ''}`}>
+    
+    <div className = 'newsPage' >
+      <div className="news-list">
+        {items.map(item => (
+          <a
+            key={item.id}
+            href={item.link}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="newsCard-link"
+          >
+            <div className="newsCard">
+              <h3 className="newsTitle">{stripTagsAndDecode(item.title)}</h3>
+              <small className="newsDate">
+                {new Date(item.pubDate).toLocaleString('ko-KR')}
+              </small>
+              <div
+                className="newsDescription"
+                dangerouslySetInnerHTML={{ __html: item.description }}
+              />
+            </div>
+          </a>
+        ))}
+      </div>
+    </div >
+
+        
+
+  );
+};
+
+{/* 뉴스 패널이 띄워지도록 하는 코드
+  return (
+      <div className={`newsPage ${showNews ? 'show-panel' : ''}`}>
         <div className="news-list">
           {items.map(item => (
             <div
@@ -60,9 +93,9 @@ const NewsPage = () => {
           setIsVisible={setShowNews}
           onClose={() => setSelectedItem(null)}
         />
-      )}
-    </div>
-  );
-};
+      )} 
+      </div >  
+    )
+      */}
 
 export default NewsPage;
