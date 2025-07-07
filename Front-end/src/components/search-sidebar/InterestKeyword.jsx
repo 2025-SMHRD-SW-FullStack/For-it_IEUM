@@ -1,7 +1,7 @@
 import { useDrop } from 'react-dnd';
 import { toast } from 'react-toastify';
 import Keyword from './Keyword';
-import { keywordDeleteItem } from '../../services/keyWordService';
+import { keywordDeleteItem } from '../../services/keywordService';
 import deleteIcon from '../../assets/image/delete.png';
 import './InterestKeyword.css'
 

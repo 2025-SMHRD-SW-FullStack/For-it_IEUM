@@ -24,26 +24,10 @@ public class NewsController {
 	
 	private final NewsService service;
 	
-//	@GetMapping
-//    public Mono<NewsResponse> searchNews(
-//            @RequestParam String query,
-//            @RequestParam(defaultValue = "10") int display,
-//            @RequestParam(defaultValue = "1") int start,
-//            @RequestParam(defaultValue = "sim") String sort) {
-//    	
-//    	// 디버깅 확인 용
-//    	System.out.println("[컨트롤러]");
-//    	System.out.println("url 테스터");
-//    	System.out.println(query);
-//        return service.search(query, display, start, sort);
-//	
-//	}
-	
 	@GetMapping("/news")
 	public List<NewsDTO> newsSearch(){
 		
 		List<NewsDTO> list = service.newsSearch();
-		System.out.println(list);
 		return list;
 	}
 }

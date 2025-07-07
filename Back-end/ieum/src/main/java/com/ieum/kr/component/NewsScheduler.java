@@ -23,11 +23,9 @@ public class NewsScheduler {
 //    @Scheduled(cron = "0 * * * * *") // 매 1분마다 실행 (테스트용)
      @Scheduled(cron = "0 0 0 * * *") // 실제 운영 시 매일 자정에 실행
     public void fetchAndSaveNews() {
-        System.out.println("🕛 Naver 뉴스 자동 수집 시작");
 
         // 🔁 기존 뉴스 삭제 (선택)
          service.newsDeleteAll();
-         System.out.println("🗑️ 기존 데이터 삭제 완료");
 
         List<String> keywords = List.of("FTA", "관세");
 
@@ -42,9 +40,7 @@ public class NewsScheduler {
 
                     if (!entities.isEmpty()) {
                         newsRepository.saveAll(entities);
-                        System.out.println("✅ [" + keyword + "] 저장 완료: " + entities.size() + "건");
                     } else {
-                        System.out.println("📌 [" + keyword + "] 중복 뉴스만 존재 – 저장 안 함");
                     }
                 })
                 .doOnError(error ->

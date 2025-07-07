@@ -42,48 +42,22 @@ public class CategoryController {
 	@PostMapping("/keyword")
 	public ResponseEntity<?> keywordList(@RequestHeader(value = "Authorization", required = false) String authHeader) {
 
-		System.out.println("[categoryAll Controller 접근 확인]");
 		KeyWordDTO uDto = new KeyWordDTO();
 		CategoryDTO aDto = new CategoryDTO();
 		if (authHeader != null) {
 			String userId = userService.getUserInfo(authHeader);
 			uDto.setUserId(userId);
 
-//			if (userId != null) {
-//				List<KeyWordDTO> userKeyword = cateService.userKeyWordList(dto);
-//				List<KeyWordDTO> keyDto = new ArrayList<KeyWordDTO>();
-//
-//				for (KeyWordDTO userKeywordList : userKeyword) {
-//					keyDto.add(userKeywordList);
-//
-//					all.setUserKeyword(keyDto);
-//				}
-//			}
 		}
-//		List<CategoryDTO> result = cateService.keywordList();
-//		List<CategoryDTO> cateList = new ArrayList<CategoryDTO>();
-//		for (CategoryDTO cateDto : result) {
-//			cateList.add(cateDto);
-//
-//			all.setKeywordAll(cateList);
-//		}
 
-//		cateService.listMerge(uDto, aDto);
-
-//		map.put(result, "keyword");
 		KeywordAllDTO result = cateService.listMerge(uDto, aDto);
 
-		System.out.println(result);
-//		return ResponseEntity.ok(cateService.listMerge(uDto, aDto));
 		return ResponseEntity.ok(result);
 	}
 
 	@PostMapping("/keyword/interest")
 	public ResponseEntity<?> keywordSave(@RequestHeader(value = "Authorization", required = false) String authHeader,
 			@RequestBody KeyWordDTO uDto) {
-
-		System.out.println("[categorySave Controller 접근 확인]");
-		System.out.println(uDto);
 
 		CategoryDTO aDto = new CategoryDTO();
 		boolean check = false;
@@ -92,7 +66,6 @@ public class CategoryController {
 			uDto.setUserId(userId);
 			// 회원의 카테고리 정보가 5보다 작을때만 카테고리 저장
 			KeywordAllDTO list = cateService.listMerge(uDto, aDto);
-			System.out.println(list.getUserKeyword());
 			List<String> checkList = new ArrayList<>();
 			if (list.getUserKeyword() == null || list.getUserKeyword().size() < 5) {
 				if (list.getUserKeyword() == null) {
@@ -118,7 +91,6 @@ public class CategoryController {
 	@PostMapping("/keyword/delete")
 	public ResponseEntity<?> KeywordDelete(@RequestHeader(value = "Authorization", required = false) String authHeader,
 			@RequestBody KeyWordDTO uDto) {
-		System.out.println("컨트롤러 확인"+uDto.getId());
 		CategoryDTO aDto = new CategoryDTO();
 		if (authHeader != null) {
 			String userId = userService.getUserInfo(authHeader);

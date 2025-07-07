@@ -7,8 +7,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import InterestKeyword from './InterestKeyword';
 import Keyword from './Keyword';
 import './KeywordSideBar.css';
-import { keywordItem } from '../../services/keyWordService';
-import { keywordSaveItem } from '../../services/keyWordService';
+import { keywordItem } from '../../services/keywordService'; 
 export const Item = {
   KEYWORD: 'keyword',
 };

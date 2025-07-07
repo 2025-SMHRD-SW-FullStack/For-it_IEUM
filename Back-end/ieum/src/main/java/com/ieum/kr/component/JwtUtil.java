@@ -19,7 +19,6 @@ public class JwtUtil {
 	private final long EXPIRATION = 1000*60*60; // 1시간
 	
 	 public String generateToken(String userId) {
-//		 System.out.println("Loaded SECRET : " + secret);
 	        return Jwts.builder()
 	                .setSubject(userId)
 	                .setIssuedAt(new Date())

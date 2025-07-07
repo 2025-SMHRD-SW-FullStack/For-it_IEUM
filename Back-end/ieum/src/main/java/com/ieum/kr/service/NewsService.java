@@ -28,7 +28,6 @@ public class NewsService {
                                           int display,
                                           int start,
                                           String sort) {
-    	System.out.println("[service 확인]");
     	
         return naverWebClient.get()
             .uri(uriBuilder -> uriBuilder
