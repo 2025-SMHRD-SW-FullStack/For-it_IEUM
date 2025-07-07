@@ -11,7 +11,7 @@ const BookMarkPage = () => {
   const [strategyOpen, setStrategyOpen] = useState({});
   const [btnAnimState, setBtnAnimState] = useState({});
 
-  const { bookmark, setBookmark } = useBookmarkStore();
+  const { bookmarkList, setBookmark } = useBookmarkStore();
 
   useEffect(() => {
     const getList = async () => {
@@ -32,7 +32,7 @@ const BookMarkPage = () => {
   };
 
   const confirmDelete = async () => {
-    const newList = bookmark.filter(item => item.seqNumber !== selectedValue);
+    const newList = bookmarkList.filter(item => item.seqNumber !== selectedValue);
     const result = await deleteBookMark(selectedValue);
     if (result === "success") {
       setBookmark(newList);
@@ -60,11 +60,11 @@ const BookMarkPage = () => {
   return (
     <div className="bookmark-container">
       <h1 className="bookmark-title">북마크 페이지</h1>
-      {bookmark.length === 0 ? (
+      {bookmarkList.length === 0 ? (
         <p className="empty-message">아직 저장된 북마크가 없어요.</p>
       ) : (
         <div className="accordion-container">
-          {bookmark.map((item, index) => {
+          {bookmarkList.map((item, index) => {
             const isOpen = openItem === item.seqNumber;
             const rawTitle = item.productName ?? "";
             const shortTitle = rawTitle.length > 20 ? rawTitle.slice(0, 20) + "..." : rawTitle;
@@ -172,7 +172,7 @@ const BookMarkPage = () => {
                   </div>
                 </div>
 
-                {index !== bookmark.length - 1 && <hr className="divider" />}
+                {index !== bookmarkList.length - 1 && <hr className="divider" />}
               </div>
             );
           })}

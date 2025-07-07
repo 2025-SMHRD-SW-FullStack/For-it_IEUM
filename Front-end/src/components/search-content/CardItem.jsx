@@ -4,9 +4,11 @@ import star from '../../assets/image/star.png'
 import filledStar from '../../assets/image/filledStarO.png' // 채워진 별 아이콘 추가
 import './CardItem.css'
 import { saveBookMarks, getBookMarkList, deleteBookMark } from '../../services/bookMarkService';
+import { useBookmarkStore } from '../../stores/BookMarkStore';
 
 const CardItem = ({ card }) => {
   const { selectedCard, setSelectedCard } = useCardStore();
+  const {bookmarkList, setBookmark} = useBookmarkStore();
 
   const isSelected = (selectedCard && selectedCard.hs_code) === card.hs_code;
 
@@ -19,8 +21,6 @@ const CardItem = ({ card }) => {
   const toggleFavorite = async (e) => {
     e.stopPropagation(); // 부모 div 클릭 방지
     setIsFavorite((prev) => !prev);
-    console.log('즐겨찾기 토글:', !isFavorite);
-    console.log('카드 정보:', card);
     if (!isFavorite) {
       const saveBookMark = await saveBookMarks(
         card.hs_code,
@@ -34,8 +34,8 @@ const CardItem = ({ card }) => {
         ""
       );
     }else{
-      const delBookMark = await deleteBookMark(card.hs_code);
-      console.log('즐겨찾기 삭제:', delBookMark);
+      const delBookMark = await deleteBookMark("",card.hs_code);
+      setBookmark(await getBookMarkList()); // 북마크 목록 새로고침
     }
   }
 
@@ -44,14 +44,13 @@ const CardItem = ({ card }) => {
       try {
         const favorites = await getBookMarkList();
         const isFav = favorites.some(fav => fav.hsCode === card.hs_code);
-        console.log('즐겨찾기 상태:', isFav);
         setIsFavorite(isFav);
       } catch (error) {
         console.error('즐겨찾기 가져오기 실패:', error);
       }
     }
     fetchFavorites();
-  }, [card.hs_code]);
+  }, [card.hs_code, bookmarkList]);
 
   return (
     <div
