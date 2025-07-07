@@ -38,7 +38,7 @@ const SearchBar = () => {
           value={category}
           onChange={(e) => setCategory(e.target.value)}
         >
-          <option value="productName">품목(ex 쌀)</option>
+          <option value="productName">품목(ex. 쌀)</option>
           <option value="hsCode">HS 코드</option>
         </select>
       </div>
