@@ -1,6 +1,7 @@
 import React from 'react'
 import logo from '../../assets/image/logo.png'
 import { useNavigate } from 'react-router-dom'
+import './Logo.css'
 
 const Logo = () => {
   
@@ -11,10 +12,14 @@ const handleClick = () => {
 }
 
   return (
-    <div className="main_logo" onClick={handleClick}
-    style={{cursor:'pointer'}}>
+    <div onClick={handleClick}>
       {/* IEUM */}
-      <span><img src={logo} alt="로고 이미지"></img></span>
+      <span>
+        <img 
+        src={logo} 
+        alt="로고 이미지"
+        className='main_logo'></img>
+      </span>
     </div>
   )
 }
