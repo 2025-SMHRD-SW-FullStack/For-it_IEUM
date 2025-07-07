@@ -4,13 +4,13 @@
   justify-content: center;
   height: 100%;
   overflow: hidden;
-  padding-left: 10rem;
+  padding: 0 12rem;
 }
 
 .news-list {
   width: 100%;
-  flex: 1;
-  margin: 2rem;
+  max-width: 1200px;
+  margin: 2rem auto;
   overflow-y: auto;
   box-sizing: border-box;
 }
@@ -36,3 +36,9 @@
 .newsTitle {
   padding: 0px;
 }
+
+.newsCard-link {
+  text-decoration: none;
+  color: inherit;
+}
+

@@ -1,60 +1,86 @@
-.search-box{
-  display:flex;
-  border:2px solid #dadada;
-  border-radius:9999px;
-  overflow:hidden;
-  width:550px;
-  box-sizing: border-box; /*패딩, 테두리까지 포함해서 width 계산*/
-  padding: 0; /*내부 input 간격 조정*/
+.search-box {
+  display: flex;
+  align-items: center;
+  border: 2px solid #b0c4de; /* 연한 블루그레이 */
+  border-radius: 9999px;
+  overflow: hidden;
+  width: 550px;
+  box-sizing: border-box;
   padding-right: 10px;
-  min-height: fit-content;
+  background-color: white;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05); /* 부드러운 그림자 */
+  transition: box-shadow 0.3s ease;
 }
 
-.search-box img {
-  width: 5px;
-  height: 5px;
+.search-box:hover {
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.12);
 }
 
-.search-box img:hover {
-  transform: scale(1.05);
+.select-wrapper {
+  position: relative;
+  height: 100%;
+  display: flex;
+  align-items: center;
 }
 
-.select-wrapper select{
-  border:none;
+.select-wrapper select {
+  border: none;
   outline: none;
-  background:#e6f1ff;
-  padding:.9rem 1rem;
-  font-size:.9rem;
-  cursor:pointer;
+  background: #e6f1ff;
+  padding: 0.8rem 2rem 0.8rem 1rem;
+  font-size: 0.9rem;
+  cursor: pointer;
   border-radius: 35px;
-  /* 브라우저 기본 UI 제거 (화살표 포함) */
   appearance: none;
   -webkit-appearance: none;
   -moz-appearance: none;
   height: 100%;
 }
-.select-wrapper {
-  position: relative;
-}
 
 .select-wrapper::after {
-  content: '▼'; 
+  content: '▼';
   position: absolute;
-  right: 5px;
+  right: 12px;
   top: 50%;
   transform: translateY(-50%);
   pointer-events: none;
   font-size: 0.6rem;
+  color: #555;
 }
 
-.search-box input{
-  flex:1;border:none;padding:0 1rem;font-size:.9rem;
+.search-box input {
+  flex: 1;
+  border: none;
+  padding: 0 1rem;
+  font-size: 0.9rem;
+  background-color: transparent;
 }
-.search-box input:focus{outline:none;}
-.search-box button{
-  border:none;
-  background:transparent;
-  padding:0 1.2rem;
-  font-size:1rem;
-  cursor:pointer;
+
+.search-box input:focus {
+  outline: none;
+}
+
+.search-box button {
+  border: none;
+  background: transparent;
+  padding: 0 1rem;
+  font-size: 1rem;
+  cursor: pointer;
+  color: #3a3a3a;
+  transition: transform 0.2s ease, color 0.2s ease;
+}
+
+.search-box button:hover {
+  transform: scale(1.1);
+  color: #007bff;
+}
+
+.search-box img {
+  width: 20px;
+  height: 20px;
+  margin-right: 0.5rem;
+}
+
+.search-box img:hover {
+  transform: scale(1.1);
 }
