@@ -42,7 +42,7 @@ const ExampleDetail = () => {
         <div className='exampleBox'>
           <div className='exampleDetailText'>
             📌 품목 요약 <br />  
-            - 커피 원두(0921.21-0000) <br />
+            - 인스턴트 커피(2101.11-1000) <br />
             : 전 세계적으로 수요가 많은 품목. <br />
             <br />
             📊 관세 비교 <br />

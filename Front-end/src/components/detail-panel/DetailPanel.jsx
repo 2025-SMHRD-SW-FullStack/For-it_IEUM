@@ -53,7 +53,7 @@ const DetailPanel = () => {
   useEffect(() => {
     if (activeTab === 'strategy' && selectedCard && !aiSubmitted) {
       const selectedItem = testItem.find(item => item.id === selectedCard.id);
-      const prompt = buildPrompt4o(selectedItem);
+      // const prompt = buildPrompt4o(selectedItem);
       fetchAI(prompt);
       setAiSubmitted(true);
     }
