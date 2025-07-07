@@ -8,7 +8,7 @@ const CaculatorLogic = ({className = '',trigger}) => {
 
   const { selectedCard } = useCardStore();
 
-  const {quantity, unitPrice, setCalculation} = useCalCulStore();
+  const {quantity, unitPrice, country, tariff, setCalculation} = useCalCulStore();
 
   const [calculationResult, setCalculationResult] = useState(null);
   const [loading, setLoading] = useState(false)
@@ -26,8 +26,8 @@ const CaculatorLogic = ({className = '',trigger}) => {
         unitPrice,
         quantity,
         selectedCard.base_tariff,
-        selectedCard.top10_data[0].name,
-        selectedCard.top10_data[0].rate
+        country,
+        tariff
       );
       setCalculationResult(data.calculation ?? data);
       setCalculation(data.calculation ?? data);

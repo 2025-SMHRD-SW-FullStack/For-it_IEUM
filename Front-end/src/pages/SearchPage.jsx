@@ -7,12 +7,14 @@ import DetailPanel from '../components/detail-panel/DetailPanel';
 import SearchBar from '../components/Search/SearchBar';
 import CardItem from '../components/search-content/CardItem';
 import KeywordSideBar from '../components/search-sidebar/KeywordSideBar';
+import { useBookmarkStore } from '../stores/BookMarkStore';
 
 const SearchPage = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const { selectedCard, clearSelectedCard } = useCardStore();
   const [results, setResults] = useState([]);
+  const { bookmarkList } = useBookmarkStore();
 
   // 쿼리 파라미터 추출
   const params = new URLSearchParams(location.search);
@@ -42,7 +44,7 @@ const SearchPage = () => {
   };
 
   fetchResults();
-}, [category, query]);
+}, [category, query, bookmarkList]);
 
   return (
     <div className='searchPage'>

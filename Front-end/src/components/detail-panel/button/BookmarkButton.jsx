@@ -4,13 +4,15 @@ import bookmark from '../../../assets/image/bookmark.png';
 import bookmarkchanged from '../../../assets/image/bookmarkchanged.png'
 import useCalCulStore from '../../../stores/CalculStore';
 import useChatGTPStore from '../../../stores/ChatGPTStore';
-import { saveBookMarks } from '../../../services/bookMarkService';
+import { saveBookMarks, getBookMarkList } from '../../../services/bookMarkService';
+import { useBookmarkStore } from '../../../stores/BookMarkStore';
 
 const BookmarkButton = ({ activeTab, selectedCard }) => {
   const [bookmarkMessage, setBookmarkMessage] = useState('');
   const [isBookmarked, setIsBookmarked] = useState(false);
+  const { setBookmark } = useBookmarkStore();
 
-  const { quantity, unitPrice, calculation } = useCalCulStore();
+  const { quantity, unitPrice, calculation, country, tariff } = useCalCulStore();
   const { chatGPTResponse } = useChatGTPStore();
 
   const clickBookmark = async () => {
@@ -18,8 +20,8 @@ const BookmarkButton = ({ activeTab, selectedCard }) => {
       selectedCard.hs_code,
       selectedCard.product_name,
       selectedCard.base_tariff,
-      selectedCard.top10_data[0].name,
-      selectedCard.top10_data[0].rate,
+      country,
+      tariff,
       unitPrice,
       quantity,
       calculation,
@@ -29,6 +31,7 @@ const BookmarkButton = ({ activeTab, selectedCard }) => {
     if (resultBookmark === 'update') {
       setBookmarkMessage('북마크가 업데이트 되었습니다.');
     } else {
+      setBookmark(await getBookMarkList()); // 북마크 목록을 새로고침
       setBookmarkMessage('북마크가 저장되었습니다.');
     }
 
