@@ -1,7 +1,7 @@
 import { useDrop } from 'react-dnd';
 import { toast } from 'react-toastify';
 import Keyword from './Keyword';
-import { keywordDeleteItem } from '../../services/keyWordService';
+import { keywordDeleteItem } from '../../services/keywordService';
 import deleteIcon from '../../assets/image/delete.png';
 import './InterestKeyword.css'
 
@@ -14,7 +14,6 @@ const InterestKeyword = ({ interest, setInterest, Item, userKeyword, setUserKeyw
     accept: Item.KEYWORD,
     drop: (item) => {
       if (interest.includes(item.keyword)) return;
-      // console.log(`드래그 확인 ${userKeyword[0].productName}`);
 
       if (keywords.length >= 5) {
         toast.warn('관심 키워드는 최대 5개까지만 등록할 수 있어요.');
@@ -25,16 +24,12 @@ const InterestKeyword = ({ interest, setInterest, Item, userKeyword, setUserKeyw
   });
 
   const keywordDelete = async (id) => {
-    console.log("확인");
-    console.log(id);
 
     try {
       const response = await keywordDeleteItem(id);
-      console.log(response);
 
       setUserKeyword(response.userKeyword);
     } catch (error) {
-      console.error('검색 실패:', error);
     }
 
 

@@ -42,7 +42,6 @@ public class CategoryService {
 	
 	public List<KeyWordDTO> userKeyWordList(KeyWordDTO dto){
 		
-		System.out.println(dto);
 		KeyWordEntity entity = new KeyWordEntity();
 		entity.setUserId(dto.getUserId());
 		
@@ -50,7 +49,6 @@ public class CategoryService {
 		List<KeyWordEntity> result = keyWordRepository.userKeywordList(entity.getUserId());
 		List<KeyWordDTO> list = new ArrayList<KeyWordDTO>();
 		
-		System.out.println(result);
 		for(KeyWordEntity enty : result) {
 			KeyWordDTO keyDto = new KeyWordDTO();
 			list.add(keyDto.fromEntity(enty));
@@ -89,7 +87,6 @@ public class CategoryService {
 	
 	
 	public void keywordSave(KeyWordDTO dto) {
-		System.out.println("[service dto]"+dto);
 		KeyWordEntity entity = new KeyWordEntity();
 		entity.setUserId(dto.getUserId());
 		entity.setHsCode(dto.getHsCode());
@@ -109,8 +106,6 @@ public class CategoryService {
 		KeyWordEntity entity = new KeyWordEntity(dto.getId(),dto.getUserId());
 //		entity.setId(dto.getId());
 //		entity.setUserId(dto.getUserId());
-		System.out.println("[id :"+entity.getId()+"][userId : "+entity.getUserId()+"]");
 		keyWordRepository.keywordDel(entity.getId(),entity.getUserId());
-		System.out.println("[삭제완료]");
 	}
 }

@@ -23,7 +23,6 @@ const LoginPage = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log('로그인 시도:', form);
 
     fetchResults(form);
 
@@ -31,7 +30,6 @@ const LoginPage = () => {
   };
 
   const handleSocialLogin = (platform) => {
-    console.log(`${platform} 로그인 시도 중`);
   };
 
   const socialButtons = [

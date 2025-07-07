@@ -19,10 +19,7 @@ public class NewsCluentConfig {
 	
 	@Bean
 	public WebClient naverWebClient() {
-//        System.out.println("props.getNewsUrl() = " + props.getNewsUrl());
-//        System.out.println("💡 ClientId: " + props.getClientId());
-//        System.out.println("💡 Secret: " + props.getClientSecret());
-//        System.out.println("💡 URL: " + props.getNewsUrl());
+
         return WebClient.builder()
             .baseUrl(props.getNewsUrl())
             .defaultHeader("X-Naver-Client-Id", props.getClientId())

@@ -1,7 +1,6 @@
 import { useEffect } from 'react';
 import { useDrag } from 'react-dnd';
-import { keywordSaveItem } from '../../services/keyWordService';
-import { searchItem } from '../../services/searchService';
+import { keywordSaveItem } from '../../services/keywordService';
 import { useNavigate } from 'react-router-dom';
 import './Keyword.css'
 
@@ -37,9 +36,7 @@ const Keyword = ({
             checkType: item.checkType
           });
           setUserKeyword(response.userKeyword)
-          console.log('백엔드 저장 결과:', response);
         } catch (err) {
-          console.error('저장 실패:', err);
         }
       }
     },

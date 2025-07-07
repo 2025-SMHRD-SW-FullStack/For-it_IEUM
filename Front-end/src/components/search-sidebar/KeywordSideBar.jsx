@@ -7,8 +7,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import InterestKeyword from './InterestKeyword';
 import Keyword from './Keyword';
 import './KeywordSideBar.css';
-import { keywordItem } from '../../services/keyWordService';
-import { keywordSaveItem } from '../../services/keyWordService';
+import { keywordItem } from '../../services/keywordService'; 
 export const Item = {
   KEYWORD: 'keyword',
 };
@@ -33,10 +32,7 @@ const KeywordSideBar = () => {
           const data = await keywordItem();   // axios.get 결과
           setAllKeywords(data.keywordAll);
           setUserKeyword(data.userKeyword)
-          console.log(data.userKeyword); // 회원 키워드 
-          console.log(data.keywordAll); // 전체 키워드
         } catch (error) {
-          console.error('검색 실패:', error);
         }
       };
       fetchResults();

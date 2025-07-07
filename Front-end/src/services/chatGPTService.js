@@ -21,7 +21,6 @@ for (let i = 0; i < selectedCard.top10_data.length; i++) {
     accumulated += ', ';
     }
 }
-console.log(accumulated);
 
     const prompt = `${selectedCard.product_name},${selectedCard.hs_code},${selectedCard.base_tariff},${accumulated}`
         
