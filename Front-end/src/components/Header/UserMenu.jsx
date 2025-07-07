@@ -13,13 +13,17 @@ import { useTokenStore } from '../../stores/TokenStore'
 const UserMenu = () => {
 
   const navigate = useNavigate();
-  const { isLoggedIn, setAccessToken, clearAccessToken } = useTokenStore();
+  const { isLoggedIn, setAccessToken, clearAccessToken,hasNewNotifications,clearNotifications } = useTokenStore();
   const prevLoggedInRef = useRef(false);
   const [showNotifications, setShowNotifications] = useState(false);
-  const [hasNewNotifications, setHasNewNotifications] = useState(false);
+  // const [hasNewNotifications, setHasNewNotifications] = useState(false);
   const toggleNotifications = () => {
     setShowNotifications(prev => !prev);
-    setHasNewNotifications(false); // 알림 클릭 시 빨간 점 제거
+    // setHasNewNotifications(false); // 알림 클릭 시 빨간 점 제거
+    clearNotifications(); // ✅ 알림 읽은 상태로
+    
+    
+    
   }
 
 
@@ -30,7 +34,7 @@ const UserMenu = () => {
   useEffect(() => {
     // 이전 상태가 false → true로 바뀔 때만 실행 (즉, 로그인된 최초 시점)
     if (isLoggedIn && !prevLoggedInRef.current) {
-      setHasNewNotifications(true);
+      // setHasNewNotifications(true);
     }
     prevLoggedInRef.current = isLoggedIn; // 상태 업데이트
   }, [isLoggedIn]);

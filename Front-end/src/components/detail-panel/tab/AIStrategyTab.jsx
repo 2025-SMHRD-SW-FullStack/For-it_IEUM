@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useRef } from "react";
-import './AIStrategyTab.css'
+import './AIStrategyTab.css';
 import useCardStore from "../../../stores/CardStore";
 import { chatGPTItem } from '../../../services/chatGPTService';
 import useChatGPTStore from '../../../stores/ChatGPTStore';
@@ -12,42 +12,49 @@ const AIStrategyTab = () => {
   const { selectedCard } = useCardStore();
   const { setChatGPTResponse } = useChatGPTStore();
 
-  // 경고 메시지를 한 번만 표시하기 위한 ref를 사용합니다.
-  // useRef는 컴포넌트가 리렌더링되어도 값을 유지하고, 값이 변경되어도 리렌더링을 유발하지 않습니다.
+  // 마지막으로 fetch를 실행했던 카드를 기억할 ref
+  const lastFetchedCardRef = useRef(null);
+  // 경고 토스트를 한 번만 띄우기 위한 ref
   const hasShownInitialWarning = useRef(false);
 
   useEffect(() => {
-    // 선택된 카드가 없으면 아무것도 하지 않습니다.
-    if (!selectedCard) {
-      return; 
+    // 카드가 선택되지 않았으면 아무것도 안 함
+    if (!selectedCard) return;
+
+    // 이미 같은 카드에 대해 fetch를 했다면 중단
+    if (lastFetchedCardRef.current === selectedCard) {
+      return;
+    }
+
+    if(chatResponse){
+      return;
     }
 
     const isLoggedIn = !!localStorage.getItem("accessToken");
 
-    // **회원이 아닐 때 경고 메시지를 한 번만 표시하는 로직**
-    // 로그인되어 있지 않고, 아직 경고를 표시한 적이 없다면 경고 토스트를 띄웁니다.
+    // 로그인 안 됐으면 한 번만 경고
     if (!isLoggedIn && !hasShownInitialWarning.current) {
       toast.warn("회원만 이용이 가능합니다. 가입을 먼저 해주세요");
-      hasShownInitialWarning.current = true; // 경고를 표시했음을 기록합니다.
-      // 이 경우, 데이터를 가져오지 않고 바로 함수를 종료합니다.
-      setChatResponse("회원만 이용이 가능합니다. 가입을 먼저 해주세요"); // 탭 내부에 메시지 표시
-      return; 
+      hasShownInitialWarning.current = true;
+      setChatResponse("회원만 이용이 가능합니다. 가입을 먼저 해주세요");
+      return;
     }
 
-    // 이미 경고가 표시되었고 여전히 로그인되어 있지 않은 경우 (다른 카드를 선택했을 때)
-    // 데이터 요청은 하지 않고, 탭 내부에 메시지만 표시합니다.
+    // 이미 경고는 띄웠는데 여전히 미로그인 상태면 탭 메시지만 변경
     if (!isLoggedIn) {
-        setChatResponse("회원만 이용이 가능합니다. 가입을 먼저 해주세요");
-        return;
+      setChatResponse("회원만 이용이 가능합니다. 가입을 먼저 해주세요");
+      return;
     }
 
-    // **로그인되어 있는 경우에만 AI 전략 데이터를 가져오는 로직**
+    // 로그인된 상태일 때만 AI 전략 호출
     const fetchResults = async () => {
       setLoading(true);
       try {
         const data = await chatGPTItem(selectedCard);
         setChatGPTResponse(data.answer);
         setChatResponse(data.answer);
+        // 성공적으로 fetch 한 카드 정보 저장
+        lastFetchedCardRef.current = selectedCard;
       } catch (error) {
         console.error("ChatGPT 응답을 가져오지 못했습니다:", error);
         setChatResponse("AI 응답을 받지 못했습니다.");
@@ -55,11 +62,9 @@ const AIStrategyTab = () => {
         setLoading(false);
       }
     };
-  
-    fetchResults();
 
-  // selectedCard가 변경될 때만 이 useEffect가 실행되도록 의존성 배열에 추가합니다.
-  }, [selectedCard]); 
+    fetchResults();
+  }, [selectedCard, setChatGPTResponse]);
 
   return (
     <pre className="AIText">
