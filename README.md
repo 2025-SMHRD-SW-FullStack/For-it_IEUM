@@ -1,6 +1,6 @@
 # <img src="https://github.com/user-attachments/assets/3d0946f7-1a9d-4551-bd2f-e2ecae1feba1" alt="example image" width="40"> IEUM
  
-![메인페이지](https://github.com/user-attachments/assets/707fb2fd-3776-4930-a763-a0f67daf81c1)
+![메인 페이지](https://github.com/user-attachments/assets/707fb2fd-3776-4930-a763-a0f67daf81c1)
 
 
 ## 🖥 플랫폼 소개
@@ -24,12 +24,27 @@
 - FTA 관세 정보 변경 알림 서비스
  
 ## 개발 환경 및 활용 기술
+![개발환경 및 활용 기술](https://github.com/user-attachments/assets/b254bd92-6042-47b0-84e1-4fb0f4e76a63)
+
 ## 시스템 아키텍처
+![시스템 아키텍처](https://github.com/user-attachments/assets/3494ce46-9110-4db4-a396-c6470b359735)
+
 ## ERD
+![ERD](https://github.com/user-attachments/assets/3b9d8bff-7405-44fe-a3d2-f1524304d9a6)
+
 ## 유스케이스 다이어그램
+![유스케이스 다이어그램](https://github.com/user-attachments/assets/76506dd5-910e-4b13-8996-1bcb384837f8)
+
+
 ## 플로우 차트
+![플로우차트](https://github.com/user-attachments/assets/61fc6008-c5cf-4358-99cb-d22f1837d32c)
+
 ## 화면 구성
 ## 트러블 슈팅
 ## 팀원 역할
+![팀원 역할](https://github.com/user-attachments/assets/7dee7add-646c-4405-b474-ca6e4467ecfc)
+
 ## 시연 영상
-## 참고 문헌 
+
+## 참고 문헌
+![참고 문헌](https://github.com/user-attachments/assets/d3a2226e-61e4-4a76-a375-48bd04ca8429)
