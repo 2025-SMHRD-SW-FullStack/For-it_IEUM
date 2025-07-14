@@ -22,8 +22,18 @@
 - FTA 관세 뉴스 제공
 - FTA 관세 정보 변경 알림 서비스
  
-## 🗂 개발 환경 및 활용 기술
-![개발환경 및 활용 기술](https://github.com/user-attachments/assets/b254bd92-6042-47b0-84e1-4fb0f4e76a63)
+## 🔧 기술 스택
+| 분류 | 기술 |
+|------|------|
+| **Back-End** | ![Spring Boot](https://img.shields.io/badge/Spring%20Boot-6DB33F?style=flat&logo=springboot&logoColor=white) ![Python](https://img.shields.io/badge/Python-3776AB?style=flat&logo=python&logoColor=white) ![FastAPI](https://img.shields.io/badge/FastAPI-009688?style=flat&logo=fastapi&logoColor=white) ![Uvicorn](https://img.shields.io/badge/Uvicorn-222222?style=flat&logo=fastapi&logoColor=white) |
+| **Front-End** | ![React](https://img.shields.io/badge/React-61DAFB?style=flat&logo=react&logoColor=black) ![Axios](https://img.shields.io/badge/Axios-5A29E4?style=flat) ![Chart.js](https://img.shields.io/badge/Chart.js-FF6384?style=flat) ![Toastify](https://img.shields.io/badge/Toastify-FFB347?style=flat) ![Zustand](https://img.shields.io/badge/Zustand-764ABC?style=flat) |
+| **Language** | ![Java](https://img.shields.io/badge/Java-%23ED8B00.svg?style=flat&logo=java&logoColor=white) ![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=flat&logo=javascript&logoColor=black) |
+| **IDE** | ![VSCode](https://img.shields.io/badge/VS%20Code-007ACC?style=flat&logo=visualstudiocode&logoColor=white) ![Eclipse](https://img.shields.io/badge/Eclipse-2C2255?style=flat&logo=eclipse&logoColor=white) |
+| **Database** | ![MySQL](https://img.shields.io/badge/MySQL-4479A1?style=flat&logo=mysql&logoColor=white) |
+| **API** | ![Naver API](https://img.shields.io/badge/Naver%20OpenAPI-03C75A?style=flat) ![ChatGPT](https://img.shields.io/badge/OpenAI-412991?style=flat&logo=openai&logoColor=white) |
+| **Data Source** | ![DATA.GO.KR](https://img.shields.io/badge/DATA.go.kr-blue?style=flat) ![관세청](https://img.shields.io/badge/관세청-003478?style=flat) |
+| **Etc.** | ![GitHub](https://img.shields.io/badge/GitHub-181717?style=flat&logo=github&logoColor=white) ![Figma](https://img.shields.io/badge/Figma-F24E1E?style=flat&logo=figma&logoColor=white) |
+
 
 ## 🖱 시스템 아키텍처
 ![시스템 아키텍처](https://github.com/user-attachments/assets/3494ce46-9110-4db4-a396-c6470b359735)
