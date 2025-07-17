@@ -39,7 +39,7 @@
 ![시스템 아키텍처](https://github.com/user-attachments/assets/3494ce46-9110-4db4-a396-c6470b359735)
 
 ## 🔗 ERD
-![ERD](https://github.com/user-attachments/assets/3b9d8bff-7405-44fe-a3d2-f1524304d9a6)
+![ERD](https://github.com/user-attachments/assets/20fcf07b-6937-42ed-a091-8488e65340c1)
 
 ## 🙋‍♀️ 유스케이스 다이어그램
 ![유스케이스 다이어그램](https://github.com/user-attachments/assets/76506dd5-910e-4b13-8996-1bcb384837f8)
